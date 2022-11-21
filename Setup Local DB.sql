@@ -1,6 +1,4 @@
-﻿-- Opret en database der hedder BookwareDB
-
-DROP TABLE [dbo].[Class_Book];
+﻿DROP TABLE [dbo].[Class_Book];
 DROP TABLE [dbo].[Book];
 DROP TABLE [dbo].[Class];
 DROP TABLE [dbo].[Student];

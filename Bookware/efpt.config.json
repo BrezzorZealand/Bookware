@@ -1,0 +1,73 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "BookwareDBContext",
+   "ContextNamespace": "Models",
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Models",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Bookware",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Book]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Class]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Class_Book]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Education]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Education_Subject]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Student]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Subject]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Teacher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Teacher_Subject]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "(localdb)\\MSSQLLocalDB.BookwareDB",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
