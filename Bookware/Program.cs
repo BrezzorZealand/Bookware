@@ -1,7 +1,11 @@
+using Bookware.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
 
 var app = builder.Build();
 
