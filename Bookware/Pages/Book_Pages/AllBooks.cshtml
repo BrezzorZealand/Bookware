@@ -1,0 +1,39 @@
+﻿@page
+@model Bookware.Pages.Book_Pages.AllBooksModel
+@{
+    ViewData["Title"] = "All Books";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Year</th>
+                <th scope="col">ISBN</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Books != null)
+            {
+                @foreach (var item in Model.Books)
+                {
+                    <tr>
+                        <td>@item.BookId</td>
+                        <td>@item.Title </td>
+                        <td>@item.Author</td>
+                        <td>@item.Year</td>
+                        <td>@item.Isbn</td>
+                        <td>
+                            <a asp-page="Book_Pages/Details" asp-route-id="@item.BookId" class="btn btn-primary">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

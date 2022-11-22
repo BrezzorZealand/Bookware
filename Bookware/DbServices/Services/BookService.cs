@@ -1,5 +1,6 @@
 ﻿using Bookware.Interfaces;
 using Bookware.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.Services
 {
@@ -12,9 +13,16 @@ namespace Bookware.Services
             this.context = context;
         }
 
-        public IEnumerable<Book> GetBøger()
+        public IEnumerable<Book> GetBooks()
         {
             return context.Books;
+        }
+
+        public Book? GetBook(int id)
+        {
+            return context.Books
+                .AsNoTracking()
+                .FirstOrDefault(b => b.BookId == id);
         }
     }
 }

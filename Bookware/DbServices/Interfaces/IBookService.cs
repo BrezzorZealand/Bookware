@@ -1,9 +1,11 @@
-﻿//using Bookware.Models;
+﻿using Bookware.Models;
 
 namespace Bookware.Interfaces
 {
     public interface IBookService
     {
-        //IEnumerable<BwBog> GetBøger();
+        IEnumerable<Book> GetBooks();
+
+        Book? GetBook(int id);
     }
 }
