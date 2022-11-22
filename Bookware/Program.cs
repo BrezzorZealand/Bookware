@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
-builder.Services.AddTransient<IBogService, BogService>();
+builder.Services.AddTransient<IBookService, BookService>();
 
 var app = builder.Build();
 

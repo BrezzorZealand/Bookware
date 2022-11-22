@@ -2,7 +2,7 @@
 
 namespace Bookware.Interfaces
 {
-    public interface IBogService
+    public interface IBookService
     {
         //IEnumerable<BwBog> GetBøger();
     }
