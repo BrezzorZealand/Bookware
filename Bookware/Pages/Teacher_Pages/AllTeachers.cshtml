@@ -1,4 +1,36 @@
 ﻿@page
 @model Bookware.Pages.Teacher_Pages.AllTeachersModel
 @{
+    ViewData["Title"] = "Teachers";
 }
+
+<h1>List of Teachers</h1>
+
+<p>
+    <a asp-page="">Edit Teachers</a>
+</p>
+
+<div class="text-md-start">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Teachers != null)
+            {
+                @foreach (var item in Model.Teachers)
+                {
+                    <tr>
+                        <td>@item.TeacherId</td>
+                        <td>@item.Name </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
