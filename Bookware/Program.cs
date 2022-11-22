@@ -1,5 +1,5 @@
 using Bookware.Interfaces;
-//using Bookware.Models;
+using Bookware.Models;
 using Bookware.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-//builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
-//builder.Services.AddTransient<IBwBogService, BwBogService>();
+builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
+builder.Services.AddTransient<IBogService, BogService>();
 
 var app = builder.Build();
 

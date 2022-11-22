@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Bookware.Models
 {
-    public partial class BookwareDBContext : DbContext
+    public partial class BookwareDbContext : DbContext
     {
-        public BookwareDBContext()
+        public BookwareDbContext()
         {
         }
 
-        public BookwareDBContext(DbContextOptions<BookwareDBContext> options)
+        public BookwareDbContext(DbContextOptions<BookwareDbContext> options)
             : base(options)
         {
         }
