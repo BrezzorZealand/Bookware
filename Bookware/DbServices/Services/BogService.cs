@@ -3,7 +3,7 @@
 
 namespace Bookware.Services
 {
-    public class BwBogService : IBwBogService
+    public class BogService : IBogService
     {
         //private readonly BookwareDbContext context;
 
