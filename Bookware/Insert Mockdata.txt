@@ -1,10 +1,10 @@
 ﻿SET IDENTITY_INSERT [dbo].[Education] ON
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (1, N'Zealand Roskilde')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (2, N'Zealand Slagelse')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (3, N'Zealand Køge')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (4, N'Zealand Nestved')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (5, N'Zealand Holbæk')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (6, N'Zealand Nykøbing F')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (1, N'Datamatiker')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (2, N'Multimediedesign')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (3, N'Administrationsøkonom')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (4, N'Autoteknolog')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (5, N'EL-installatør')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (6, N'Laborant')
 SET IDENTITY_INSERT [dbo].[Education] OFF
 
 SET IDENTITY_INSERT [dbo].[Teacher] ON
@@ -17,14 +17,15 @@ INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (6, N'Daniel')
 SET IDENTITY_INSERT [dbo].[Teacher] OFF
 
 SET IDENTITY_INSERT [dbo].[Subject] ON
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (1, N'Datamatiker Software Design')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (2, N'Datamatiker Software Construction')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (3, N'Multimediedesign')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (4, N'Administrationsøkonom')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (5, N'Autoteknolog')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (6, N'EL-installatør')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (7, N'Handelsøkonom')
-INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (8, N'Laborant')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (1, N'Software Design')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (2, N'Software Construction')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (3, N'Web Design')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (4, N'Kemi')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (5, N'Bioteknologi')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (6, N'Markedsforing')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (7, N'Web development')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (8, N'Production')
+INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (9, N'Enheds Operationer')
 SET IDENTITY_INSERT [dbo].[Subject] OFF
 
 SET IDENTITY_INSERT [dbo].[Book] ON
@@ -35,22 +36,3 @@ INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]
 INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (5, N'Grundlæggende virksomhedsøkonomi', N'Carsten Lund', 2022, NULL, NULL)
 INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (6, N'Kommunikation', N'Gyldendal', 2014, NULL, NULL)
 SET IDENTITY_INSERT [dbo].[Book] OFF
-
-SET IDENTITY_INSERT [dbo].[Education_Subject] ON
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (1, 1, 1)
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (2, 1, 2)
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (3, 4, 1)
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (4, 4, 2)
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (5, 1, 3)
-INSERT INTO [dbo].[Education_Subject] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (6, 2, 3)
-SET IDENTITY_INSERT [dbo].[Education_Subject] OFF
-
-SET IDENTITY_INSERT [dbo].[Teacher_Subject] ON
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (1, 1, 1)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (2, 2, 2)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (3, 3, 3)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (4, 4, 5)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (5, 4, 6)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (6, 5, 8)
-INSERT INTO [dbo].[Teacher_Subject] ([TeacherSub_Id], [Teacher_Id], [Subject_Id]) VALUES (7, 6, 7)
-SET IDENTITY_INSERT [dbo].[Teacher_Subject] OFF
