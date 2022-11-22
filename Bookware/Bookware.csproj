@@ -15,12 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Class_Pages\" />
-    <Folder Include="Pages\Education_Pages\" />
-    <Folder Include="Pages\Teacher_Pages\" />
-    <Folder Include="Pages\Subject_Pages\" />
-    <Folder Include="Pages\Student_Pages\" />
-  </ItemGroup>
-
 </Project>
