@@ -21,6 +21,7 @@ namespace Bookware.Services
         public Book? GetBook(int id)
         {
             return context.Books
+                .Include(c => c.ClassBooks)
                 .AsNoTracking()
                 .FirstOrDefault(b => b.BookId == id);
         }

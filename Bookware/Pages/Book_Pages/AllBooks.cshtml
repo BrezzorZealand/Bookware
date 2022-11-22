@@ -29,7 +29,7 @@
                         <td>@item.Year</td>
                         <td>@item.Isbn</td>
                         <td>
-                            <a asp-page="Book_Pages/Details" asp-route-id="@item.BookId" class="btn btn-primary">Details</a>
+                            <a asp-page="/Book_Pages/BookDetails" asp-route-id="@item.BookId" class="btn btn-primary">Details</a>
                         </td>
                     </tr>
                 }

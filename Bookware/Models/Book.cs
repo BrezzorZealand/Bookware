@@ -30,7 +30,6 @@ namespace Bookware.Models
         public int Year { get; set; }
         [Column("ISBN")]
         public int? Isbn { get; set; }
-        public int? Amount { get; set; }
 
         [InverseProperty("Book")]
         public virtual ICollection<ClassBook> ClassBooks { get; set; }
