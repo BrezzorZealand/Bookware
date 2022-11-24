@@ -1,0 +1,36 @@
+﻿@page
+@model Bookware.Pages.Book_Pages.CreateBookModel
+@{
+    ViewData["Title"] = "Create Book";   
+}
+
+<h1 class="display-4 text-center">@ViewData["Title"]</h1>
+<div class="container align-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-floating form-group mb-3">
+                    <input asp-for="Book!.Title" id="floatingTitle" class="form-control" type="text" placeholder="Title"/>
+                    <label asp-for="Book!.Title" for="floatingTitle">Title</label>
+                </div>
+                <div class="form-floating form-group mb-3">
+                    <input asp-for="Book!.Author" id="floatingAuthor" class="form-control" type="text" placeholder="Author"/>
+                    <label asp-for="Book!.Author" for="floatingAuthor">Author</label>
+                </div>
+                <div class="form-floating form-group mb-3">
+                    <input asp-for="Book!.Year" id="floatingYear" class="form-control" type="number" placeholder="Year"/>
+                    <label asp-for="Book!.Year" for="floatingYear" >Year</label>
+                </div>
+                <div class="form-floating form-group mb-3">
+                    <input asp-for="Book!.Isbn" id="floatingIsbn" class="form-control" type="number" placeholder="Isbn"/>
+                    <label asp-for="Book!.Isbn" for="floatingIsbn">Isbn</label>
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-page="/Book_Pages/AllBooks">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
