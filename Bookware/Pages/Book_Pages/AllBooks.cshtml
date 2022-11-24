@@ -30,6 +30,7 @@
                         <td>@item.Isbn</td>
                         <td>
                             <a asp-page="/Book_Pages/BookDetails" asp-route-id="@item.BookId" class="btn btn-primary">Details</a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@("#DeleteModal-"+item.BookId)" data-url="@Url.Action($"Delete/{item.BookId}")">Delete</button>                            
                         </td>
                     </tr>
                 }

@@ -7,5 +7,7 @@ namespace Bookware.Interfaces
         IEnumerable<Book> GetBooks();
 
         Book? GetBook(int id);
+
+        Book? GetBooksWithModeData(int id);
     }
 }
