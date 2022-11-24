@@ -2,3 +2,41 @@
 @model Bookware.Pages.Education_Pages.AllEducationsModel
 @{
 }
+
+<h1>Uddannelser for Zealand</h1>
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Uddannelse navn</th>
+                <th scope="col">Fag</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Educations != null)
+            {
+                @foreach (var item in Model.Educations)
+                {
+                    <tr>
+                        <td>@item.EduId</td>
+                        <td>@item.EduName </td>
+                        <td>
+                            @foreach (var eduSub in item.EduSubs)
+                            {
+                                <p>@eduSub.Subject.SubjectName</p>
+                            }
+                        </td>
+                        <td>
+                            <a asp-page="/Education_Pages/EducationDetails" asp-route-id="@item.EduId" class="btn btn-primary">Details</a>
+                            <a asp-page="/Education_Pages/DeleteEducation" asp-route-id="@item.EduId" class="btn btn-primary">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
