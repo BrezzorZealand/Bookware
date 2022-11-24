@@ -11,11 +11,6 @@ namespace Bookware.Models
     [Table("Student")]
     public partial class Student
     {
-        public Student()
-        {
-            Classes = new HashSet<Class>();
-        }
-
         [Key]
         [Column("Student_Id")]
         public int StudentId { get; set; }
@@ -23,12 +18,18 @@ namespace Bookware.Models
         [StringLength(50)]
         [Unicode(false)]
         public string StudentName { get; set; }
+        public int Address { get; set; }
         [Required]
         [StringLength(70)]
         [Unicode(false)]
-        public string Address { get; set; }
+        public string Semester { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime StartDate { get; set; }
+        [Column("Class_Id")]
+        public int ClassId { get; set; }
 
-        [InverseProperty("Student")]
-        public virtual ICollection<Class> Classes { get; set; }
+        [ForeignKey("ClassId")]
+        [InverseProperty("Students")]
+        public virtual Class Class { get; set; }
     }
 }

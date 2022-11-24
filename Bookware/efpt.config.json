@@ -27,11 +27,11 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Education]",
+         "Name": "[dbo].[Edu_Sub]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Education_Subject]",
+         "Name": "[dbo].[Education]",
          "ObjectType": 0
       },
       {
@@ -47,7 +47,11 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Teacher_Subject]",
+         "Name": "[dbo].[Teacher_Class]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Teacher_Edu]",
          "ObjectType": 0
       }
    ],

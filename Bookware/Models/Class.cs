@@ -14,6 +14,8 @@ namespace Bookware.Models
         public Class()
         {
             ClassBooks = new HashSet<ClassBook>();
+            Students = new HashSet<Student>();
+            TeacherClasses = new HashSet<TeacherClass>();
         }
 
         [Key]
@@ -23,24 +25,12 @@ namespace Bookware.Models
         [StringLength(50)]
         [Unicode(false)]
         public string ClassName { get; set; }
-        public int Term { get; set; }
-        [Column("EduSub_Id")]
-        public int EduSubId { get; set; }
-        [Column("TeacherSub_Id")]
-        public int TeacherSubId { get; set; }
-        [Column("Student_Id")]
-        public int StudentId { get; set; }
 
-        [ForeignKey("EduSubId")]
-        [InverseProperty("Classes")]
-        public virtual EducationSubject EduSub { get; set; }
-        [ForeignKey("StudentId")]
-        [InverseProperty("Classes")]
-        public virtual Student Student { get; set; }
-        [ForeignKey("TeacherSubId")]
-        [InverseProperty("Classes")]
-        public virtual TeacherSubject TeacherSub { get; set; }
         [InverseProperty("Class")]
         public virtual ICollection<ClassBook> ClassBooks { get; set; }
+        [InverseProperty("Class")]
+        public virtual ICollection<Student> Students { get; set; }
+        [InverseProperty("Class")]
+        public virtual ICollection<TeacherClass> TeacherClasses { get; set; }
     }
 }

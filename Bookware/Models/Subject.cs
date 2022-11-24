@@ -13,8 +13,7 @@ namespace Bookware.Models
     {
         public Subject()
         {
-            EducationSubjects = new HashSet<EducationSubject>();
-            TeacherSubjects = new HashSet<TeacherSubject>();
+            EduSubs = new HashSet<EduSub>();
         }
 
         [Key]
@@ -26,8 +25,6 @@ namespace Bookware.Models
         public string SubjectName { get; set; }
 
         [InverseProperty("Subject")]
-        public virtual ICollection<EducationSubject> EducationSubjects { get; set; }
-        [InverseProperty("Subject")]
-        public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
+        public virtual ICollection<EduSub> EduSubs { get; set; }
     }
 }

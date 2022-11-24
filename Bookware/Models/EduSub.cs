@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.Models
 {
-    [Table("Education_Subject")]
-    public partial class EducationSubject
+    [Table("Edu_Sub")]
+    public partial class EduSub
     {
-        public EducationSubject()
+        public EduSub()
         {
-            Classes = new HashSet<Class>();
+            TeacherEdus = new HashSet<TeacherEdu>();
         }
 
         [Key]
@@ -25,12 +25,12 @@ namespace Bookware.Models
         public int SubjectId { get; set; }
 
         [ForeignKey("EduId")]
-        [InverseProperty("EducationSubjects")]
+        [InverseProperty("EduSubs")]
         public virtual Education Edu { get; set; }
         [ForeignKey("SubjectId")]
-        [InverseProperty("EducationSubjects")]
+        [InverseProperty("EduSubs")]
         public virtual Subject Subject { get; set; }
         [InverseProperty("EduSub")]
-        public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<TeacherEdu> TeacherEdus { get; set; }
     }
 }
