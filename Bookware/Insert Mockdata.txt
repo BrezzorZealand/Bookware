@@ -5,6 +5,7 @@ INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (3, N'Administrations
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (4, N'Autoteknolog')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (5, N'EL-installatør')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (6, N'Laborant')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (7, N'Procesteknolo')
 SET IDENTITY_INSERT [dbo].[Education] OFF
 
 SET IDENTITY_INSERT [dbo].[Teacher] ON
@@ -14,6 +15,7 @@ INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (3, N'Malene')
 INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (4, N'Rikke')
 INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (5, N'John')
 INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (6, N'Daniel')
+INSERT INTO [dbo].[Teacher] ([Teacher_Id], [Name]) VALUES (7, N'Bert')
 SET IDENTITY_INSERT [dbo].[Teacher] OFF
 
 SET IDENTITY_INSERT [dbo].[Subject] ON
@@ -44,5 +46,77 @@ INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (3, N'RE21DeB')
 INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (4, N'RE20DeE')
 INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (5, N'RE20LaG')
 INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (6, N'Re21ErB')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (7, N'Re21MuB')
 SET IDENTITY_INSERT [dbo].[Class] OFF
 
+SET IDENTITY_INSERT [dbo].[Student] ON
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (1, N'Kaya', N'københavn', 2, N'2022-02-01 00:00:00', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (2, N'oliver', N'Roskilde', 2, N'2022-02-01 00:00:00', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (3, N'Rasmus', N'Køge', 2, N'2022-02-01 00:00:00', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (4, N'Ruben', N'Roskilde', 2, N'2022-02-01 00:00:00', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (5, N'Simon', N'Slagelse', 2, N'2022-02-01 00:00:00', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (6, N'Peter', N'Slagelse', 1, N'2022-08-02 00:00:00', 2)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (7, N'Jul', N'Slagelse', 3, N'2021-08-02 00:00:00', 7)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (8, N'Oline', N'Næstved', 3, N'2021-08-02 00:00:00', 7)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (9, N'karen', N'Taastrup', 2, N'2022-02-01 00:00:00', 6)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (10, N'Alfred', N'Amager', 4, N'2020-09-01 00:00:00', 5)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (11, N'Yamir', N'høje Taastrup', 2, N'2021-01-29 00:00:00', 4)
+SET IDENTITY_INSERT [dbo].[Student] OFF
+
+SET IDENTITY_INSERT [dbo].[Class_Book] ON
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (1, 1, 1)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (2, 1, 2)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (3, 1, 3)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (4, 2, 6)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (5, 7, 6)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (6, 3, 1)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (7, 3, 2)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (8, 3, 3)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (9, 4, 1)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (10, 4, 2)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (11, 4, 3)
+INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (12, 6, 5)
+SET IDENTITY_INSERT [dbo].[Class_Book] OFF
+
+SET IDENTITY_INSERT [dbo].[Edu_Sub] ON
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (1, 1, 1)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (2, 1, 2)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (3, 2, 3)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (4, 2, 6)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (5, 2, 7)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (6, 6, 4)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (7, 6, 5)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (8, 5, 8)
+INSERT INTO [dbo].[Edu_Sub] ([EduSub_Id], [Edu_Id], [Subject_Id]) VALUES (9, 7, 9)
+SET IDENTITY_INSERT [dbo].[Edu_Sub] OFF
+
+SET IDENTITY_INSERT [dbo].[Teacher_Edu] ON
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (1, 1, 1)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (2, 2, 1)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (3, 2, 2)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (4, 3, 3)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (5, 3, 5)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (6, 4, 4)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (7, 5, 6)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (8, 5, 7)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (9, 6, 8)
+INSERT INTO [dbo].[Teacher_Edu] ([TeachEdu_Id], [Teacher_Id], [EduSub_Id]) VALUES (10, 7, 9)
+SET IDENTITY_INSERT [dbo].[Teacher_Edu] OFF
+
+SET IDENTITY_INSERT [dbo].[Teacher_Class] ON
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (1, 1, 1)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (2, 1, 2)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (3, 1, 3)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (4, 2, 4)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (5, 2, 5)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (6, 3, 1)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (7, 3, 2)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (8, 3, 3)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (9, 4, 1)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (10, 4, 2)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (11, 4, 3)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (12, 5, 10)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (13, 6, 7)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (14, 6, 8)
+INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (15, 7, 6)
+SET IDENTITY_INSERT [dbo].[Teacher_Class] OFF
