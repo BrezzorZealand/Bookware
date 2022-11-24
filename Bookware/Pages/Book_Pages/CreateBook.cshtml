@@ -1,7 +1,7 @@
 ﻿@page
 @model Bookware.Pages.Book_Pages.CreateBookModel
 @{
-    ViewData["Title"] = "Create Book";   
+    ViewData["Title"] = "Create Book";
 }
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
@@ -9,25 +9,28 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <form method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-floating form-group mb-3">
-                    <input asp-for="Book!.Title" id="floatingTitle" class="form-control" type="text" placeholder="Title"/>
-                    <label asp-for="Book!.Title" for="floatingTitle">Title</label>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-floating mb-3">
+                    <input asp-for="Book!.Title"class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Book!.Title)"/>
+                    <label asp-for="Book!.Title">Title</label>
+                    <span asp-validation-for="Book!.Title" class="text-danger"></span>
                 </div>
-                <div class="form-floating form-group mb-3">
-                    <input asp-for="Book!.Author" id="floatingAuthor" class="form-control" type="text" placeholder="Author"/>
-                    <label asp-for="Book!.Author" for="floatingAuthor">Author</label>
+                <div class="form-group form-floating mb-3">
+                    <input asp-for="Book!.Author" class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Book!.Author)"/>
+                    <label asp-for="Book!.Author">Author</label>
+                    <span asp-validation-for="Book!.Author" class="text-danger"></span>
                 </div>
-                <div class="form-floating form-group mb-3">
-                    <input asp-for="Book!.Year" id="floatingYear" class="form-control" type="number" placeholder="Year"/>
-                    <label asp-for="Book!.Year" for="floatingYear" >Year</label>
+                <div class="form-group form-floating mb-3">
+                    <input asp-for="Book!.Year" class="form-control" type="number" placeholder="@Html.DisplayNameFor(book => book.Book!.Year)"/>
+                    <label asp-for="Book!.Year">Year</label>
+                    <span asp-validation-for="Book!.Year" class="text-danger"></span>
                 </div>
-                <div class="form-floating form-group mb-3">
-                    <input asp-for="Book!.Isbn" id="floatingIsbn" class="form-control" type="number" placeholder="Isbn"/>
-                    <label asp-for="Book!.Isbn" for="floatingIsbn">Isbn</label>
+                <div class="form-group form-floating mb-3">
+                    <input asp-for="Book!.Isbn" class="form-control" type="number" placeholder="@Html .DisplayNameFor(book => book.Book!.Isbn)"/>
+                    <label asp-for="Book!.Isbn">Isbn</label>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input asp-page-handler="Submit" type="submit" value="Create" class="btn btn-success" />
                     <a class="btn btn-danger" asp-page="/Book_Pages/AllBooks">Cancel</a>
                 </div>
             </form>
