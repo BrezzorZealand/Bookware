@@ -5,7 +5,7 @@ namespace Bookware.DbServices.Services
 {
     public class TeacherService : ITeacherService
     {
-        BookwareDbContext context;
+        readonly BookwareDbContext context;
         public TeacherService(BookwareDbContext context)
         {
             this.context = context;

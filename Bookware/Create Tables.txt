@@ -22,7 +22,7 @@ CREATE TABLE Subject( Subject_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Subject
 
 CREATE TABLE Education( Edu_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), EduName varchar(50) NOT NULL);
 
-CREATE TABLE Student( Student_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), StudentName varchar(50) NOT NULL, Address varchar(100) NOT NULL, Semester int NOT NULL, StartDate DateTime NOT NULL, Class_Id int NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id));
+CREATE TABLE Student( Student_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), StudentName varchar(50) NOT NULL, Address varchar(100) NOT NULL, Semester int NULL, StartDate DateTime NOT NULL, Class_Id int NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id));
 
 CREATE TABLE Book( Book_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Title VARCHAR(50) NOT NULL, Author VARCHAR(50) NOT NULL, Year int NOT NULL, ISBN int NULL);
 

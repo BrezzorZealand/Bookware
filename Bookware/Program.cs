@@ -13,6 +13,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
 builder.Services.AddTransient<IBookService, BookService>();
 builder.Services.AddTransient<ITeacherService, TeacherService>();
+builder.Services.AddTransient<ISubjectService, SubjectService>();
+builder.Services.AddTransient<IEducationService, EducationService>();
 
 var app = builder.Build();
 
