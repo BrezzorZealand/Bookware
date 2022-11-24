@@ -7,15 +7,15 @@
 <h1>List of Teachers</h1>
 
 <p>
-    <a asp-page="">Edit Teachers</a>
+    <a asp-page="">Add Teacher</a>
 </p>
 
 <div class="text-md-start">
-    <table class="table">
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,8 @@
                     <tr>
                         <td>@item.TeacherId</td>
                         <td>@item.Name </td>
+                        <td> <a asp-page="/Teacher_Pages/EditTeachers" asp-route-id="@item.TeacherId" class="btn btn-primary">Edit</a> </td>
+                        <td> <button class="btn btn-primary" type="submit">Delete</button> </td>
                     </tr>
                 }
             }
