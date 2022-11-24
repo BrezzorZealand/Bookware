@@ -18,11 +18,11 @@ namespace Bookware.Models
         [StringLength(50)]
         [Unicode(false)]
         public string StudentName { get; set; }
-        public int Address { get; set; }
         [Required]
-        [StringLength(70)]
+        [StringLength(100)]
         [Unicode(false)]
-        public string Semester { get; set; }
+        public string Address { get; set; }
+        public int Semester { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime StartDate { get; set; }
         [Column("Class_Id")]

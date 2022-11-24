@@ -34,17 +34,17 @@ namespace Bookware.Models
             modelBuilder.Entity<ClassBook>(entity =>
             {
                 entity.HasKey(e => e.CbId)
-                    .HasName("PK__Class_Bo__4A5EFCFD70828B5F");
+                    .HasName("PK__Class_Bo__4A5EFCFD240C2567");
 
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.ClassBooks)
                     .HasForeignKey(d => d.BookId)
-                    .HasConstraintName("FK__Class_Boo__Book___74444068");
+                    .HasConstraintName("FK__Class_Boo__Book___473C8FC7");
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.ClassBooks)
                     .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK__Class_Boo__Class__73501C2F");
+                    .HasConstraintName("FK__Class_Boo__Class__46486B8E");
             });
 
             modelBuilder.Entity<EduSub>(entity =>
@@ -52,18 +52,18 @@ namespace Bookware.Models
                 entity.HasOne(d => d.Edu)
                     .WithMany(p => p.EduSubs)
                     .HasForeignKey(d => d.EduId)
-                    .HasConstraintName("FK__Edu_Sub__Edu_Id__67DE6983");
+                    .HasConstraintName("FK__Edu_Sub__Edu_Id__3AD6B8E2");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.EduSubs)
                     .HasForeignKey(d => d.SubjectId)
-                    .HasConstraintName("FK__Edu_Sub__Subject__68D28DBC");
+                    .HasConstraintName("FK__Edu_Sub__Subject__3BCADD1B");
             });
 
             modelBuilder.Entity<Education>(entity =>
             {
                 entity.HasKey(e => e.EduId)
-                    .HasName("PK__Educatio__E5726EA24EA26D66");
+                    .HasName("PK__Educatio__E5726EA254F58629");
             });
 
             modelBuilder.Entity<Student>(entity =>
@@ -72,39 +72,39 @@ namespace Bookware.Models
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.ClassId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Student__Class_I__6319B466");
+                    .HasConstraintName("FK__Student__Class_I__361203C5");
             });
 
             modelBuilder.Entity<TeacherClass>(entity =>
             {
                 entity.HasKey(e => e.TeachClassId)
-                    .HasName("PK__Teacher___425FAFF359432EFD");
+                    .HasName("PK__Teacher___425FAFF33CDA2100");
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.TeacherClasses)
                     .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK__Teacher_C__Class__6F7F8B4B");
+                    .HasConstraintName("FK__Teacher_C__Class__4277DAAA");
 
                 entity.HasOne(d => d.TeachEdu)
                     .WithMany(p => p.TeacherClasses)
                     .HasForeignKey(d => d.TeachEduId)
-                    .HasConstraintName("FK__Teacher_C__Teach__7073AF84");
+                    .HasConstraintName("FK__Teacher_C__Teach__436BFEE3");
             });
 
             modelBuilder.Entity<TeacherEdu>(entity =>
             {
                 entity.HasKey(e => e.TeachEduId)
-                    .HasName("PK__Teacher___1B9FC65144628489");
+                    .HasName("PK__Teacher___1B9FC65144AF7BA2");
 
                 entity.HasOne(d => d.EduSub)
                     .WithMany(p => p.TeacherEdus)
                     .HasForeignKey(d => d.EduSubId)
-                    .HasConstraintName("FK__Teacher_E__EduSu__6CA31EA0");
+                    .HasConstraintName("FK__Teacher_E__EduSu__3F9B6DFF");
 
                 entity.HasOne(d => d.Teacher)
                     .WithMany(p => p.TeacherEdus)
                     .HasForeignKey(d => d.TeacherId)
-                    .HasConstraintName("FK__Teacher_E__Teach__6BAEFA67");
+                    .HasConstraintName("FK__Teacher_E__Teach__3EA749C6");
             });
 
             OnModelCreatingPartial(modelBuilder);

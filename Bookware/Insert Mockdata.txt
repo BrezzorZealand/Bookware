@@ -29,10 +29,20 @@ INSERT INTO [dbo].[Subject] ([Subject_Id], [SubjectName]) VALUES (9, N'Enheds Op
 SET IDENTITY_INSERT [dbo].[Subject] OFF
 
 SET IDENTITY_INSERT [dbo].[Book] ON
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (1, N'The Agile Samurai', N'Jonathan Rasmusson', 2010, NULL, NULL)
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (2, N'Database Solutions', N'Thomas M. Connolly', 2004, NULL, NULL)
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (3, N'Database Systems', N'Carolyn E. Begg', 2005, NULL, NULL)
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (4, N'Elektroteknik 1', N'Torben Bonde', 2021, NULL, NULL)
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (5, N'Grundlæggende virksomhedsøkonomi', N'Carsten Lund', 2022, NULL, NULL)
-INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN], [Amount]) VALUES (6, N'Kommunikation', N'Gyldendal', 2014, NULL, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (1, N'The Agile Samurai', N'Jonathan Rasmusson', 2010, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (2, N'Database Solutions', N'Thomas M. Connolly', 2004, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (3, N'Database Systems', N'Carolyn E. Begg', 2005, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (4, N'Elektroteknik 1', N'Torben Bonde', 2021, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (5, N'Grundlæggende virksomhedsøkonomi', N'Carsten Lund', 2022, NULL)
+INSERT INTO [dbo].[Book] ([Book_Id], [Title], [Author], [Year], [ISBN]) VALUES (6, N'Kommunikation', N'Gyldendal', 2014, NULL)
 SET IDENTITY_INSERT [dbo].[Book] OFF
+
+SET IDENTITY_INSERT [dbo].[Class] ON
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (1, N'RE22DeE')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (2, N'RE22MuD')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (3, N'RE21DeB')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (4, N'RE20DeE')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (5, N'RE20LaG')
+INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (6, N'Re21ErB')
+SET IDENTITY_INSERT [dbo].[Class] OFF
+

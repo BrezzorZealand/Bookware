@@ -1,4 +1,6 @@
-﻿-- Opret en database der hedder BookwareDB
+﻿
+
+-- Opret en database der hedder BookwareDB
 
 DROP TABLE [dbo].[Class_Book];
 DROP TABLE [dbo].[Teacher_Class];
@@ -20,7 +22,7 @@ CREATE TABLE Subject( Subject_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Subject
 
 CREATE TABLE Education( Edu_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), EduName varchar(50) NOT NULL);
 
-CREATE TABLE Student( Student_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), StudentName varchar(50) NOT NULL, Address int NOT NULL, Semester varchar(70) NOT NULL, StartDate DateTime NOT NULL, Class_Id int NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id));
+CREATE TABLE Student( Student_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), StudentName varchar(50) NOT NULL, Address varchar(100) NOT NULL, Semester int NOT NULL, StartDate DateTime NOT NULL, Class_Id int NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id));
 
 CREATE TABLE Book( Book_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Title VARCHAR(50) NOT NULL, Author VARCHAR(50) NOT NULL, Year int NOT NULL, ISBN int NULL);
 
@@ -31,3 +33,4 @@ CREATE TABLE Teacher_Edu( TeachEdu_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Te
 CREATE TABLE Teacher_Class( TeachClass_Id int NOT NULL PRIMARY KEY IDENTITY(1,1), Class_Id int NOT NULL, TeachEdu_Id int NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id) ON UPDATE NO ACTION ON DELETE CASCADE, FOREIGN KEY (TeachEdu_Id) REFERENCES Teacher_Edu(TeachEdu_Id) ON UPDATE NO ACTION ON DELETE CASCADE);
 
 CREATE TABLE Class_Book( CB_Id INT NOT NULL PRIMARY KEY IDENTITY(1,1), Class_Id INT NOT NULL, Book_Id INT NOT NULL, FOREIGN KEY (Class_Id) REFERENCES Class(Class_Id) ON UPDATE NO ACTION ON DELETE CASCADE, FOREIGN KEY (Book_Id) REFERENCES Book(Book_Id) ON UPDATE NO ACTION ON DELETE CASCADE );
+
