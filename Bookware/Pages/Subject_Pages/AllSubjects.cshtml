@@ -1,4 +1,36 @@
 ﻿@page
 @model Bookware.Pages.Subject_Pages.AllSubjectsModel
 @{
+    ViewData["Title"] = "Subjects";
 }
+<h1>
+    List of Subjects
+</h1>
+<p>
+    <a asp-page="">Add Subjects</a>
+</p>
+<div class="text-md-start">
+    <table class=" table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Subjects != null)
+            {
+                @foreach(var item in Model.Subjects)
+                {
+                    <tr>
+                        <td>@item.SubjectId</td>
+                        <td>@item.SubjectName</td>
+                        <td> <a asp-page="/Subject_Pages/EditSubjects" asp-route-id="@item.SubjectId" class="btn btn-primary"> Edit </a> </td>
+                        <td> <button class="btn btn-primary" type="Submit">Delete</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
