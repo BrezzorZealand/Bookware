@@ -34,8 +34,7 @@ namespace Bookware.Services
 
         public Book? GetBook(int id)
         {
-            return context.Books                
-                .AsNoTracking()
+            return context.Books 
                 .FirstOrDefault(b => b.BookId == id);
         }
 
@@ -45,18 +44,28 @@ namespace Bookware.Services
                 .Include(cb => cb.ClassBooks)
                 .ThenInclude(b => b.Class)
                 .ThenInclude(d => d.Students)
-                .AsNoTracking()
                 .FirstOrDefault(b => b.BookId == id);
         }
 
         /* Update Method's*/
 
-        public void UpdateBook(Book? book)
+        public void UpdateBook(Book? updatedBook)
         {
-            if (book != null)
+            if (updatedBook != null)
             {
-                context.Books.Update(book);
-                context.SaveChanges();
+                Book? book = GetBook(updatedBook!.BookId);
+
+                if (book != null)
+                {
+                    book.BookId = updatedBook.BookId;
+                    book.Title = updatedBook.Title;
+                    book.Author = updatedBook.Author;
+                    book.Year = updatedBook.Year;
+                    book.Isbn = updatedBook.Isbn;
+
+                    context.Update(book);
+                    context.SaveChanges();
+                }
             }
         }
 

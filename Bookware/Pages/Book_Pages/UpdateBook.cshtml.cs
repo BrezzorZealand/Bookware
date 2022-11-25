@@ -5,32 +5,32 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Bookware.Pages.Book_Pages
 {
-    public class AllBooksModel : PageModel
+    public class UpdateBookModel : PageModel
     {
         private readonly IBookService service;
 
-
-        public AllBooksModel(IBookService service)
+        public UpdateBookModel(IBookService service)
         {
             this.service = service;
         }
+
         [BindProperty]
-        public Book? Book { get; set; }
-        public IEnumerable<Book>? Books { get; set; }
-        public IActionResult OnGet()
+        public Book? Book { get; set; } 
+
+        public IActionResult OnGet(int id)
         {
-            Books = service.GetBooks();
+            Book = service.GetBook(id);
             return Page();
         }
 
-        public IActionResult OnPostDelete(int id)
+        public IActionResult OnPost()
         {
-            Book = service.GetBook(id);
-            if (Book == null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
-            service.DeleteBook(Book);
+
+            service.UpdateBook(Book);
             return RedirectToPage("AllBooks");
         }
     }

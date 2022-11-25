@@ -1,7 +1,7 @@
-﻿@page
-@model Bookware.Pages.Book_Pages.CreateBookModel
+﻿@page "{id:int}"
+@model Bookware.Pages.Book_Pages.UpdateBookModel
 @{
-    ViewData["Title"] = "Create Book";
+    ViewData["Title"] = "Update Book";
 }
 
 <div class="card">
@@ -14,6 +14,10 @@
                 <div class="col-md-4">
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Book!.BookId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Book!.BookId)" disabled/>
+                            <label asp-for="Book!.BookId">Title</label>
+                        </div>
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Book!.Title" class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Book!.Title)" />
                             <label asp-for="Book!.Title">Title</label>
@@ -34,7 +38,7 @@
                             <label asp-for="Book!.Isbn">Isbn</label>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Create" class="btn btn-success" />
+                            <input type="submit" value="Update" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Book_Pages/AllBooks">Cancel</a>
                         </div>
                     </form>
