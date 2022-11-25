@@ -7,26 +7,38 @@ using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
-
-
 namespace Bookware.Pages.Teacher_Pages
 {
     public class AllTeachersModel : PageModel
     {
-        public IEnumerable<Teacher> Teachers { get; set; }
-        public int TId { get; set; }
-        private ITeacherService context;
+        private readonly ITeacherService service;
 
         public AllTeachersModel(ITeacherService service)
         {
-            context = service;
+            this.service = service;
         }
+
+        [BindProperty]
+        public Teacher? Teacher { get; set; }
+
+        public IEnumerable<Teacher>? Teachers { get; set; }
             
-        public void OnGet(int tid)
+        public IActionResult OnGet()
         {
-            TId = tid;
-            Teachers = context.GetTeachers();
+            Teachers = service.GetTeachers();
+            return Page();
         }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            Teacher = service.GetTeacher(id);
+            if (Teacher == null)
+            {
+                return NotFound();
+            }
+            service.RemoveTeacher(Teacher);
+            return RedirectToPage("AllTeachers");
+        }
+
     }
 }

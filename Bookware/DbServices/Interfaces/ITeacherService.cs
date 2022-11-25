@@ -4,11 +4,16 @@ namespace Bookware.DbServices.Interfaces
 {
     public interface ITeacherService
     {
+        void AddTeacher(Teacher? teacher);
+
         IEnumerable<Teacher> GetTeachers();
-        void AddTeacher(Teacher teacher);
-        void RemoveTeacher(Teacher teacher);
-        void EditTeacher(Teacher teacher);
-        Teacher GetTeacher(int id);
+
+        Teacher? GetTeacher(int id);
+
+        void EditTeacher(Teacher? teacher);
+        void RemoveTeacher(Teacher? teacher);
+        
+        
 
     }
 }

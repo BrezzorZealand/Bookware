@@ -1,31 +1,26 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
     public class TeacherService : ITeacherService
     {
-        readonly BookwareDbContext context;
+        private readonly BookwareDbContext context;
+
         public TeacherService(BookwareDbContext context)
         {
             this.context = context;
         }
 
-        public void AddTeacher(Teacher teacher)
+        public void AddTeacher(Teacher? teacher)
         {
-            context.Teachers.Add(teacher);
-            context.SaveChanges();
-
-        }
-
-        public void EditTeacher(Teacher teacher)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Teacher GetTeacher(int id)
-        {
-            throw new NotImplementedException();
+            if (teacher != null)
+            {
+                context.Teachers.Add(teacher);
+                context.SaveChanges();
+            }
         }
 
         public IEnumerable<Teacher> GetTeachers()
@@ -33,10 +28,29 @@ namespace Bookware.DbServices.Services
             return context.Teachers;
         }
 
-        public void RemoveTeacher(Teacher teacher)
+        public Teacher? GetTeacher(int id)
         {
-            context.Teachers.Remove(teacher);
-            context.SaveChanges();
+            return context.Teachers
+                .AsNoTracking()
+                .FirstOrDefault(t => t.TeacherId == id);
+        }
+
+        public void EditTeacher(Teacher? teacher)
+        {
+            if (teacher != null)
+            {
+                context.Teachers.Update(teacher);
+                context.SaveChanges();
+            }
+        }
+
+        public void RemoveTeacher(Teacher? teacher)
+        {
+            if (teacher != null)
+            {
+                context.Teachers.Remove(teacher);
+                context.SaveChanges();
+            }
         }
     }
 }
