@@ -1,0 +1,28 @@
+﻿@page
+@model Bookware.Pages.Subject_Pages.AddSubjectModel
+@{
+    ViewData["Title"] = "Add Subject";
+}
+
+<h1 class="display-4 text-center">@ViewData["Title"]</h1>
+<div class="container align-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form method ="post"> 
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-floating mb-3">
+                    <input asp-for="Subject!.SubjectName"class="form-control" type="text" placeholder="@Html.DisplayNameFor(subject => subject.Subject!.SubjectName)"/>
+                    <label asp-for="Subject!.SubjectName">Name</label>
+                    <span asp-validation-for="Subject!.SubjectName" class="text-danger"></span>
+                </div>
+                @*<div class="form-group form-floating md-3">
+                    <input asp-for="Subject!.SubjectId"class="form-control" type="text" placeholder="@Html.DisplayNameFor(subject => subject!.SubjectId)"
+                </div>*@
+                <div class="form-group mb-3"> 
+                    <input asp-page-handler="Submit" type="submit" value="Add" class=" btn btn-success"/>
+                    <a class ="btn btn-danger" asp-page="/AllSubjects">Cancel</a>
+                    </div>
+            </form>
+        </div>
+</div>
+</div>
