@@ -5,32 +5,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Bookware.Pages.Book_Pages
 {
-    public class AllBooksModel : PageModel
+    public class CreateBookModel : PageModel
     {
         private readonly IBookService service;
 
-
-        public AllBooksModel(IBookService service)
+        public CreateBookModel(IBookService service)
         {
             this.service = service;
         }
+
         [BindProperty]
         public Book? Book { get; set; }
-        public IEnumerable<Book>? Books { get; set; }
+
         public IActionResult OnGet()
         {
-            Books = service.GetBooks();
             return Page();
         }
-
-        public IActionResult OnPostDelete(int id)
+        public IActionResult OnPost()
         {
-            Book = service.GetBook(id);
-            if (Book == null)
-            {
-                return NotFound();
+            if (!ModelState.IsValid)
+            {                
+                return Page();
             }
-            service.DeleteBook(Book);
+            service.CreateBook(Book);
             return RedirectToPage("AllBooks");
         }
     }

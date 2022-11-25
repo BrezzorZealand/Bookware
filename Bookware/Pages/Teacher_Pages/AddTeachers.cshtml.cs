@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bookware.Pages.Book_Pages
+namespace Bookware.Pages.Teacher_Pages
 {
-    public class _BookPartialViewModel : PageModel
+    public class AddTeachersModel : PageModel
     {
         public void OnGet()
         {
