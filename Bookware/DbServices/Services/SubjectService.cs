@@ -1,5 +1,6 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
@@ -25,9 +26,11 @@ namespace Bookware.DbServices.Services
         {
             throw new NotImplementedException();
         }
-        public Subject GetSubject(int id)
+        public Subject? GetSubject(int id)
         {
-            throw new NotImplementedException();
+            return context.Subjects
+                .AsNoTracking()
+                .FirstOrDefault(s => s.SubjectId == id);
         }
         public IEnumerable<Subject> GetSubjects()
         {
