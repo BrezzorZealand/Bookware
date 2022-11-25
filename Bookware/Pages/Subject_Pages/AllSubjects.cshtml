@@ -3,18 +3,16 @@
 @{
     ViewData["Title"] = "Subjects";
 }
-<h1>
-    List of Subjects
-</h1>
+<h1 class=" display-4 text-center">@ViewData["Title"]</h1>
 <p>
-    <a asp-page="">Add Subjects</a>
+    <a asp-page="/Subject_Pages/AddSubject">Add Subject</a>
 </p>
 <div class="text-md-start">
     <table class=" table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +24,11 @@
                         <td>@item.SubjectId</td>
                         <td>@item.SubjectName</td>
                         <td> <a asp-page="/Subject_Pages/EditSubjects" asp-route-id="@item.SubjectId" class="btn btn-primary"> Edit </a> </td>
-                        <td> <button class="btn btn-primary" type="Submit">Delete</button></td>
+                        <td class="justify-content-between">
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.SubjectId" onclick="return confirm('Are you sure you wan to delete?')">
+                            <button class="btn btn-primary" type="Submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             }
