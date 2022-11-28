@@ -15,9 +15,15 @@ namespace Bookware.Pages.Education_Pages
             this.Service = Service;
         }
 
-        public void OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Education = Service.GetEducationDataById(id);
+            Education = await Service.GetEducationDataByIdAsync(id);
+            
+            if (Education is null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }
