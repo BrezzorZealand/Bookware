@@ -1,31 +1,35 @@
 using Bookware.DbServices.Interfaces;
-using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Bookware.Models;
 
 namespace Bookware.Pages.Subject_Pages
 {
-    public class AddSubjectModel : PageModel
+    public class EditSubjectModel : PageModel
     {
         private readonly ISubjectService service;
-        public AddSubjectModel(ISubjectService service)
+
+        public EditSubjectModel(ISubjectService service)
         {
             this.service = service;
         }
         [BindProperty]
         public Subject? Subject { get; set; }
-        public IActionResult OnGet()
+
+        public async Task<IActionResult> OnGetAsync(int id)
         {
+            Subject = await service.GetSubjectByIdAsync(id);
             return Page();
         }
-        public async Task <IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            await service.AddSubjectAsync(Subject);
+            service.EditSubjectAsync(Subject);
             return RedirectToPage("AllSubjects");
         }
+
     }
 }

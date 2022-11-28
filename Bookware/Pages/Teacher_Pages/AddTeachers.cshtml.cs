@@ -19,17 +19,18 @@ namespace Bookware.Pages.Teacher_Pages
         [BindProperty]
         public Teacher? Teacher { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGetAsync()
         {
+            return Page();
         }
 
-        public IActionResult OnPostAsync(Teacher teacher)
+        public async Task<IActionResult> OnPostAsync(Teacher teacher)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            teacherService.AddTeacher(teacher);
+            await teacherService.AddTeacherAsync(teacher);
             return RedirectToPage("AllTeachers");
         }
     }

@@ -14,43 +14,55 @@ namespace Bookware.DbServices.Services
             this.context = context;
         }
 
-        public void AddTeacher(Teacher? teacher)
+        #region Create Teacher Method
+        public async Task AddTeacherAsync(Teacher? teacher)
         {
             if (teacher != null)
             {
                 context.Teachers.Add(teacher);
-                context.SaveChanges();
+                
             }
+            await context.SaveChangesAsync();
         }
+        #endregion
 
-        public IEnumerable<Teacher> GetTeachers()
+        #region Read Teacher Method
+        public async Task<IEnumerable<Teacher>> GetTeachersAsync()
         {
-            return context.Teachers;
+            return await context.Set<Teacher>().AsNoTracking().ToListAsync();
         }
 
-        public Teacher? GetTeacher(int id)
+        public async Task<Teacher?> GetTeacherAsync(int id)
         {
-            return context.Teachers
-                .AsNoTracking()
-                .FirstOrDefault(t => t.TeacherId == id);
+            Teacher? teacher = await context.Teachers
+                .AsNoTracking().
+                FirstOrDefaultAsync(t => t.TeacherId == id );
+            return teacher;
         }
+        #endregion
 
-        public void EditTeacher(Teacher? teacher)
+        #region Update Teacher Method
+        public async Task EditTeacherAsync(Teacher? teacher)
         {
             if (teacher != null)
             {
-                context.Teachers.Update(teacher);
-                context.SaveChanges();
+                    context.Teachers.Update(teacher);
+                    
             }
+            await context.SaveChangesAsync();
         }
+        #endregion
 
-        public void RemoveTeacher(Teacher? teacher)
+        #region Delete Teacher Method
+        public async Task RemoveTeacherAsync(Teacher? teacher)
         {
             if (teacher != null)
             {
                 context.Teachers.Remove(teacher);
-                context.SaveChanges();
+                
             }
+            await context.SaveChangesAsync();
         }
+        #endregion
     }
 }

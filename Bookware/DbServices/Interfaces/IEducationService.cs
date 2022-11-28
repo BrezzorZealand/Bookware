@@ -4,10 +4,11 @@ namespace Bookware.DbServices.Interfaces
 {
     public interface IEducationService
     {
-        void CreateEducation(Education education);
-        void DeleteEducation(Education education);
-        void EditEducation(int id);
-        Education? GetEducation(int id);
-        IEnumerable<Education> GetEducations();
+        Task CreateEducationAsync(Education? education);
+        Task DeleteEducationAsync(Education? education);
+        Task EditEducationAsync(Education? education);
+        Task<Education?> GetEducationByIdAsync(int id);
+        Task<Education?> GetEducationDataByIdAsync(int id);
+        Task<IEnumerable<Education?>> GetEducationsAsync();
     }
 }

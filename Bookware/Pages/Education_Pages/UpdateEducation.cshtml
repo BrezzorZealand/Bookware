@@ -1,0 +1,41 @@
+﻿@page
+@model Bookware.Pages.Education_Pages.UpdateEducationModel
+@{
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @* This formgroup id is just to be able to display the BookId for the Book you are about to update *@
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Education!.EduId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(education => education.Education!.EduId)" disabled>
+                            <label asp-for="Education!.EduId">Id</label>
+                        </div>
+                        @* This formgroup is just to be able to get and set the BookId for the Updated Book *@
+                        <div class="form-group">
+                            <input asp-for="Education!.EduId" class="form-control" type="text" hidden />
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Education!.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(education => education.Education!.EduName)" />
+                            <label asp-for="Education!.EduName">Title</label>
+                            <span asp-validation-for="Education!.EduName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Update" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
