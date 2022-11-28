@@ -4,14 +4,12 @@ namespace Bookware.DbServices.Interfaces
 {
     public interface ITeacherService
     {
-        void AddTeacher(Teacher? teacher);
+        Task AddTeacherAsync(Teacher? teacher);
+        Task<IEnumerable<Teacher>> GetTeachersAsync();
+        Task<Teacher?> GetTeacherAsync(int id);
 
-        IEnumerable<Teacher> GetTeachers();
-
-        Teacher? GetTeacher(int id);
-
-        void EditTeacher(Teacher? teacher);
-        void RemoveTeacher(Teacher? teacher);
+        Task EditTeacherAsync(Teacher? teacher);
+        Task RemoveTeacherAsync(Teacher? teacher);
         
         
 
