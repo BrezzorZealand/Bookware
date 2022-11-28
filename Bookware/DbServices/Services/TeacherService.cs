@@ -26,8 +26,7 @@ namespace Bookware.DbServices.Services
         }
         #endregion
 
-        /* Get/Read Teacher */
-
+        #region Read Teacher Method
         public async Task<IEnumerable<Teacher>> GetTeachersAsync()
         {
             return await context.Set<Teacher>().AsNoTracking().ToListAsync();
@@ -40,6 +39,7 @@ namespace Bookware.DbServices.Services
                 FirstOrDefaultAsync(t => t.TeacherId == id );
             return teacher;
         }
+        #endregion
 
         #region Update Teacher Method
         public async Task EditTeacherAsync(Teacher? teacher)

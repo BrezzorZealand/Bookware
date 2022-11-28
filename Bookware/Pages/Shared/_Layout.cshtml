@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Bookware</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Bookware.styles.css" asp-append-version="true" />
 </head>
@@ -38,7 +40,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Subject_Pages/AllSubjects">Subjects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="\Student_Pages\AllStudents">Students</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Student_Page/AllStudents">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Class_Pages/AllClasses">Classes</a>
                         </li>
                     </ul>
                 </div>
