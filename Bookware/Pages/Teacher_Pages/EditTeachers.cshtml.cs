@@ -18,21 +18,19 @@ namespace Bookware.Pages.Teacher_Pages
         [BindProperty]
         public Teacher? Teacher { get; set; }
 
-        public IEnumerable<Teacher>? Teachers { get; set; }
-
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Teachers = service.GetTeachers();
+            Teacher = await service.GetTeacherAsync(id);
             return Page();
         }
 
-        public IActionResult OnPostAsync(Teacher teacher)
+        public async Task<IActionResult> OnPostAsync(Teacher teacher)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            service.EditTeacher(teacher);
+            await service.EditTeacherAsync(teacher);
             return RedirectToPage("AllTeachers");
         }
     }
