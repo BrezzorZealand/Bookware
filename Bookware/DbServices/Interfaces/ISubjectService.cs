@@ -4,11 +4,12 @@ namespace Bookware.DbServices.Interfaces
 {
     public interface ISubjectService
     {
-        public IEnumerable<Subject> GetSubjects();
-        void AddSubject(Subject subject);
-        void RemoveSubject(Subject subject);
-        void EditSubject(Subject subject);
-
-        Subject GetSubject(int id);
+        //public IEnumerable<Subject> GetSubjectsAsync(string filter);
+        Task <IEnumerable<Subject>> GetSubjectsAsync();
+        Task<Subject> GetSubjectByIdAsync(int id);
+        Task AddSubjectAsync(Subject subject);
+        Task RemoveSubjectAsync(Subject subject);
+        Task EditSubjectAsync(Subject subject);
+        //Task GetSubjectAsync(int id);
     }
 }

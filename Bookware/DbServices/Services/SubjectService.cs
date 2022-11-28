@@ -12,29 +12,51 @@ namespace Bookware.DbServices.Services
             this.context = context;
         }
 
-        public void AddSubject (Subject subject)
+        public async Task AddSubjectAsync (Subject? subject)
         {
-            context.Subjects.Add(subject);
-            context.SaveChanges();
+            if (subject != null)
+            {
+                context.Subjects.Add(subject);
+            }
+            await context.SaveChangesAsync();
         }
-        public void RemoveSubject(Subject subject)
+        public async Task RemoveSubjectAsync(Subject subject)
         {
+            if(subject != null)
+            {
             context.Subjects.Remove(subject);
-            context.SaveChanges();
+            }
+            await context.SaveChangesAsync();
         }
-        public void EditSubject(Subject subject)
+        public async Task EditSubjectAsync(Subject subject)
         {
-            throw new NotImplementedException();
+            if(subject != null)
+            {
+                context.Subjects.Update(subject);
+            }
+            await context.SaveChangesAsync();
         }
-        public Subject? GetSubject(int id)
+        public async Task <Subject?> GetSubjectByIdAsync(int id)
         {
-            return context.Subjects
+            Subject? subject = await context.Subjects
                 .AsNoTracking()
-                .FirstOrDefault(s => s.SubjectId == id);
+                .FirstOrDefaultAsync(s => s.SubjectId == id);
+            if(subject != null)
+            {
+                return subject;
+            }
+            return null;
         }
-        public IEnumerable<Subject> GetSubjects()
+        //public async Task <IEnumerable<Subject>> GetSubjectsAsync(string filter)
+        //{
+        //    return await context.Set<Subject>()
+        //        .Where(s => s.SubjectName.StartsWith(filter))
+        //        .AsNoTracking()
+        //        .ToListAsync();
+        //}
+        public async Task <IEnumerable<Subject>> GetSubjectsAsync()
         {
-            return context.Subjects;
+            return await context.Set <Subject>().AsNoTracking().ToListAsync();
         }
     }
 }
