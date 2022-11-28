@@ -6,8 +6,9 @@ namespace Bookware.DbServices.Interfaces
     {
         void CreateEducation(Education education);
         void DeleteEducation(Education education);
-        void EditEducation(int id);
+        void EditEducation(Education education);
         Education? GetEducation(int id);
+        Education GetEducationDataById(int id);
         IEnumerable<Education> GetEducations();
     }
 }

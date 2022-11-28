@@ -26,9 +26,13 @@ namespace Bookware.DbServices.Services
                 .FirstOrDefault(e => e.EduId == id);
         }
 
-        public void EditEducation(int id)
+        public void EditEducation(Education education)
         {
-            throw new NotImplementedException();
+            if (education != null)
+            {
+                context.Educations.Update(education);
+                context.SaveChanges();
+            }
         }
 
         public void CreateEducation(Education education)
@@ -41,6 +45,16 @@ namespace Bookware.DbServices.Services
         {
             context.Educations.Remove(education);
             context.SaveChanges();
+        }
+        
+        public Education GetEducationDataById(int id) 
+        {
+            Education? edu = context.Educations
+                .Include(es => es.EduSubs)
+                .ThenInclude(s => s.Subject)
+                .AsNoTracking()
+                .FirstOrDefault(e => e.EduId == id);
+            return edu!;
         }
     }
 }
