@@ -18,19 +18,20 @@ namespace Bookware.Pages.Subject_Pages
         [BindProperty]
         public Subject? Subject { get; set; }
 
-        public void OnGet(int subid)
+        public async Task <IActionResult>OnGetAsync(int subid)
         {
             SubId = subid;
-            Subjects = context.GetSubjects();
+            Subjects = await context.GetSubjectsAsync();
+            return Page();
         }
-        public IActionResult OnPostDelete(int id)
+        public async Task <IActionResult> OnPostDeleteAsync(int id)
         {
-            Subject = context.GetSubject(id);
+            Subject = await context.GetSubjectByIdAsync(id);
             if (Subject == null)
             {
-                return NotFound();
+                return Page();
             }
-            context.RemoveSubject(Subject);
+            context.RemoveSubjectAsync(Subject);
             return RedirectToPage("AllSubjects");
         }
     }
