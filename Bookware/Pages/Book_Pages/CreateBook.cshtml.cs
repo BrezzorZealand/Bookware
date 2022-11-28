@@ -17,17 +17,19 @@ namespace Bookware.Pages.Book_Pages
         [BindProperty]
         public Book? Book { get; set; }
 
-        public IActionResult OnGet()
+        public IActionResult OnGetAsync()
         {
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {                
                 return Page();
             }
-            service.CreateBook(Book);
+
+            await service.CreateBookAsync(Book);
+
             return RedirectToPage("AllBooks");
         }
     }

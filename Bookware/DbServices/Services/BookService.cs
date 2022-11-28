@@ -16,68 +16,73 @@ namespace Bookware.Services
 
         /* Create Method*/
 
-        public void CreateBook(Book? book)
+        public async Task CreateBookAsync(Book? book)
         {
             if (book != null)
             {
                 context.Books.Add(book);
-                context.SaveChanges();
             }
+            await context.SaveChangesAsync();
         }
 
         /* Read Method's*/
-
-        public IEnumerable<Book> GetBooks()
+        public async Task<IEnumerable<Book?>> GetBooksAsync(string filter)
         {
-            return context.Books;
+            return await context.Set<Book>()
+                .Where(b => b.Title.StartsWith(filter))
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public Book? GetBook(int id)
+        public async Task<IEnumerable<Book?>> GetBooksAsync()
         {
-            return context.Books 
-                .FirstOrDefault(b => b.BookId == id);
+            return await context.Set<Book>().AsNoTracking().ToListAsync();
         }
 
-        public Book? GetMoreBookData(int id)
+        public async Task<Book?> GetBookByIdAsync(int id)
         {
-            return context.Books
-                .Include(cb => cb.ClassBooks)
-                .ThenInclude(b => b.Class)
-                .ThenInclude(d => d.Students)
-                .FirstOrDefault(b => b.BookId == id);
+            Book? book = await context.Books
+                .Include(b => b.ClassBooks)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.BookId == id);
+            return book;
+        }
+
+        public async Task<Book?> GetBookDataByIdAsync(int id)
+        {
+            Book? book = await context.Books
+                .Include(b => b.ClassBooks)
+                .ThenInclude(cb => cb.Class)
+                .ThenInclude(c => c.Students)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.BookId == id);
+            if (book != null)
+            {
+                return book;
+            }
+            return null;
         }
 
         /* Update Method's*/
 
-        public void UpdateBook(Book? updatedBook)
+        public async Task UpdateBookAsync(Book? book)
         {
-            if (updatedBook != null)
+            if (book != null)
             {
-                Book? book = GetBook(updatedBook!.BookId);
-
-                if (book != null)
-                {
-                    book.BookId = updatedBook.BookId;
-                    book.Title = updatedBook.Title;
-                    book.Author = updatedBook.Author;
-                    book.Year = updatedBook.Year;
-                    book.Isbn = updatedBook.Isbn;
-
-                    context.Update(book);
-                    context.SaveChanges();
-                }
+                context.Books.Update(book);
             }
+            await context.SaveChangesAsync();
         }
 
         /* Delete Method*/
 
-        public void DeleteBook(Book? book)
+        public async Task DeleteBookAsync(Book? book)
         {
             if (book != null)
             {
                 context.Books.Remove(book);
-                context.SaveChanges();
             }
+            await context.SaveChangesAsync();
         }
     }
 }

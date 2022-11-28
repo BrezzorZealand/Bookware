@@ -4,11 +4,12 @@ namespace Bookware.Interfaces
 {
     public interface IBookService
     {
-        void CreateBook(Book? book);
-        IEnumerable<Book> GetBooks();
-        Book? GetBook(int id);
-        Book? GetMoreBookData(int id);
-        void UpdateBook(Book? book);
-        void DeleteBook(Book? book);
+        Task CreateBookAsync(Book? book);
+        Task <IEnumerable<Book?>> GetBooksAsync(string filter);
+        Task<IEnumerable<Book?>> GetBooksAsync();
+        Task<Book?> GetBookByIdAsync(int id);
+        Task<Book?> GetBookDataByIdAsync(int id);
+        Task UpdateBookAsync(Book? book);
+        Task DeleteBookAsync(Book? book);
     }
 }

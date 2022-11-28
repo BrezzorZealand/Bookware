@@ -22,10 +22,10 @@
             @foreach (var item in Model.Books)
             {
                 <tr>
-                    <td>@item.BookId</td>
-                    <td>@item.Title </td>
-                    <td>@item.Author</td>
-                    <td>@item.Year</td>
+                    <td>@item!.BookId</td>
+                    <td>@item!.Title </td>
+                    <td>@item!.Author</td>
+                    <td>@item!.Year</td>
                     <td class="justify-content-between">
                         <a asp-page="BookDetails" asp-route-id="@item.BookId" class="btn btn-success">Details</a>
                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.BookId" onclick="return confirm('Are you sure you want to delete?')">

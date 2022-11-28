@@ -13,13 +13,15 @@ namespace Bookware.Pages.Book_Pages
             this.service = service;
         }
         public Book? Book { get; set; }
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Book = service.GetBook(id);
+            Book = await service.GetBookDataByIdAsync(id);
+
             if (Book is null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }

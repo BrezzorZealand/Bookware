@@ -16,21 +16,23 @@ namespace Bookware.Pages.Book_Pages
         }
         [BindProperty]
         public Book? Book { get; set; }
-        public IEnumerable<Book>? Books { get; set; }
-        public IActionResult OnGet()
+        public IEnumerable<Book?> ?Books { get; set; }
+        public async Task<IActionResult> OnGetAsync()
         {
-            Books = service.GetBooks();
+            Books = await service.GetBooksAsync();
             return Page();
         }
 
-        public IActionResult OnPostDelete(int id)
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            Book = service.GetBook(id);
+            Book = await service.GetBookByIdAsync(id);
+
             if (Book == null)
             {
                 return Page();
             }
-            service.DeleteBook(Book);
+
+            await service.DeleteBookAsync(Book);
             return RedirectToPage("AllBooks");
         }
     }
