@@ -8,7 +8,7 @@ namespace Bookware.Pages.Education_Pages
     public class AllEducationsModel : PageModel
     {
         public readonly IEducationService Service;
-        public IEnumerable<Education?> Educations { get; set; }
+        public IEnumerable<Education?>? Educations { get; set; }
         public Education? Education { get; set; }
 
         public AllEducationsModel(IEducationService Service)

@@ -6,7 +6,7 @@ namespace Bookware.DbServices.Services
 {
     public class SubjectService : ISubjectService
     {
-        BookwareDbContext context;
+        readonly BookwareDbContext context;
         public SubjectService(BookwareDbContext context)
         {
             this.context = context;
@@ -36,7 +36,7 @@ namespace Bookware.DbServices.Services
             }
             await context.SaveChangesAsync();
         }
-        public async Task <Subject?> GetSubjectByIdAsync(int id)
+        public async Task<Subject?> GetSubjectByIdAsync(int id)
         {
             Subject? subject = await context.Subjects
                 .AsNoTracking()
