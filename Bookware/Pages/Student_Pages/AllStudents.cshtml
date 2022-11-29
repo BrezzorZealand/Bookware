@@ -4,7 +4,7 @@
     ViewData["Title"] = "All Students";
 }
 
-<div class="text-cente">
+<div class="text-center">
     <h1 class="display-4">@ViewData["Title"]</h1>
     <table class="table table-hover table-bordered">
         <thead>
@@ -17,6 +17,28 @@
                 <th scope="col">ClassId</th>
             </tr>
         </thead>
+        <tbody>
+            @if (Model.Students != null)
+            {
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td>@item.StudentId</td>
+                        <td>@item.StudentName</td>
+                        <td>@item.Address</td>
+                        <td>@item.Semester</td>
+                        <td>@item.StartDate</td>
+                        <td>@item.ClassId</td>
+                        <td> <a asp-page="/Student_Pages/EditStudent" asp-route-id="@item.StudentId" class="btn btn-primary"> Edit </a> </td>
+                        <td class="justify-content-between">
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.StudentId" onclick="return confirm('Are you sure you wan to delete?')">
+                                <button class="btn btn-primary" type="Submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
 
 
 
