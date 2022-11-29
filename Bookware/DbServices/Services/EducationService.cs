@@ -69,5 +69,16 @@ namespace Bookware.DbServices.Services
             }
             return null;
         }
+
+        public async Task CreateEduSubAsync(Education? education, Subject? subject, EduSub? eduSub)
+        {
+            if (education != null && subject != null && eduSub != null)
+            {
+                eduSub.Edu = education;
+                eduSub.Subject = subject;
+                context.EduSubs.Add(eduSub);
+            }
+            await context.SaveChangesAsync();
+        }
     }
 }
