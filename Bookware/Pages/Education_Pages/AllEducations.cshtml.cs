@@ -9,6 +9,7 @@ namespace Bookware.Pages.Education_Pages
     {
         public readonly IEducationService Service;
         public IEnumerable<Education?>? Educations { get; set; }
+        [BindProperty]
         public Education? Education { get; set; }
 
         public AllEducationsModel(IEducationService Service)
@@ -16,13 +17,13 @@ namespace Bookware.Pages.Education_Pages
             this.Service = Service;
         }
         
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             Educations = await Service.GetEducationsAsync();
             return Page();
         }
 
-        public async Task<IActionResult> OnPostDelete(int id)
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             Education = await Service.GetEducationByIdAsync(id);
 
