@@ -1,4 +1,35 @@
 ﻿@page
 @model Bookware.Pages.Class_Pages.UpdateClassModel
 @{
+    ViewData["Title"] = "Update Class";
 }
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="klasse!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.klasse!.ClassId)" readonly>
+                            <label asp-for="klasse!.ClassId">Id</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="klasse!.ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.klasse!.ClassName)" />
+                            <label asp-for="klasse!.ClassName">Title</label>
+                            <span asp-validation-for="klasse!.ClassName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Update" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="/Class_Pages/AllClasses">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
