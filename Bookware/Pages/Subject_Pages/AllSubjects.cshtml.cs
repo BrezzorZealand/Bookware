@@ -8,7 +8,7 @@ namespace Bookware.Pages.Subject_Pages
     public class AllSubjectsModel : PageModel
     {
         public IEnumerable<Subject>Subjects { get; set; }
-        public int SubId { get; set; }
+        //public int SubId { get; set; }
         private ISubjectService context;
 
         public AllSubjectsModel (ISubjectService service)
@@ -18,20 +18,21 @@ namespace Bookware.Pages.Subject_Pages
         [BindProperty]
         public Subject? Subject { get; set; }
 
-        public async Task <IActionResult>OnGetAsync(int subid)
+        public async Task <IActionResult>OnGetAsync(/*int subid*/)
         {
-            SubId = subid;
+            //SubId = subid;
             Subjects = await context.GetSubjectsAsync();
             return Page();
         }
         public async Task <IActionResult> OnPostDeleteAsync(int id)
         {
             Subject = await context.GetSubjectByIdAsync(id);
+
             if (Subject == null)
             {
                 return Page();
             }
-            context.RemoveSubjectAsync(Subject);
+            await context.RemoveSubjectAsync(Subject);
             return RedirectToPage("AllSubjects");
         }
     }
