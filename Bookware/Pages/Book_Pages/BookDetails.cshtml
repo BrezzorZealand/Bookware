@@ -35,32 +35,28 @@
                                 <td>@cb.ClassId</td>
                                 <td>@cb.Class.ClassName</td>
                                 <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                            Actions
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <table class="table table-bordered table-hover dropdown-item">
-                                                    <thead class="table-secondary">
-                                                        <tr>
-                                                            <th>Student Id</th>
-                                                            <th>Student Name</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var item in cb.Class.Students)
-                                                        {
-                                                            <tr>
-                                                                <td>@item.StudentId</td>
-                                                                <td>@item.StudentName</td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                        </ul>
-                                    </div>                                    
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@cb.ClassId-collapse" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="collapse tr-@cb.ClassId-collapse">
+                                <td colspan="3">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th>Student Id</th>
+                                                <th>Student Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in cb.Class.Students)
+                                            {
+                                                <tr>
+                                                    <td>@item.StudentId</td>
+                                                    <td>@item.StudentName</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                         }
