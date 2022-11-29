@@ -13,48 +13,61 @@ namespace Bookware.DbServices.Services
             this.context = context;
         }
 
-        public IEnumerable<Education> GetEducations()
+        public async Task<IEnumerable<Education?>> GetEducationsAsync()
         {
-            return context.Educations;
+            return await context.Set<Education>().AsNoTracking().ToListAsync();
         }
 
-        public Education? GetEducation(int id)
+        public async Task<Education?> GetEducationByIdAsync(int id)
         {
-            return context.Educations
+            Education? education = await context.Educations
                 .Include(es => es.EduSubs)
                 .AsNoTracking()
-                .FirstOrDefault(e => e.EduId == id);
+                .FirstOrDefaultAsync(e => e.EduId == id);
+            return education;
         }
 
-        public void EditEducation(Education education)
+        public async Task EditEducationAsync(Education? education)
         {
             if (education != null)
             {
                 context.Educations.Update(education);
-                context.SaveChanges();
+
             }
+            await context.SaveChangesAsync();
         }
 
-        public void CreateEducation(Education education)
+        public async Task CreateEducationAsync(Education? education)
         {
-            context.Educations.Add(education);
-            context.SaveChanges();
+            if (education != null)
+            {
+                context.Educations.Add(education);
+            }
+            await context.SaveChangesAsync();
         }
 
-        public void DeleteEducation(Education education)
+        public async Task DeleteEducationAsync(Education? education)
         {
-            context.Educations.Remove(education);
-            context.SaveChanges();
+            if (education != null)
+            {
+                context.Educations.Remove(education);
+
+            }
+            await context.SaveChangesAsync();
         }
-        
-        public Education GetEducationDataById(int id) 
+
+        public async Task<Education?> GetEducationDataByIdAsync(int id)
         {
-            Education? edu = context.Educations
+            Education? edu = await context.Educations
                 .Include(es => es.EduSubs)
                 .ThenInclude(s => s.Subject)
                 .AsNoTracking()
-                .FirstOrDefault(e => e.EduId == id);
-            return edu!;
+                .FirstOrDefaultAsync(e => e.EduId == id);
+            if (edu != null)
+            {
+                return edu!;
+            }
+            return null;
         }
     }
 }

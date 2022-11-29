@@ -2,6 +2,7 @@
 using Bookware.Models;
 using Bookware.Interfaces;
 using Bookware.DbServices.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
@@ -12,6 +13,29 @@ namespace Bookware.DbServices.Services
         public StudentService(BookwareDbContext context)
         {
             this.context = context;
+        }
+
+        public async Task EditStudentAsync(Student? student)
+        {
+            if (student != null)
+            {
+                context.Students.Update(student);
+
+            }
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<Student?> GetStudentsAsync(int id)
+        {
+            Student? student = await context.Students
+                .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
+                
+            return student;
+        }
+
+        public async Task<IEnumerable<Student?>> GetStudentsAsync()
+        {
+            return await context.Set<Student>().AsNoTracking().ToListAsync();
         }
         public Student? GetStudentById(int id)
         {
@@ -40,7 +64,7 @@ namespace Bookware.DbServices.Services
             throw new NotImplementedException();
         }
 
-        
+       
     }
 }
 

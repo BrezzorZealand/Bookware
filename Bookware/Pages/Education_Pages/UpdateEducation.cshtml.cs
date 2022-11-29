@@ -7,7 +7,7 @@ namespace Bookware.Pages.Education_Pages
 {
     public class UpdateEducationModel : PageModel
     {
-        IEducationService Service;
+        readonly IEducationService Service;
         public Education? Education { get; set; }
 
         public UpdateEducationModel(IEducationService Service)
@@ -15,20 +15,15 @@ namespace Bookware.Pages.Education_Pages
             this.Service = Service;
         }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Education = Service.GetEducation(id);
+            Education = await Service.GetEducationByIdAsync(id);
             return Page();
         }
 
-        public Education? GetEducation()
+        public async Task<IActionResult> OnPostAsync(Education? education)
         {
-            return Education;
-        }
-
-        public IActionResult OnPost(Education? education)
-        {
-            Service.EditEducation(education);
+            await Service.EditEducationAsync(education);
             return RedirectToPage("AllEducations");
         }
     }

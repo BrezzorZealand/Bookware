@@ -20,9 +20,9 @@ namespace Bookware.Pages.Education_Pages
             return Page();
         }
 
-        public IActionResult OnPost(Education education)
+        public async Task<IActionResult> OnPostAsync(Education education)
         {
-            Service.CreateEducation(education);
+            await Service.CreateEducationAsync(education);
             return RedirectToPage("AllEducations");
         }
     }

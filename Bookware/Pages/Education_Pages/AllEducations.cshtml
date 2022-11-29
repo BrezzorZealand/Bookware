@@ -22,7 +22,7 @@
                 @foreach (var item in Model.Educations)
                 {
                     <tr>
-                        <td>@item.EduId</td>
+                        <td>@item!.EduId</td>
                         <td>@item.EduName </td>
                         <td>
                             @foreach (var eduSub in item.EduSubs)
