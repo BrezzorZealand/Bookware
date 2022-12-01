@@ -15,7 +15,8 @@ builder.Services.AddTransient<IBookService, BookService>();
 builder.Services.AddTransient<ITeacherService, TeacherService>();
 builder.Services.AddTransient<ISubjectService, SubjectService>();
 builder.Services.AddTransient<IEducationService, EducationService>();
-builder.Services.AddTransient<IStudentService, StudentService>();
+builder.Services.AddTransient<IStudentService,StudentService>();
+builder.Services.AddTransient<IClassService, ClassService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

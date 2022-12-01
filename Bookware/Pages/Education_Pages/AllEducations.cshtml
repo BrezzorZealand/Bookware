@@ -31,10 +31,10 @@
                             }
                         </td>
                         <td>
-                            <a asp-page="/Subject_Pages/AllSubjects" asp-route-id="@item.EduId" class="btn btn-primary">Add Subject</a>
+                            <a asp-page="/Education_Pages/CreateEduSub" asp-route-id="@item.EduId" class="btn btn-primary">Add Subject</a>
                             <a asp-page="/Education_Pages/EducationDetails" asp-route-id="@item.EduId" class="btn btn-primary">Details</a>
                             <a asp-page="/Education_Pages/UpdateEducation" asp-route-id="@item.EduId" class="btn btn-primary">Update</a>
-                             <form asp-page-handler="Delete" method="post" asp-route-id="@item.EduId" onclick="return confirm('Are you sure you want to delete?')">
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.EduId" onclick="return confirm('Are you sure you want to delete?')">
                             <button class="btn btn-danger">Delete</button>
                             </form>
                         </td>
