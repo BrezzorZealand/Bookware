@@ -44,3 +44,7 @@ body {
 tbody, td, tfoot, th, thead, tr {
     border-width: 2px !important;
 }
+
+.table > :not(:last-child) > :last-child > * {
+    border-bottom-color: inherit;
+}
