@@ -5,7 +5,7 @@
 }
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
-<div>
+<div class="container">
     <dl class="row">
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Book!.BookId)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Book!.BookId)</dd>
@@ -18,53 +18,70 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Book!.Isbn)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Book!.Isbn)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Book!.ClassBooks)</dt>
-        <dd class="col-sm-10">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Class Id</th>
-                            <th>Class Name</th>
-                            <th>Students</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var cb in Model.Book!.ClassBooks)
-                        {
+        @if (Model.Book!.ClassBooks != null && Model.Book.ClassBooks!.Count > 0)
+        {
+            <dd class="col-sm-10">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-center">
+                        <thead class="table-dark">
                             <tr>
-                                <td>@cb.ClassId</td>
-                                <td>@cb.Class.ClassName</td>
-                                <td>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@cb.ClassId-collapse" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
-                                </td>
+                                <th>Class Id</th>
+                                <th>Class Name</th>
+                                <th>Students</th>
                             </tr>
-                            <tr class="collapse tr-@cb.ClassId-collapse">
-                                <td colspan="3">
-                                    <div class="collapse tr-@cb.ClassId-collapse">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Student Id</th>
-                                                    <th>Student Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in cb.Class.Students)
-                                                {
-                                                    <tr>
-                                                        <td>@item.StudentId</td>
-                                                        <td>@item.StudentName</td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="table-yellow">
+                            @foreach (var cb in Model.Book!.ClassBooks)
+                            {
+                                <tr>
+                                    <td>@cb.ClassId</td>
+                                    <td>@cb.Class.ClassName</td>
+                                    <td>
+                                        @if (cb.Class!.Students != null && cb.Class.Students!.Count > 0)
+                                        {
+                                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@cb.ClassId-collapse" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                                        }
+                                    </td>
+                                </tr>
+                                @if (cb.Class.Students != null && cb.Class.Students!.Count > 0)
+                                {
+                                    <tr class="collapse tr-@cb.ClassId-collapse">
+                                        <td colspan="3">
+                                            <div class="collapse tr-@cb.ClassId-collapse">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Student Id</th>
+                                                            <th>Student Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-yellow">
+                                                        @foreach (var item in cb.Class!.Students)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.StudentId</td>
+                                                                <td>@item.StudentName</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </dd>
+        }
+        else
+        {
+            <div class="alert alert-info m-3">
+                <h5 class="alert-heading"><i class="bi bi-exclamation-circle-fill"></i> Information</h5>
+                <hr>
+                <p> No Classes found!</p>
             </div>
-        </dd>
+        }
     </dl>
 </div>

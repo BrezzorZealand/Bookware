@@ -19,12 +19,12 @@ namespace Bookware.Pages.Book_Pages
         {
             Book = await service.GetBookDataByIdAsync(id);
 
-            if (Book is null)
+            if (Book != null)
             {
-                return NotFound();
+                return Page();
             }
 
-            return Page();
+            return NotFound();
         }
     }
 }
