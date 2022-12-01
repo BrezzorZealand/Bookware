@@ -1,6 +1,5 @@
 ﻿using System;
 using Bookware.Models;
-using Bookware.Interfaces;
 using Bookware.DbServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
