@@ -23,8 +23,10 @@
                     <tr>
                         <td>@item.SubjectId</td>
                         <td>@item.SubjectName</td>
-                        <td> <a asp-page="/Subject_Pages/EditSubject" asp-route-id="@item.SubjectId" class="btn btn-primary"> Edit </a> </td>
                         <td class="justify-content-between">
+                            <a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="btn btn-primary"> Details </a>
+                            <a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="btn btn-primary"> Edit </a>
+                        
                             <form asp-page-handler="Delete" method="post" asp-route-id="@item.SubjectId" onclick="return confirm('Are you sure you wan to delete?')">
                             <button class="btn btn-primary" type="Submit">Delete</button>
                             </form>
