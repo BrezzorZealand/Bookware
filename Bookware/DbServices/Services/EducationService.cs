@@ -74,9 +74,9 @@ namespace Bookware.DbServices.Services
         {
             if (education != null && subject != null && eduSub != null)
             {
-                //eduSub.Edu = education;
+                eduSub.Edu = education;
                 eduSub.EduId = education.EduId;
-                //eduSub.Subject = subject;
+                eduSub.Subject = subject;
                 eduSub.SubjectId = subject.SubjectId;
                 context.EduSubs.Add(eduSub);
             }

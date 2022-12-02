@@ -37,7 +37,7 @@ namespace Bookware.Pages.Education_Pages
         {
             int Sid = Subject!.SubjectId;
             Subject = await SubService.GetSubjectByIdAsync(Sid);
-            await EduService.CreateEduSubAsync(Education, Subject, eduSub);
+            //await EduService.CreateEduSubAsync(Education, Subject, eduSub);
             return RedirectToPage("AllEducations");
         }
     }
