@@ -14,11 +14,11 @@ namespace Bookware.DbServices.Services
         }
 
         #region Create Class
-        public async Task AddClassAsync(Class? klasse)
+        public async Task AddClassAsync(Class? _class)
         {
-            if (klasse != null)
+            if (_class != null)
             {
-                context.Classes.Add(klasse);
+                context.Classes.Add(_class);
             } 
             await context.SaveChangesAsync();
         }
@@ -32,30 +32,41 @@ namespace Bookware.DbServices.Services
 
         public async Task<Class> GetClassByIdAsync(int id)
         {
-            Class? klasse = await context.Classes
+            Class? _class = await context.Classes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ClassId == id);
-            return klasse!;
+            return _class!;
         }
         #endregion
 
         #region Update Class
-        public async Task UpdateClassAsync(Class? klasse)
+        public async Task UpdateClassAsync(Class? _class)
         {
-            if (klasse != null)
+            if (_class != null)
             {
-                context.Classes.Update(klasse);
+                context.Classes.Update(_class);
             }
             await context.SaveChangesAsync();
         }
         #endregion
 
         #region Delete Class
-        public async Task DeleteClassAsync(Class? klasse)
+        public async Task DeleteClassAsync(Class? _class)
         {
-            if (klasse != null)
+            if (_class != null)
             {
-                context.Classes.Remove(klasse);
+                context.Classes.Remove(_class);
+            }
+            await context.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Add Book
+        public async Task AddBook(ClassBook? classBook)
+        {
+            if (classBook != null)
+            {
+                context.ClassBooks.Add(classBook);
             }
             await context.SaveChangesAsync();
         }

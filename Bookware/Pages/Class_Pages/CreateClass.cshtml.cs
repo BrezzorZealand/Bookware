@@ -15,7 +15,7 @@ namespace Bookware.Pages.Class_Pages
         }
 
         [BindProperty]
-        public Class? klasse { get; set; }
+        public Class? Class { get; set; }
 
         public IActionResult OnGetAsync()
         {
@@ -27,7 +27,7 @@ namespace Bookware.Pages.Class_Pages
             {
                 return Page();
             }
-            await classService.AddClassAsync(klasse);
+            await classService.AddClassAsync(Class);
             return RedirectToPage("AllClasses");
         }
     }

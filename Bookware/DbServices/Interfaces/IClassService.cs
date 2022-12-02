@@ -9,5 +9,6 @@ namespace Bookware.DbServices.Interfaces
         Task <Class> GetClassByIdAsync(int id);
         Task UpdateClassAsync(Class? klasse);
         Task DeleteClassAsync(Class? klasse);
+        Task AddBook(ClassBook? classBook);
     }
 }
