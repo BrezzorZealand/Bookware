@@ -18,7 +18,7 @@ namespace Bookware.Pages.Class_Pages
         }
 
         [BindProperty]
-        public Class? klasse { get; set; }
+        public Class? _Class { get; set; }
         public IEnumerable<Class?> ?classes { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -29,14 +29,14 @@ namespace Bookware.Pages.Class_Pages
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            klasse = await classService.GetClassByIdAsync(id);
+            _Class = await classService.GetClassByIdAsync(id);
 
-            if (klasse == null)
+            if (_Class == null)
             {
                 return Page();
             }
 
-            await classService.DeleteClassAsync(klasse);
+            await classService.DeleteClassAsync(_Class);
             return RedirectToPage("AllClasses");
         }
     }

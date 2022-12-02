@@ -4,7 +4,7 @@
     ViewData["Title"] = "Update Class";
 }
 
-<div class="card">
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -13,15 +13,21 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (!ModelState.IsValid)
+                        {
+                            <div>
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="klasse!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.klasse!.ClassId)" readonly>
-                            <label asp-for="klasse!.ClassId">Id</label>
+                            <input asp-for="_Class!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k._Class!.ClassId)" readonly>
+                            <label asp-for="_Class!.ClassId">Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="klasse!.ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.klasse!.ClassName)" />
-                            <label asp-for="klasse!.ClassName">Title</label>
-                            <span asp-validation-for="klasse!.ClassName" class="text-danger"></span>
+                            <input asp-for="_Class!.ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k._Class!.ClassName)" />
+                            <label asp-for="_Class!.ClassName">Title</label>
+                            <span asp-validation-for="_Class!.ClassName" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Update" class="btn btn-success" />
