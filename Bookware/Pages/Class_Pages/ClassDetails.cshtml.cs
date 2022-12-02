@@ -20,7 +20,7 @@ namespace Bookware.Pages.Class_Pages
         {
 
             // Write a GetClassDataByIdAsync like GetEducationByIdAsync before i works in services
-            Class = await classService.GetClassByIdAsync(id);
+            Class = await classService.GetClassDataByIdAsync(id);
 
             if (Class is null)
             {

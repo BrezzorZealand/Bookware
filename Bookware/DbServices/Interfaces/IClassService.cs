@@ -7,6 +7,7 @@ namespace Bookware.DbServices.Interfaces
         Task AddClassAsync(Class? klasse); 
         Task <IEnumerable<Class>> GetClassAsync();
         Task <Class> GetClassByIdAsync(int id);
+        Task <Class?> GetClassDataByIdAsync(int id);
         Task UpdateClassAsync(Class? klasse);
         Task DeleteClassAsync(Class? klasse);
         Task AddBook(ClassBook? classBook);
