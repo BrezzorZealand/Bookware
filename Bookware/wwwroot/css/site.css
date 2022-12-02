@@ -22,7 +22,36 @@ html {
 body {
     padding-top: 4.5rem;
     margin-bottom: 60px;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-width: 2px !important;
+}
+
+svg {
+    height:1rem;
+    width:1rem;
+}
+
+.baseline {
+    top: .06em;
+    position: relative;
+}
+
+.icon {
+    display: inline-flex;
+    align-self: center;
+}
+
+.bg-yellow {
     background-color: #fff387;
+}
+
+.bg-image {
+    background-image: url('../images/books.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left; 
 }
 
 .table-yellow {
@@ -41,9 +70,6 @@ body {
     background-color: #fff387 !important;
 }
 
-tbody, td, tfoot, th, thead, tr {
-    border-width: 2px !important;
-}
 
 .table > :not(:last-child) > :last-child > * {
     border-bottom-color: inherit;

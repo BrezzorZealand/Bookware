@@ -9,11 +9,27 @@
     <dl class="row">
         
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Class!.ClassId)</dt>
-        <dd class="col-sm-10">@Html.DisplayNameFor(model => model.Class!.ClassId)</dd>
+        <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Class!.ClassId)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Class!.ClassName)</dt>
-        <dd class="col-sm-10">@Html.DisplayNameFor(model => model.Class!.ClassName)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Class!.ClassBooks)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Class!.ClassName)</dd>
+
         <dd class="col-sm-10">
-        @*Write a GetClassDataByIdAsync like GetEducationByIdAsync before i works in services*@
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Education</th>
+                            <th>Subjects</th>
+                            <th>Students</th>
+                            <th>Books</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-yellow">
+                       @* @foreach (var edu in Model.)*@
+                    </tbody>
+                </table>
+            </div>
+        </dd>
+
     </dl>
 </div>

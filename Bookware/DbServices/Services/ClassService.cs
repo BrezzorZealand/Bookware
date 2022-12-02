@@ -37,6 +37,34 @@ namespace Bookware.DbServices.Services
                 .FirstOrDefaultAsync(c => c.ClassId == id);
             return klasse!;
         }
+
+        public async Task<Class?> GetClassDataByIdAsync(int id)
+        {
+            Class? cla = await context.Classes
+                .Include(tc => tc.TeacherClasses)
+                .ThenInclude(te => te.TeachEdu)
+                .ThenInclude(es => es.EduSub)
+                .ThenInclude(e => e.Edu)
+
+                .Include(tc => tc.TeacherClasses)
+                .ThenInclude(te => te.TeachEdu)
+                .ThenInclude(es => es.EduSub)
+                .ThenInclude(sub => sub.Subject)
+
+                .Include(stu => stu.Students)
+
+                .Include(cb => cb.ClassBooks)
+                .ThenInclude(b => b.Book)
+
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+            
+            if (cla != null)
+            {
+                return cla!;
+            }
+            return null;
+        }
         #endregion
 
         #region Update Class
