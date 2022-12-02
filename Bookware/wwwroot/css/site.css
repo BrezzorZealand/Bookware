@@ -1,5 +1,11 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -9,10 +15,36 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    padding-top: 4.5rem;
+    margin-bottom: 60px;
+    background-color: #fff387;
+}
+
+.table-yellow {
+    --bs-table-bg: #fff387;
+    --bs-table-striped-bg: #ede27e;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dcd170;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #ede27e;
+    --bs-table-hover-color: #000;
+    color: #000;
+    border-color: #000;
+}
+
+.bg-yellow {
+    background-color: #fff387 !important;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-width: 2px !important;
+}
+
+.table > :not(:last-child) > :last-child > * {
+    border-bottom-color: inherit;
 }

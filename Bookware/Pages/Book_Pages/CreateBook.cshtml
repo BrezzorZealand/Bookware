@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create Book";
 }
 
-<div class="card">
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -13,7 +13,13 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }                         
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Book!.Title" class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Book!.Title)" />
                             <label asp-for="Book!.Title">Title</label>

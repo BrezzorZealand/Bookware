@@ -1,6 +1,6 @@
 ﻿using Bookware.Models;
 
-namespace Bookware.Interfaces
+namespace Bookware.DbServices.Interfaces
 {
     public interface IBookService
     {

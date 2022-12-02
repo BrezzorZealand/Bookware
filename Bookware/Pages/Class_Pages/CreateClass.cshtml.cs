@@ -3,19 +3,19 @@ using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bookware.Pages.Book_Pages
+namespace Bookware.Pages.Class_Pages
 {
-    public class CreateBookModel : PageModel
+    public class CreateClassModel : PageModel
     {
-        private readonly IBookService service;
+        private readonly IClassService classService;
 
-        public CreateBookModel(IBookService service)
+        public CreateClassModel(IClassService service)
         {
-            this.service = service;
+            this.classService = service;
         }
 
         [BindProperty]
-        public Book? Book { get; set; }
+        public Class? klasse { get; set; }
 
         public IActionResult OnGetAsync()
         {
@@ -24,13 +24,11 @@ namespace Bookware.Pages.Book_Pages
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {                
+            {
                 return Page();
             }
-
-            await service.CreateBookAsync(Book);
-
-            return RedirectToPage("AllBooks");
+            await classService.AddClassAsync(klasse);
+            return RedirectToPage("AllClasses");
         }
     }
 }

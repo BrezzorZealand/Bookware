@@ -1,4 +1,4 @@
-using Bookware.Interfaces;
+using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,12 +19,12 @@ namespace Bookware.Pages.Book_Pages
         {
             Book = await service.GetBookDataByIdAsync(id);
 
-            if (Book is null)
+            if (Book != null)
             {
-                return NotFound();
+                return Page();
             }
 
-            return Page();
+            return NotFound();
         }
     }
 }

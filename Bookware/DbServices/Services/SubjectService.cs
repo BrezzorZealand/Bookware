@@ -58,5 +58,18 @@ namespace Bookware.DbServices.Services
         {
             return await context.Set <Subject>().AsNoTracking().ToListAsync();
         }
+        public async Task<Subject?> GetSubjectDataById(int id)
+        {
+            Subject? subject = await context.Subjects
+                .Include(s => s.EduSubs)
+                .ThenInclude(e => e.Edu)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s=>s.SubjectId == id);
+            if (subject != null)
+            {
+                return subject;
+            }
+            return null;
+        }
     }
 }
