@@ -1,36 +1,47 @@
 ﻿@page
 @model Bookware.Pages.Class_Pages.AllClassesModel
 @{
-    ViewData ["Title"] = "Classes";
+    ViewData ["Title"] = "All Classes";
 }
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
-<a class="btn btn-secondary m-2" asp-page="/Class_Pages/CreateClass"><i class="bi bi-plus-circle"></i> Create New Class</a> 
+<a class="btn btn-dark m-2" asp-page="/Class_Pages/CreateClass"><i class="bi bi-plus"></i> Create New Class</a> 
 
 <div class="table-responsive">
-    <table class="table table-hover table-bordered table-striped caption-top align-middle">
+    <table class="table table-hover table-bordered caption-top text-center">
+        <caption>List of Classes</caption>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Class name</th>
-                <th scope="col" class="text text-center">Funktioner</th>
+                <th scope="col" class="col-1"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-yellow">
             @if (Model.classes != null)
             {
                 @foreach (var item in Model.classes)
                 {
                     <tr>
-                        <td style="width:5%" colspan="1">@item!.ClassId</td>
-                        <td style="width:80%" colspan="1">@item!.ClassName</td>
-                        <td class="d-flex flex-row justify-content-center gap-2" colspan="1">
-                            <a asp-page="ClassDetails" asp-route-id="@item.ClassId" class="btn btn-primary"><i class="bi bi-list"></i></a>
-                            <a asp-page="UpdateClass" asp-route-id="@item.ClassId" class="btn btn-primary"><i class="bi bi-pen"></i></a>
-                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.ClassId" onclick="return confirm('Are you sure you want to delete?')">
-                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                            </form>
+                        <td>@item!.ClassId</td>
+                        <td>@item!.ClassName</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="ClassDetails" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-list"></i> Details</a></li>
+                                    <li><a asp-page="UpdateClass" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form asp-page-handler="Delete" method="post" asp-route-id="@item.ClassId" onclick="return confirm('Are you sure you want to delete?')">
+                                            <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>                                                                                 
                         </td>
                     </tr>
                 }
