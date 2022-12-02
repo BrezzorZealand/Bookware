@@ -1,5 +1,6 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
@@ -25,12 +26,12 @@ namespace Bookware.DbServices.Services
         #endregion
 
         #region Read Classes
-        public async Task<IEnumerable<Class>> GetClassAsync()
+        public async Task<IEnumerable<Class?>> GetClassAsync()
         {
             return await context.Set<Class>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<Class> GetClassByIdAsync(int id)
+        public async Task<Class?> GetClassByIdAsync(int id)
         {
             Class? _class = await context.Classes
                 .AsNoTracking()
@@ -89,12 +90,33 @@ namespace Bookware.DbServices.Services
         }
         #endregion
 
+        #region Get ClassBooksById
+        public async Task<IEnumerable<ClassBook?>> GetClassBooksByIdAsync(int id)
+        {
+            return await context.Set<ClassBook>()
+                .Where(cb => cb.ClassId == id)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+        #endregion
+
         #region Add Book
         public async Task AddBook(ClassBook? classBook)
         {
-            if (classBook != null)
+            if (classBook != null && !context.ClassBooks.Contains(classBook))
             {
                 context.ClassBooks.Add(classBook);
+            }
+            await context.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Remove Book
+        public async Task RemoveBook(ClassBook? classBook)
+        {
+            if (classBook != null)
+            {
+                context.ClassBooks.Remove(classBook);
             }
             await context.SaveChangesAsync();
         }

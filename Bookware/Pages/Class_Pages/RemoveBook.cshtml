@@ -1,7 +1,7 @@
 ﻿@page
-@model Bookware.Pages.Class_Pages.AddBookModel
+@model Bookware.Pages.Class_Pages.RemoveBookModel
 @{
-    ViewData["Title"] = "Add Book";
+    ViewData["Title"] = "Remove Book";
 }
 
 <div class="card bg-yellow">
@@ -29,7 +29,7 @@
                             <span asp-validation-for="ClassBook!.BookId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Add" class="btn btn-success" />
+                            <input type="submit" value="Remove" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Class_Pages/AllClasses">Cancel</a>
                         </div>
                     </form>

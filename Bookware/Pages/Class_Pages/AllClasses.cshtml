@@ -32,7 +32,8 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="AddBook" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-book"></i> Add Book</a></li>
+                                    <li><a asp-page="AddBook" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-journal-plus"></i> Add Book</a></li>
+                                    <li><a asp-page="RemoveBook" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-journal-minus"></i> Remove Book</a></li>
                                     <li><a asp-page="ClassDetails" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="UpdateClass" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"></li>
