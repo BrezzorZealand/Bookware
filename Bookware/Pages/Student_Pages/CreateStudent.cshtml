@@ -1,0 +1,50 @@
+﻿@page
+@model Bookware.Pages.Student_Pages.CreateStudentModel
+@{
+    ViewData["Title"] = "Create Student";
+}
+<div class="card">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.StudentName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.StudentName)" />
+                            <label asp-for="Student!.StudentName">Name</label>
+                            <span asp-validation-for="Student!.StudentName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.Address" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.Address)" />
+                            <label asp-for="Student!.Address">Address</label>
+                            <span asp-validation-for="Student!.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.Semester" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.Semester)" />
+                            <label asp-for="Student!.Semester">Semester</label>
+                            <span asp-validation-for="Student!.Semester" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.StartDate" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.StartDate)" />
+                            <label asp-for="Student!.StartDate">StartDate</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.ClassId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.ClassId)" />
+                            <label asp-for="Student!.ClassId">ClassId</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="/Student_Pages/AllStudents">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
