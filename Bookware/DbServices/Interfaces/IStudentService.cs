@@ -9,6 +9,8 @@ namespace Bookware.DbServices.Interfaces
         Task CreateStudentAsync(Student? student);
         Task EditStudentAsync(Student? student);
         Task DeleteStudentAsync(Student? student);
+        Task<Student?> GetStudentDataById(int id);
+        void CalculateSemester(Student student);
     }
 }
 

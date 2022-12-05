@@ -22,7 +22,7 @@ namespace Bookware.Models
         [StringLength(100)]
         [Unicode(false)]
         public string Address { get; set; }
-        public int Semester{ get; set; }
+        public int Semester { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime StartDate { get; set; }
         [Column("Class_Id")]

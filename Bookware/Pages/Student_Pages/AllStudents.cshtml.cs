@@ -25,6 +25,11 @@ namespace Bookware.Pages.Student_Pages
             return Page();
         }
 
+        public int GetSemester(Student student)
+        {
+            studentService.CalculateSemester(student);
+            return student.Semester;
+        }
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             Student = await studentService.GetStudentByIdAsync(id);

@@ -1,5 +1,5 @@
 ﻿@page
-@model Bookware.Pages.Education_Pages.CreateEduSubModel
+@model Bookware.Pages.Education_Pages.AddEduSubModel
 @using Bookware.Models
 @{
 }
@@ -23,10 +23,6 @@
                             <label asp-for="Education!.EduName">@Html.DisplayNameFor(Edu => Edu.Education!.EduName)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-@*                            @Html.DropDownList("SelectedSubject",
-                                    new SelectList(Model.Subjects, "SubjectId", "SubjectName"),
-                                    "Select Subject",
-                                    new { @class = "form-control" })*@
                             <select asp-for="Subject!.SubjectId" class="form-control">
                                 <option value="">Select Subject</option>
                                 @foreach (var item in Model.Subjects!)

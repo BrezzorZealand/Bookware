@@ -13,16 +13,12 @@
         <dd class="col-sm-10">
             <table class="table text-center">
                 <tr>
-                    @*Dont need this but it is here for now*@
-@*                    <th>Education Subject Id</th>*@
                     <th>Education Name</th>
                     <th>Subjects</th>
                 </tr>
                 @foreach (var cb in Model.Education!.EduSubs)
                 {
                     <tr>
-                        @*Dont need this but it is here for now*@
-@*                        <td>@cb.EduSubId</td>*@
                         <td>@cb.Edu.EduName</td>
                         <td>@cb.Subject.SubjectName</td>
                     </tr>

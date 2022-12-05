@@ -11,12 +11,10 @@ namespace Bookware.Pages.Class_Pages
     public class ClassDetailsModel : PageModel
     {
         private readonly IClassService classService;
-        private readonly IEducationService educationService;
 
-        public ClassDetailsModel(IClassService service, IEducationService eduService)
+        public ClassDetailsModel(IClassService Service)
         {
-            this.classService = service;
-            this.educationService = eduService;
+            this.classService = Service;
         }
 
         public Class? Class { get; set; }
@@ -24,17 +22,13 @@ namespace Bookware.Pages.Class_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Write a GetClassDataByIdAsync like GetEducationByIdAsync before i works in services
             Class = await classService.GetClassDataByIdAsync(id);
-            Education = await educationService.GetEducationByIdAsync(id);
 
             if (Class is null)
             {
                 return NotFound();
             }
-
             return Page();
         }
-
     }
 }
