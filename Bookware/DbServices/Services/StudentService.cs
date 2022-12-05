@@ -16,6 +16,7 @@ namespace Bookware.DbServices.Services
 
         public async Task CreateStudentAsync(Student? student)
         {
+            CalculateSemester(student);
             if (student != null)
             {
                 context.Students.Add(student);
@@ -59,6 +60,45 @@ namespace Bookware.DbServices.Services
             }            
             await context.SaveChangesAsync();
         }
+
+        public void CalculateSemester(Student student)
+        {
+            DateTime Startdate = student.StartDate;
+            DateTime Enddate = DateTime.UtcNow;
+
+            int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;
+
+            switch (months)
+
+            {
+                case <= 6:
+                    student.Semester = 1;
+                    break;
+                case <= 12:
+                    student.Semester = 2;
+                    break;
+                case <= 18:
+                    student.Semester = 3;
+                    break;
+                case <= 24:
+                    student.Semester = 4;
+                    break;
+                case <= 30: 
+                    student.Semester = 5;
+                    break;
+                case <= 36:
+                    student.Semester = 6;
+                    break;
+                case <= 42:
+                    student.Semester = 7;
+                    break;
+                case <= 48:
+                    student.Semester = 8;
+                    break;
+            }
+        }
+
+
     }
 }
 

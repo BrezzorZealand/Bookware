@@ -41,7 +41,7 @@ namespace Bookware.DbServices.Services
 
         public async Task<Class?> GetClassDataByIdAsync(int id)
         {
-            Class? cla = await context.Classes
+            Class? klasse = await context.Classes
                 .Include(tc => tc.TeacherClasses)
                 .ThenInclude(te => te.TeachEdu)
                 .ThenInclude(es => es.EduSub)
@@ -58,11 +58,11 @@ namespace Bookware.DbServices.Services
                 .ThenInclude(b => b.Book)
 
                 .AsNoTracking()
-                .FirstOrDefaultAsync();
-            
-            if (cla != null)
+                .FirstOrDefaultAsync(b => b.ClassId == id);
+
+            if (klasse  != null)
             {
-                return cla!;
+                return klasse;
             }
             return null;
         }

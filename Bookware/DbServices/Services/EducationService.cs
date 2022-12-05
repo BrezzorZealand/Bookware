@@ -1,6 +1,8 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Bookware.DbServices.Services
 {
@@ -70,17 +72,49 @@ namespace Bookware.DbServices.Services
             return null;
         }
 
-        public async Task CreateEduSubAsync(Education? education, Subject? subject, EduSub? eduSub)
+        public async Task AddSubjectAsync(Education? education, Subject? subject)
         {
-            if (education != null && subject != null && eduSub != null)
+            if (education != null && subject != null)
             {
-                eduSub.Edu = education;
-                eduSub.EduId = education.EduId;
-                eduSub.Subject = subject;
-                eduSub.SubjectId = subject.SubjectId;
-                context.EduSubs.Add(eduSub);
+                EduSub? existingEduSub = await GetEduSubByIdAsync(education!.EduId, subject!.SubjectId);
+
+                if (!context.EduSubs.Contains(existingEduSub))
+                {
+                    EduSub eduSub = new()
+                    {
+                        EduId = education.EduId,
+                        SubjectId = subject.SubjectId
+                    };
+                    
+                    context.EduSubs.Add(eduSub);
+                }
             }
             await context.SaveChangesAsync();
+        }
+
+        public async Task RemoveSubjectAsync(EduSub eduSub)
+        {
+            if (eduSub != null)
+            {
+                context.EduSubs.Remove(eduSub);
+            }
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<EduSub?>> GetEduSubsByIdAsync(int Eid)
+        {
+            return await context.Set<EduSub>()
+                .Where(es => es.EduId == Eid)
+                .Include(s => s.Subject)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<EduSub?> GetEduSubByIdAsync(int Eid, int Sid)
+        {
+            return await context.EduSubs
+                .AsNoTracking()
+                .FirstOrDefaultAsync(es => es.EduId == Eid && es.SubjectId == Sid);
         }
     }
 }

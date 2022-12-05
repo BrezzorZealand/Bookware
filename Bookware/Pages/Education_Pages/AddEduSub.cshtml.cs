@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace Bookware.Pages.Education_Pages
 {
-    public class CreateEduSubModel : PageModel
+    public class AddEduSubModel : PageModel
     {
         private IEducationService EduService;
         private ISubjectService SubService;
@@ -15,10 +15,8 @@ namespace Bookware.Pages.Education_Pages
         public Education? Education { get; set; }
         [BindProperty]
         public Subject? Subject { get; set; }
-        [BindProperty]
-        public EduSub? EduSub { get; set; }
 
-        public CreateEduSubModel(IEducationService EduService, ISubjectService SubService)
+        public AddEduSubModel(IEducationService EduService, ISubjectService SubService)
         {
             this.EduService = EduService;
             this.SubService = SubService;
@@ -29,15 +27,16 @@ namespace Bookware.Pages.Education_Pages
         {
             Education = await EduService.GetEducationByIdAsync(Eid);
             Subjects = await SubService.GetSubjectsAsync();
+            // Get the starting subject for the dropdown.
             Subject = await SubService.GetSubjectByIdAsync(0);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(EduSub eduSub)
+        public async Task<IActionResult> OnPostAsync()
         {
             int Sid = Subject!.SubjectId;
             Subject = await SubService.GetSubjectByIdAsync(Sid);
-            //await EduService.CreateEduSubAsync(Education, Subject, eduSub);
+            await EduService.AddSubjectAsync(Education, Subject);
             return RedirectToPage("AllEducations");
         }
     }
