@@ -24,9 +24,9 @@ namespace Bookware.Pages.Class_Pages
         {
             ClassBook!.ClassId = id;
             List<Book> books = new List<Book>();
-            foreach (var item in await classService.GetClassBooksByIdAsync(id))
+            foreach (var classBook in await classService.GetClassBooksByIdAsync(id))
             {
-                books.Add(item!.Book);
+                books.Add(classBook!.Book);
             }
             Books = new SelectList(books, "BookId", "Title");
             return Page();

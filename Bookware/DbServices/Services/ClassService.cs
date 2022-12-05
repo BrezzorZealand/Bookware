@@ -110,11 +110,12 @@ namespace Bookware.DbServices.Services
         }
         #endregion
 
-
         #region Add Book
         public async Task AddBook(ClassBook? classBook)
         {
-            if (classBook != null && !context.ClassBooks.Contains(classBook))
+            ClassBook? existingClassBook = await GetClassBookByIdAsync(classBook!.ClassId, classBook!.BookId);
+
+            if (!context.ClassBooks.Contains(existingClassBook))
             {
                 context.ClassBooks.Add(classBook);
             }
