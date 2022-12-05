@@ -1,9 +1,10 @@
 ﻿@page
 @model Bookware.Pages.Education_Pages.CreateEduSubModel
+@using Bookware.Models
 @{
 }
 
-
+            
 <div class="card">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
@@ -13,26 +14,27 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Education!.EduId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduId)" />
-                            <label asp-for="Education!.EduId">Edu Id</label>
-                            <span asp-validation-for="Education!.EduId" class="text-danger"></span>
+                            <input asp-for="Education!.EduId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduId)" readonly/>
+                            <label asp-for="Education!.EduId">@Html.DisplayNameFor(Edu => Edu.Education!.EduId)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Education!.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduName)" />
-                            <label asp-for="Education!.EduName">Edu Name</label>
-                            <span asp-validation-for="Education!.EduName" class="text-danger"></span>
+                            <input asp-for="Education!.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduName)" readonly/>
+                            <label asp-for="Education!.EduName">@Html.DisplayNameFor(Edu => Edu.Education!.EduName)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            @*<select asp-for="Subject" class="form-control" placeholder="@Html.DisplayNameFor(Sub => Sub.Subject!.SubjectId)" asp-items="Html.DropDownList(Model.Msg,Model.Subjects,null)"><option>Choose Subject</option></select>*@
-                            <input asp-for="Subject!.SubjectName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Sub => Sub.Subject!.SubjectName)" />
-                            <label asp-for="Subject!.SubjectId">Subject Id</label>
-                            <span asp-validation-for="Subject!.SubjectId" class="text-danger"></span>
-                        </div>
-                        <div class="form-group form-floating mb-3">
-                            <input asp-for="Subject!.SubjectName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Sub => Sub.Subject!.SubjectName)" />
-                            <label asp-for="Subject!.SubjectName">Isbn</label>
+@*                            @Html.DropDownList("SelectedSubject",
+                                    new SelectList(Model.Subjects, "SubjectId", "SubjectName"),
+                                    "Select Subject",
+                                    new { @class = "form-control" })*@
+                            <select asp-for="Subject!.SubjectId" class="form-control">
+                                <option value="">Select Subject</option>
+                                @foreach (var item in Model.Subjects!)
+                                {
+                                    <option value="@item.SubjectId">@item.SubjectName</option>
+                                }
+                            </select>
+                            <label>Subject</label>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Create" class="btn btn-success" />
