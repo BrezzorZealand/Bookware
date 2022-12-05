@@ -81,8 +81,8 @@ namespace Bookware.DbServices.Services
 
             int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;
 
-            int semester = months;
-            switch (semester)
+            switch (months)
+
             {
                 case <= 6:
                     student.Semester = 1;
