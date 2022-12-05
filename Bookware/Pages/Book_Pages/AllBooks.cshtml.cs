@@ -9,14 +9,13 @@ namespace Bookware.Pages.Book_Pages
     {
         private readonly IBookService service;
 
-
         public AllBooksModel(IBookService service)
         {
             this.service = service;
         }
         [BindProperty]
         public Book? Book { get; set; }
-        public IEnumerable<Book?> ?Books { get; set; }
+        public IEnumerable<Book?>? Books { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
             Books = await service.GetBooksAsync();
