@@ -26,6 +26,10 @@ namespace Bookware.Pages.Student_Pages
         {
             return Page();
         }
+        //private void SemesterCalculator(Object Sender)
+        //{
+
+        //}
 
         public async Task<IActionResult> OnPostAsync()
         {
