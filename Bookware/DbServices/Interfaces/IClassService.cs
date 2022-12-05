@@ -13,5 +13,6 @@ namespace Bookware.DbServices.Interfaces
         Task AddBook(ClassBook? classBook);
         Task RemoveBook(ClassBook? classBook);
         Task<IEnumerable<ClassBook?>> GetClassBooksByIdAsync(int id);
+        Task<ClassBook?> GetClassBookByIdAsync(int Cid, int Bid);
     }
 }

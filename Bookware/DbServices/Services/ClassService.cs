@@ -95,15 +95,27 @@ namespace Bookware.DbServices.Services
         {
             return await context.Set<ClassBook>()
                 .Where(cb => cb.ClassId == id)
+                .Include(b => b.Book)
                 .AsNoTracking()
                 .ToListAsync();
+        }
+        #endregion
+
+        #region Get ClassBookById
+        public async Task<ClassBook?> GetClassBookByIdAsync(int Cid, int Bid)
+        {
+            return await context.ClassBooks
+                .AsNoTracking()
+                .FirstOrDefaultAsync(cb => cb.ClassId == Cid && cb.BookId == Bid);                
         }
         #endregion
 
         #region Add Book
         public async Task AddBook(ClassBook? classBook)
         {
-            if (classBook != null && !context.ClassBooks.Contains(classBook))
+            ClassBook? existingClassBook = await GetClassBookByIdAsync(classBook!.ClassId, classBook!.BookId);
+
+            if (!context.ClassBooks.Contains(existingClassBook))
             {
                 context.ClassBooks.Add(classBook);
             }

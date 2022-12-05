@@ -71,6 +71,11 @@ namespace Bookware.DbServices.Services
         {
             throw new NotImplementedException();
         }
+        
+        //public int CalculateSemester(int semesterId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
     }

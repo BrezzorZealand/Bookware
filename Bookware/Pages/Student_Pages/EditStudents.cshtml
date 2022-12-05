@@ -1,38 +1,60 @@
 ﻿@page
 @model Bookware.Pages.Student_Pages.EditStudentsModel
 @{
-
+    ViewData["Title"] = "Edit Student";
 }
 
-<h1>Update</h1>
+<h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div asp-validation-summary="  ModelOnly  " class="text-danger">
-            </div>
+            @if (!ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                    <div asp-validation-summary="All"></div>
+                </div>
+            }
 
             <div class="form-group form-floating mb-3">
-                <input asp-for="Student!.StudentId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.StudentId)" disabled />
+                <input asp-for="Student!.StudentId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.StudentId)" readonly />
                 <label asp-for="Student!.StudentId">ID</label>
             </div>
 
-            <div class="form-group">
-                <input asp-for="Student!.StudentId" class="form-control" type="text" hidden />
-            </div>
+           
 
             <div class="form-group form-floating mb-3">
-                <input asp-for="@Model.Student!.StudentName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(teacher => teacher.Student!.StudentName)" />
-                <label asp-for="@Model.Student!.StudentName"></label>
+                <input asp-for="Student!.StudentName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.StudentName)" />
+                <label asp-for="Student!.StudentName"></label>
                 <span asp-validation-for="Student!.StudentName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-floating mb-3">
+                <input asp-for="Student!.Address" class="form-control" type="text" placeholder="@Html.DisplayNameFor(student => student.Student!.Address)" />
+                <label asp-for="Student!.Address">Address</label>
+                <span asp-validation-for="Student!.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group form-floating mb-3">
+                <input asp-for="Student!.Semester" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.Semester)" />
+                <label asp-for="Student!.Semester">Semester</label>
+                <span asp-validation-for="Student!.Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group form-floating mb-3">
+                <input asp-for="Student!.StartDate" class="form-control" type="datetime-local" placeholder="@Html.DisplayNameFor(student => student.Student!.StartDate)" />
+                <label asp-for="Student!.StartDate">StartDate</label>
+            </div>
+            <div class="form-group form-floating mb-3">
+                <input asp-for="Student!.ClassId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.ClassId)" />
+                <label asp-for="Student!.ClassId">ClassId</label>
             </div>
 
             <div class="form-group mb-3">
                 <input type="submit" value="Update" class="btn btn-success" />
-                <a class="btn btn-danger" asp-page="AllStudents">Cancel</a>
+                <a class="btn btn-danger" asp-page="Student_Pages/AllStudents">Cancel</a>
             </div>
         </form>
     </div>
 </div>
+
 
 
