@@ -55,6 +55,19 @@ namespace Bookware.DbServices.Services
             throw new NotImplementedException();
         }
 
+        public async Task<Student?> GetStudentDataById(int id)
+        {
+            Student? student = await context.Students
+                
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.StudentId == id);
+            if (student != null)
+            {
+                return student;
+            }
+            return null;
+        }
+
         public void RemoveStudent(Student student)
         {
             context.Students.Remove(student);
