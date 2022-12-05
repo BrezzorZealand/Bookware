@@ -21,6 +21,12 @@ namespace Bookware.Pages.Student_Pages
         [BindProperty]
         public Student? Student { get; set; }
 
+        public int GetSemester(Student student)
+        {
+            context.CalculateSemester(student);
+            return student.Semester;
+        }
+
         public async Task<IActionResult> OnGetAsync()
         {
             

@@ -12,6 +12,7 @@ namespace Bookware.DbServices.Interfaces
         void RemoveStudent(Student student);
         void EditStudent(Student student);
         void AddStudent(Student student);
+        void CalculateSemester(Student student);
         //int CalculateSemester(int semesterId);
     }
 }

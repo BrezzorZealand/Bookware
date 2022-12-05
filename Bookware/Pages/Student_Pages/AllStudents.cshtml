@@ -28,7 +28,7 @@
                         <td>@item.StudentId</td>
                         <td>@item.StudentName</td>
                         <td>@item.Address</td>
-                        <td>@item.Semester</td>
+                        <td>@Model.GetSemester(item)</td>
                         <td>@item.StartDate</td>
                         <td>@item.ClassId</td>
                         <td> <a asp-page="/Student_Pages/EditStudents" asp-route-id="@item.StudentId" class="btn btn-primary"> Edit </a> </td>
