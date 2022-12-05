@@ -31,7 +31,8 @@
                             }
                         </td>
                         <td>
-                            <a asp-page="/Education_Pages/CreateEduSub" asp-route-Eid="@item.EduId" class="btn btn-primary">Add Subject</a>
+                            <a asp-page="/Education_Pages/AddEduSub" asp-route-Eid="@item.EduId" class="btn btn-primary">Add Subject</a>
+                            <a asp-page="/Education_Pages/RemoveEduSub" asp-route-Eid="@item.EduId" class="btn btn-primary">Remove Subject</a>
                             <a asp-page="/Education_Pages/EducationDetails" asp-route-id="@item.EduId" class="btn btn-primary">Details</a>
                             <a asp-page="/Education_Pages/UpdateEducation" asp-route-id="@item.EduId" class="btn btn-primary">Update</a>
                             <form asp-page-handler="Delete" method="post" asp-route-id="@item.EduId" onclick="return confirm('Are you sure you want to delete?')">
