@@ -8,41 +8,31 @@ namespace BookwareUnitTests
     [TestClass]
     public class UnitTest1
     {
-        //private Mock<IEducationService>? mockEduService = new Mock<IEducationService>();
-
+        
         [TestMethod]
-        public void TestCreateEduSub()
+        public async Task TestAddSubject()
         {
-            //// Arrange
-            //var mockEducation = new Education();
-            //mockEducation.EduId = 7;
-            //mockEducation.EduName = "TestEdu";
-            //var mockSubject = new Subject();
-            //mockSubject.SubjectId = 4;
-            //mockSubject.SubjectName = "TestSub";
-            //var mockEduSub = new EduSub();
+            
+            // Arrange
+            BookwareDbContext context = new();
+            EducationService sut = new(context);
+            
+            var mockEducation = new Education();
+            mockEducation.EduId = 7;
+            mockEducation.EduName = "TestEdu";
 
-            //var mock = new Mock<IEducationService>();
-            //mock.Setup(p => p.CreateEduSubAsync(It.IsAny<Education>(), mockSubject, mockEduSub));
-            //var sut = new EducationService(mock.Object);
+            var mockSubject = new Subject();
+            mockSubject.SubjectId = 4;
+            mockSubject.SubjectName = "TestSub";
 
-            //// ACT
-            //sut.Ping();
+            // Act
+            await sut.AddSubjectAsync(mockEducation, mockSubject);
 
-            //// ASSERT
-            //mock.Verify(p => p.CreateEduSubAsync(mockEducation, mockSubject, mockEduSub), Times.Once());
-            //// Act
+            // Assert
+            Assert.IsNotNull(mockEducation.EduSubs, "EduSubs is null");
 
-            //await mockEduService.CreateEduSubAsync(mockEducation, mockSubject, mockEduSub);
-
-            //// Assert
-            //Assert.IsNotNull(mockEduSub.EduSubId, "EduSubId is null");
-            //Assert.IsNotNull(mockEduSub.Subject, "Subject is null");
-            //Assert.IsNotNull(mockEduSub.Edu, "Edu is null");
         }
-
-
-        //public async Task CreateEduSubAsync(Education? education, Subject? subject, EduSub? eduSub)
+        //public async Task AddSubjectAsync(Education? education, Subject? subject, EduSub? eduSub)
         //{
         //    if (education != null && subject != null && eduSub != null)
         //    {

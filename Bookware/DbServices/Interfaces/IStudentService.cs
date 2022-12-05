@@ -9,6 +9,7 @@ namespace Bookware.DbServices.Interfaces
         Student? GetStudentById(int id);
         Task CreateStudentAsync(Student? student);
         Task EditStudentAsync(Student? student);
+        Task<Student?> GetStudentDataById(int id);
         void RemoveStudent(Student student);
         void EditStudent(Student student);
         void AddStudent(Student student);
