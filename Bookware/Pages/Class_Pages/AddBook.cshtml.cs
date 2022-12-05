@@ -30,11 +30,7 @@ namespace Bookware.Pages.Class_Pages
         }
 
         public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        {            
             await classService.AddBook(ClassBook);
             return RedirectToPage("AllClasses");
         }
