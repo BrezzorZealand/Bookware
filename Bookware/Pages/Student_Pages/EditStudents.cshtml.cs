@@ -13,6 +13,7 @@ namespace Bookware.Pages.Student_Pages
             this.service = service;
         }
 
+        [BindProperty]
         public Student? Student { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
