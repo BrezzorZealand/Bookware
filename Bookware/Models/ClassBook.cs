@@ -24,6 +24,6 @@ namespace Bookware.Models
         public virtual Book Book { get; set; }
         [ForeignKey("ClassId")]
         [InverseProperty("ClassBooks")]
-        public virtual Class Class { get; set; }
+        public virtual Class Class { get; set; }        
     }
 }

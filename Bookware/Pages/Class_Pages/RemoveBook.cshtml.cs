@@ -17,23 +17,30 @@ namespace Bookware.Pages.Class_Pages
 
         public SelectList? Books { get; set; }
 
-        private IEnumerable<Book>? ClassBooks { get; set; }
-
         [BindProperty(SupportsGet = true)]
         public ClassBook? ClassBook { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
-        {            
+        {
+            ClassBook!.ClassId = id;
+            List<Book> books = new List<Book>();
+            foreach (var item in await classService.GetClassBooksByIdAsync(id))
+            {
+                books.Add(item!.Book);
+            }
+            Books = new SelectList(books, "BookId", "Title");
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            ClassBook? classBook = await classService.GetClassBookByIdAsync(ClassBook!.ClassId, ClassBook!.BookId);
+            
+            if (classBook != null)
             {
-                return Page();
+                await classService.RemoveBook(classBook);
             }
-            await classService.AddBook(ClassBook);
+            
             return RedirectToPage("AllClasses");
         }
     }
