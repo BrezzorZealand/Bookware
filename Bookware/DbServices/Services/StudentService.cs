@@ -34,7 +34,7 @@ namespace Bookware.DbServices.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<Student?> GetStudentsAsync(int id)
+        public async Task<Student?> GetStudentByIdAsync(int id)
         {
             Student? student = await context.Students
                 .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
@@ -45,46 +45,20 @@ namespace Bookware.DbServices.Services
         public async Task<IEnumerable<Student?>> GetStudentsAsync()
         {
             return await context.Set<Student>().AsNoTracking().ToListAsync();
-        }
-        public Student? GetStudentById(int id)
+        }        
+
+        public IEnumerable<Student?> GetStudents()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Student> GetStudents()
+        public async Task DeleteStudentAsync(Student? student)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Student?> GetStudentDataById(int id)
-        {
-            Student? student = await context.Students
-                
-                .AsNoTracking()
-                .FirstOrDefaultAsync(s => s.StudentId == id);
             if (student != null)
             {
-                return student;
-            }
-            return null;
-        }
-
-        public void RemoveStudent(Student student)
-        {
-            context.Students.Remove(student);
-            context.SaveChanges();
-        }
-
-        public void AddStudent(Student student)
-        {
-            CalculateSemester(student);
-            context.Students.Add(student);
-            context.SaveChanges();
-        }
-
-        public void EditStudent(Student student)
-        {
-            throw new NotImplementedException();
+                context.Students.Remove(student);
+            }            
+            await context.SaveChangesAsync();
         }
 
         public void CalculateSemester(Student student)
