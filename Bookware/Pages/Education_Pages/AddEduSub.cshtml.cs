@@ -28,7 +28,7 @@ namespace Bookware.Pages.Education_Pages
             Education = await EduService.GetEducationByIdAsync(Eid);
             Subjects = await SubService.GetSubjectsAsync();
             // Get the starting subject for the dropdown.
-            Subject = await SubService.GetSubjectByIdAsync(0);
+            Subject = Subjects.First();
             return Page();
         }
 

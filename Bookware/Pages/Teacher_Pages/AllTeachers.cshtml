@@ -26,6 +26,7 @@
                         <td>@item.TeacherId</td>
                         <td>@item.Name </td>
                         <td class="justify-content-between">
+                            <a asp-page="/Teacher_Pages/AddTeacherEdu" asp-route-Tid="@item.TeacherId" class="btn btn-primary">AddSubject</a>
                             <a asp-page="/Teacher_Pages/EditTeachers" asp-route-id="@item.TeacherId" class="btn btn-primary">Edit</a>
                             <form asp-page-handler="Delete" method="post" asp-route-id="@item.TeacherId" onclick="return confirm('Are you sure you want to delete?')">
                                 <button class="btn btn-danger">Delete</button>

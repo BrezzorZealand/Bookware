@@ -10,11 +10,14 @@ namespace Bookware.Pages.Education_Pages
     {
         private IEducationService EduService;
         private ITeacherService TeacherService;
-        public IEnumerable<EduSub>? EduSubs { get; set; }
+        public IEnumerable<EduSub?>? EduSubs { get; set; }
+        public IEnumerable<Education?> Educations { get; set; }
         [BindProperty]
         public EduSub? EduSub { get; set; }
         [BindProperty]
         public Teacher? Teacher { get; set; }
+        [BindProperty]
+        public Education? Education { get; set; }
 
         public AddTeacherEduModel(IEducationService EduService, ITeacherService TeacherService)
         {
@@ -22,21 +25,26 @@ namespace Bookware.Pages.Education_Pages
             this.TeacherService = TeacherService;
         }
 
-        public async Task<IActionResult> OnGetAsync(int Eid)
+        public async Task<IActionResult> OnGetAsync(int Tid)
         {
-            EduSub = await EduService.GetEduSubByIdAsync(Eid);
-            Teacher = await TeacherService.GetTeacherAsync(0);
-            // Get the starting subject for the dropdown.
-            EduSubs = await EduService.GetEduSubsByIdAsync();
+            // Get the Teacher.
+            Teacher = await TeacherService.GetTeacherAsync(Tid);
+            // Get List of Educations.
+            Educations = await EduService.GetEducationsAsync();
+            // Get the starting Education for the dropdown.
+            Education = Educations.First();
+            // get the Starting list of Edusubs.
+            EduSubs = await EduService.GetEduSubsByIdAsync(Education!.EduId);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            int Sid = Subject!.SubjectId;
-            Subject = await SubService.GetSubjectByIdAsync(Sid);
-            await EduService.AddSubjectAsync(Education, Subject);
-            return RedirectToPage("AllEducations");
+            int Eid = Education!.EduId;
+            int Sid = EduSub!.SubjectId;
+            EduSub = await EduService.GetEduSubByIdAsync(Eid, Sid);
+            await TeacherService.AddEduAsync(EduSub, Teacher);
+            return RedirectToPage("AllTeachers");
         }
     }
 }

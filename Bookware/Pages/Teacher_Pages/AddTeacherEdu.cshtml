@@ -15,19 +15,29 @@
                 <div class="col-md-4">
                     <form method="post">
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Education!.EduId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduId)" readonly/>
-                            <label asp-for="Education!.EduId">@Html.DisplayNameFor(Edu => Edu.Education!.EduId)</label>
+                            <input asp-for="Teacher!.TeacherId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(T => T.Teacher!.TeacherId)" readonly />
+                            <label asp-for="Teacher!.TeacherId">@Html.DisplayNameFor(T => T.Teacher!.TeacherId)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Education!.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Edu => Edu.Education!.EduName)" readonly/>
-                            <label asp-for="Education!.EduName">@Html.DisplayNameFor(Edu => Edu.Education!.EduName)</label>
+                            <input asp-for="Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(T => T.Teacher!.Name)" readonly />
+                            <label asp-for="Teacher!.Name">@Html.DisplayNameFor(T => T.Teacher!.Name)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="Subject!.SubjectId" class="form-control">
-                                <option value="">Select Subject</option>
-                                @foreach (var item in Model.Subjects!)
+                            <select asp-for="Education!.EduId" class="form-control">
+                                <option value="">Select Education</option>
+                                @foreach (var item in Model.Educations!)
                                 {
-                                    <option value="@item.SubjectId">@item.SubjectName</option>
+                                    <option value="@item.EduId">@item!.EduName</option>
+                                }
+                            </select>
+                            <label>Subject</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <select asp-for="EduSub!.SubjectId" class="form-control">
+                                <option value="">Select Subject</option>
+                                @foreach (var item in Model.EduSubs!.Where(x => x!.EduId == Model.Education!.EduId))
+                                {
+                                    <option value="@item.EduSubId">@item!.Subject!.SubjectName</option>
                                 }
                             </select>
                             <label>Subject</label>

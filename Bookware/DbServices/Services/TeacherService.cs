@@ -64,5 +64,41 @@ namespace Bookware.DbServices.Services
             await context.SaveChangesAsync();
         }
         #endregion
+
+        public async Task AddEduAsync(EduSub? eduSub, Teacher? teacher)
+        {
+            if (eduSub != null && teacher != null)
+            {
+                TeacherEdu? existingTeacherEdu = await GetTeacherEduByIdAsync(teacher.TeacherId, eduSub.EduId);
+
+                if (!context.TeacherEdus.Contains(existingTeacherEdu))
+                {
+                    TeacherEdu teacherEdu = new()
+                    {
+                        EduSubId = eduSub.EduSubId,
+                        TeacherId = teacher.TeacherId
+                    };
+
+                    context.TeacherEdus.Add(teacherEdu);
+                }
+            }
+            await context.SaveChangesAsync();
+        }
+
+        public async Task RemoveEduAsync(TeacherEdu teacherEdu)
+        {
+            if (teacherEdu != null)
+            {
+                context.TeacherEdus.Remove(teacherEdu);
+            }
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<TeacherEdu?> GetTeacherEduByIdAsync(int Tid, int ESid)
+        {
+            return await context.TeacherEdus
+                .AsNoTracking()
+                .FirstOrDefaultAsync(te => te.TeacherId == Tid && te.EduSubId == ESid);
+        }
     }
 }
