@@ -6,7 +6,7 @@
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
-<a class="btn btn-dark m-2" asp-page="/Student_Pages/CreateStudent"><i class="bi bi-plus"></i>Create new</a>
+<a class="btn btn-dark" asp-page="/Student_Pages/CreateStudent"><i class="bi bi-plus"></i> Create new</a>
 
 <div class="table-responsive">
     <table class="table table-hover table-bordered text-center">
@@ -39,8 +39,8 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li></li>
-                                    <li><a asp-page="/Student_Pages/EditStudents" asp-route-id="@item.StudentId" class="dropdown-item"> Edit </a></li>
+                                    <li><a asp-page="StudentDetails" asp-route-id="@item.StudentId" class="dropdown-item"><i class="bi bi-journal"></i> Details</a></li>
+                                    <li><a asp-page="EditStudents" asp-route-id="@item.StudentId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.StudentId" onclick="return confirm('Are you sure you wan to delete?')">

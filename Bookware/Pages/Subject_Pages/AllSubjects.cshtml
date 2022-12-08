@@ -4,18 +4,19 @@
     ViewData["Title"] = "Subjects";
 }
 <h1 class=" display-4 text-center">@ViewData["Title"]</h1>
-<p>
-    <a asp-page="/Subject_Pages/AddSubject">Add Subject</a>
-</p>
-<div class="text-md-start">
-    <table class=" table">
-        <thead>
+
+<p><a asp-page="AddSubject" class="btn btn-dark"><i class="bi bi-plus"></i> Create new</a></p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover caption-top text-center">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
+                <th scope="col" class="col-1"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-yellow">
             @if (Model.Subjects != null)
             {
                 @foreach(var item in Model.Subjects)
@@ -23,15 +24,15 @@
                     <tr>
                         <td>@item.SubjectId</td>
                         <td>@item.SubjectName</td>
-                        <td class="justify-content-between">
+                        <td>
                             <div class="btn-group">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="btn btn-primary"> Details </a></li>
-                                    <li><a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="btn btn-primary"> Edit </a></li>
+                                    <li><a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-journal"></i> Details </a></li>
+                                    <li><a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-pen"></i> Edit </a></li>
                                     <li>
                                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.SubjectId" onclick="return confirm('Are you sure you wan to delete?')">
-                                        <button class="btn btn-primary" type="Submit">Delete</button>
+                                            <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>
                                         </form>
                                     </li>
                                 </ul>

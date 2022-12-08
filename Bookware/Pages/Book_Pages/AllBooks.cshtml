@@ -6,7 +6,7 @@
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
-<a class="btn btn-dark m-2" asp-page="/Book_Pages/CreateBook"><i class="bi bi-plus"></i>Add new</a>
+<a class="btn btn-dark" asp-page="/Book_Pages/CreateBook"><i class="bi bi-plus"></i> Create new</a>
 
 <div class="table-responsive">
     <table class="table table-hover table-bordered caption-top text-center">
@@ -32,9 +32,7 @@
                         <td>@item!.Year</td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                    Actions
-                                </button>
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
                                 <ul class="dropdown-menu">
                                     <li><a asp-page="BookDetails" asp-route-id="@item.BookId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="UpdateBook" asp-route-id="@item.BookId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
