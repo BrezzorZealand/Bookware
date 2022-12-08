@@ -16,7 +16,8 @@ namespace Bookware.DbServices.Services
 
         public async Task CreateStudentAsync(Student? student)
         {
-            CalculateSemester(student);
+            CalculateSemester(student!);
+
             if (student != null)
             {
                 context.Students.Add(student);
@@ -35,6 +36,14 @@ namespace Bookware.DbServices.Services
         }
 
         public async Task<Student?> GetStudentByIdAsync(int id)
+        {
+            Student? student = await context.Students
+                .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
+
+            return student;
+        }
+
+        public async Task<Student?> GetStudentDataByIdAsync(int id)
         {
             Student? student = await context.Students
                 .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);

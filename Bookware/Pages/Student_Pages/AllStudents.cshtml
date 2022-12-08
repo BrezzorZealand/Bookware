@@ -4,54 +4,55 @@
     ViewData["Title"] = "All Students";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@ViewData["Title"]</h1>
-    <a class="btn btn-primary m-2" asp-page="/Student_Pages/CreateStudent"><i class="bi bi-plus"></i>Create new</a>
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Adress</th>
-                    <th scope="col">Semester</th>
-                    <th scope="col">Semester start</th>
-                    <th scope="col">ClassId</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Students != null)
+<h1 class="display-4 text-center">@ViewData["Title"]</h1>
+
+<a class="btn btn-dark m-2" asp-page="/Student_Pages/CreateStudent"><i class="bi bi-plus"></i>Create new</a>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Semester start</th>
+                <th scope="col">ClassId</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-yellow">
+            @if (Model.Students != null)
+            {
+                @foreach (var item in Model.Students)
                 {
-                    @foreach (var item in Model.Students)
-                    {
-                        <tr>
-                            <td>@item!.StudentId</td>
-                            <td>@item!.StudentName</td>
-                            <td>@item!.Address</td>
-                            <td>@Model.GetSemester(item)</td>
-                            <td>@item!.StartDate</td>
-                            <td>@item!.ClassId</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        Actions
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li></li>
-                                        <li><a asp-page="/Student_Pages/EditStudents" asp-route-id="@item.StudentId" class="dropdown-item"> Edit </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li>
-                                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.StudentId" onclick="return confirm('Are you sure you wan to delete?')">
-                                                 <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>
-                                            </form>                                        
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>                        
-                        </tr>
-                    }
+                    <tr>
+                        <td>@item!.StudentId</td>
+                        <td>@item!.StudentName</td>
+                        <td>@item!.Address</td>
+                        <td>@Model.GetSemester(item)</td>
+                        <td>@item!.StartDate</td>
+                        <td>@item!.ClassId</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li></li>
+                                    <li><a asp-page="/Student_Pages/EditStudents" asp-route-id="@item.StudentId" class="dropdown-item"> Edit </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form asp-page-handler="Delete" method="post" asp-route-id="@item.StudentId" onclick="return confirm('Are you sure you wan to delete?')">
+                                                <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>
+                                        </form>                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>                        
+                    </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
 </div>

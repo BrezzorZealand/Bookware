@@ -3,6 +3,7 @@ using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace Bookware.Pages.Class_Pages
 {
@@ -15,8 +16,8 @@ namespace Bookware.Pages.Class_Pages
         {
             this.classService = classService;
             this.bookService = bookService;
-        }
-
+        }             
+        IEnumerable<Book?>? books { get; set; }
         public SelectList? Books { get; set; }              
 
         [BindProperty(SupportsGet = true)]
@@ -24,7 +25,8 @@ namespace Bookware.Pages.Class_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Books = new SelectList (await bookService.GetBooksAsync(), "BookId", "Title");
+            books = await bookService.GetBooksAsync();            
+            Books = new SelectList (books, "BookId", "Title");
             ClassBook!.ClassId = id;
             return Page();
         }
