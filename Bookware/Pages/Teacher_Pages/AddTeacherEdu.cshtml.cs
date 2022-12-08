@@ -1,5 +1,6 @@
 using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Cryptography;
@@ -18,6 +19,7 @@ namespace Bookware.Pages.Education_Pages
         public Teacher? Teacher { get; set; }
         [BindProperty]
         public Education? Education { get; set; }
+        public string data { get; set; }
 
         public AddTeacherEduModel(IEducationService EduService, ITeacherService TeacherService)
         {
@@ -45,6 +47,14 @@ namespace Bookware.Pages.Education_Pages
             EduSub = await EduService.GetEduSubByIdAsync(Eid, Sid);
             await TeacherService.AddEduAsync(EduSub, Teacher);
             return RedirectToPage("AllTeachers");
+        }
+
+        public async Task<IActionResult> OnPostUpdateAsync(ChangeEventArgs e)
+        {
+            data = (string)e.Value!;
+            int Eid = Education!.EduId;
+            EduSubs = await EduService.GetEduSubsByIdAsync(Eid);
+            return new EmptyResult();
         }
     }
 }

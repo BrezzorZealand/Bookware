@@ -100,5 +100,14 @@ namespace Bookware.DbServices.Services
                 .AsNoTracking()
                 .FirstOrDefaultAsync(te => te.TeacherId == Tid && te.EduSubId == ESid);
         }
+
+        public async Task<IEnumerable<TeacherEdu?>> GetTeacherEdusByIdAsync(int Tid)
+        {
+            return await context.TeacherEdus
+                .Include(te => te.EduSub)
+                .Where(te => te.TeacherId == Tid)
+                .AsNoTracking()
+                .ToListAsync();
+        }
     }
 }
