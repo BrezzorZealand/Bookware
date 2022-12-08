@@ -15,32 +15,26 @@ namespace Bookware.Pages.Class_Pages
             this.classService = classService;
         }
 
-        public SelectList? Books { get; set; }
+        public IEnumerable<ClassBook?>? ClassBooks { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public ClassBook? ClassBook { get; set; }
+        [BindProperty]
+        public ClassBook? ClassBook { get; set; } = new ClassBook();
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            ClassBook!.ClassId = id;
-            List<Book> books = new List<Book>();
-            foreach (var classBook in await classService.GetClassBooksByIdAsync(id))
-            {
-                books.Add(classBook!.Book);
-            }
-            Books = new SelectList(books, "BookId", "Title");
+            ClassBook!.ClassId = id;            
+            ClassBooks = await classService.GetClassBooksByIdAsync(id);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ClassBook? classBook = await classService.GetClassBookByIdAsync(ClassBook!.ClassId, ClassBook!.BookId);
-            
-            if (classBook != null)
+            if (!ModelState.IsValid)
             {
-                await classService.RemoveBook(classBook);
+                return Page();
             }
-            
+
+            await classService.RemoveBook(ClassBook);
             return RedirectToPage("AllClasses");
         }
     }

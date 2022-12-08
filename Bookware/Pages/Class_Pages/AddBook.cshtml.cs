@@ -1,5 +1,6 @@
 using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Bookware.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,23 +17,27 @@ namespace Bookware.Pages.Class_Pages
         {
             this.classService = classService;
             this.bookService = bookService;
-        }             
-        IEnumerable<Book?>? books { get; set; }
-        public SelectList? Books { get; set; }              
+        }
+
+        public IEnumerable<Book?>? Books { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public ClassBook? ClassBook { get; set; }
+        public ClassBook? ClassBook { get; set; } = new ClassBook();
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            books = await bookService.GetBooksAsync();            
-            Books = new SelectList (books, "BookId", "Title");
             ClassBook!.ClassId = id;
+            Books = await bookService.GetBooksAsync();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
-        {            
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             await classService.AddBook(ClassBook);
             return RedirectToPage("AllClasses");
         }

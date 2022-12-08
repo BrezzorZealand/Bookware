@@ -12,14 +12,31 @@
         <div class="align-content-center">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <form method="post">                        
+                    <form method="post">
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
                         <div class="form-group form-floating mb-3">
                             <input asp-for="ClassBook!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassBook!.ClassId)" readonly />
                             <label asp-for="ClassBook!.ClassId">Class</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select class="form-select" asp-for="ClassBook!.BookId" asp-items="Model.Books"></select>
+                            <select class="form-select" asp-for="ClassBook!.BookId">
+                                <option value="">Select a book</option>
+                                @if (Model.ClassBooks != null)
+                                {
+                                    @foreach (var classBook in Model.ClassBooks)
+                                    {
+                                        <option value="@classBook!.BookId">@classBook!.Book.Title</option>
+                                    }
+                                }
+                            </select>
                             <label asp-for="ClassBook!.BookId">Book</label>
+                            <span asp-validation-for="ClassBook!.BookId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Remove" class="btn btn-success" />

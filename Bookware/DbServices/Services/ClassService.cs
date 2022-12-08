@@ -126,9 +126,10 @@ namespace Bookware.DbServices.Services
         #region Remove Book
         public async Task RemoveBook(ClassBook? classBook)
         {
-            if (classBook != null)
+            ClassBook? deleteClassBook = await GetClassBookByIdAsync(classBook!.ClassId, classBook!.BookId);
+            if (context.ClassBooks.Contains(deleteClassBook) && deleteClassBook != null)
             {
-                context.ClassBooks.Remove(classBook);
+                context.ClassBooks.Remove(deleteClassBook);
             }
             await context.SaveChangesAsync();
         }
