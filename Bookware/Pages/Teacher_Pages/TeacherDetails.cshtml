@@ -1,0 +1,46 @@
+﻿@page
+@model Bookware.Pages.Teacher_Pages.TeacherDetailsModel
+@{
+    ViewData["Title"] = "Teacher Details";
+}
+
+<h1 class="display-4 text-center">@ViewData["Title"]</h1>
+<div>
+    <dl class="row">
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Teacher!.TeacherId)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Teacher!.TeacherId)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Teacher!.Name)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Teacher!.Name)</dd>
+    </dl>
+    <div class="table-responsive">
+        <table class="table table-hover table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Classes</th>
+                </tr>
+            </thead>
+            <tbody class="table-yellow">
+                @foreach (var teachClass in Model.Teacher!.TeacherEdus)
+                {
+                    <tr><td>@teachClass.</td></tr>
+                }
+            </tbody>
+        </table>
+
+        <table class="table table-hover table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Subjects</th>
+                </tr>
+            </thead>
+            <tbody class="table-yellow">
+                @foreach (var subName in Model.Teacher!.TeacherEdus)
+                {
+                    <tr><td> @subName.EduSub.Subject.SubjectName</td></tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

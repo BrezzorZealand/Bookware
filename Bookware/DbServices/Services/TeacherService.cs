@@ -27,7 +27,7 @@ namespace Bookware.DbServices.Services
         #endregion
 
         #region Read Teacher Method
-        public async Task<IEnumerable<Teacher>> GetTeachersAsync()
+        public async Task<IEnumerable<Teacher?>> GetTeachersAsync()
         {
             return await context.Set<Teacher>().AsNoTracking().ToListAsync();
         }
@@ -39,7 +39,44 @@ namespace Bookware.DbServices.Services
                 FirstOrDefaultAsync(t => t.TeacherId == id );
             return teacher;
         }
+
+        public async Task<Teacher?> GetTeacherDataByIdAsync(int id)
+        {
+            Teacher? teacher = await context.Teachers
+                // Class Subjects 
+
+                .Include(tes => tes.TeacherEdus)
+                .ThenInclude(es => es.EduSub)
+                .ThenInclude(s => s.Subject)
+
+                .AsNoTracking().
+                FirstOrDefaultAsync(t => t.TeacherId == id);
+
+            if (teacher !=null)
+            {
+                return teacher; 
+            }
+            return null;
+        }
         #endregion
+
+        public async Task<IEnumerable<TeacherClass>> GetTeacherClassesByIdAsync(int id)
+        {
+            return await context.Set<TeacherClass>()
+                .Where(tc => tc.TeachClassId == id)
+                .Include(c => c.ClassId)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+
+
+        //public async Task<TeacherClass> GetTeacherClassByIdAsync(int TcId)
+        //{
+        //    return await context.TeacherEdus
+        //        .AsNoTracking()
+        //        .FirstOrDefaultAsync(tc => tc.TeacherClasses == TcId);
+        //}
 
         #region Update Teacher Method
         public async Task EditTeacherAsync(Teacher? teacher)
