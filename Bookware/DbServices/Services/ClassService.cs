@@ -1,6 +1,7 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
@@ -132,6 +133,23 @@ namespace Bookware.DbServices.Services
                 context.ClassBooks.Remove(deleteClassBook);
             }
             await context.SaveChangesAsync();
+        }
+        #endregion
+
+        #region SelectList of classbooks
+        public async Task<SelectList> GetSelectionOfClassBooks(int id)
+        {
+            return new SelectList(await GetBooksAsync(id), nameof(Book.BookId), nameof(Book.Title));
+        }
+
+        private async Task<IEnumerable<Book>> GetBooksAsync(int id)
+        {
+            List<Book> books = new List<Book>();
+            foreach (ClassBook? classBook in await GetClassBooksByIdAsync(id))
+            {
+                books.Add(classBook!.Book);
+            }
+            return books;
         }
         #endregion
     }
