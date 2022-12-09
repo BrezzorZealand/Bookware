@@ -9,7 +9,8 @@
 <a class="btn btn-dark" asp-page="/Student_Pages/CreateStudent"><i class="bi bi-plus"></i> Create new</a>
 
 <div class="table-responsive">
-    <table class="table table-hover table-bordered text-center">
+    <table class="table table-hover table-bordered text-center caption-top">
+        <caption>List of Students</caption>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
@@ -18,7 +19,7 @@
                 <th scope="col">Semester</th>
                 <th scope="col">Semester start</th>
                 <th scope="col">ClassId</th>
-                <th></th>
+                <th scope="col" class="col-1"></th>
             </tr>
         </thead>
         <tbody class="table-yellow">
@@ -39,7 +40,7 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="StudentDetails" asp-route-id="@item.StudentId" class="dropdown-item"><i class="bi bi-journal"></i> Details</a></li>
+                                    <li><a asp-page="StudentDetails" asp-route-id="@item.StudentId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="EditStudents" asp-route-id="@item.StudentId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
