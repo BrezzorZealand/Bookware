@@ -9,6 +9,7 @@
 
 <div class="table-responsive">
     <table class="table table-bordered table-hover caption-top text-center">
+        <caption>List of Subjects</caption>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
@@ -28,7 +29,7 @@
                             <div class="btn-group">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-journal"></i> Details </a></li>
+                                    <li><a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details </a></li>
                                     <li><a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-pen"></i> Edit </a></li>
                                     <li>
                                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.SubjectId" onclick="return confirm('Are you sure you wan to delete?')">

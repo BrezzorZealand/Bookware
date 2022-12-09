@@ -15,15 +15,15 @@ namespace Bookware.Pages.Class_Pages
             this.classService = classService;
         }
 
-        public IEnumerable<ClassBook?>? ClassBooks { get; set; }
+        public SelectList? Options { get; set; }
 
         [BindProperty]
         public ClassBook? ClassBook { get; set; } = new ClassBook();
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            ClassBook!.ClassId = id;            
-            ClassBooks = await classService.GetClassBooksByIdAsync(id);
+            ClassBook!.ClassId = id;
+            Options = await classService.GetSelectionOfClassBooks(id);
             return Page();
         }
 
@@ -31,6 +31,7 @@ namespace Bookware.Pages.Class_Pages
         {
             if (!ModelState.IsValid)
             {
+                Options = await classService.GetSelectionOfClassBooks(ClassBook!.ClassId);
                 return Page();
             }
 

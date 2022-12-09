@@ -1,4 +1,5 @@
 ﻿using Bookware.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookware.DbServices.Interfaces
 {
@@ -14,5 +15,6 @@ namespace Bookware.DbServices.Interfaces
         Task RemoveBook(ClassBook? classBook);
         Task<IEnumerable<ClassBook?>> GetClassBooksByIdAsync(int id);
         Task<ClassBook?> GetClassBookByIdAsync(int Cid, int Bid);
+        Task<SelectList> GetSelectionOfClassBooks(int id);
     }
 }
