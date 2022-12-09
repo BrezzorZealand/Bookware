@@ -27,7 +27,7 @@ namespace Bookware.Pages.Subject_Pages
             {
                 return Page();
             }
-            service.EditSubjectAsync(Subject);
+            service.EditSubjectAsync(Subject!);
             return RedirectToPage("AllSubjects");
         }
 
