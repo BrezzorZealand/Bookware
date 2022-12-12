@@ -21,9 +21,9 @@
                 </tr>
             </thead>
             <tbody class="table-yellow">
-                @foreach (var teachClass in Model.Teacher!.TeacherEdus)
+                @foreach (var teachClass in Model.teacherClasses)
                 {
-                    <tr><td>@teachClass.</td></tr>
+                    <tr><td>@teachClass.Class.ClassName</td></tr>
                 }
             </tbody>
         </table>
