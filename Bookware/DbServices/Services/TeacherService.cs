@@ -105,6 +105,7 @@ namespace Bookware.DbServices.Services
         {
             return await context.TeacherEdus
                 .Include(te => te.EduSub)
+                .ThenInclude(es => es.Subject)
                 .Where(te => te.TeacherId == Tid)
                 .AsNoTracking()
                 .ToListAsync();

@@ -19,7 +19,6 @@ namespace Bookware.Pages.Education_Pages
         public Teacher? Teacher { get; set; }
         [BindProperty]
         public Education? Education { get; set; }
-        public string data { get; set; }
 
         public AddTeacherEduModel(IEducationService EduService, ITeacherService TeacherService)
         {
@@ -40,7 +39,7 @@ namespace Bookware.Pages.Education_Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostCreateAsync()
         {
             int Eid = Education!.EduId;
             int Sid = EduSub!.SubjectId;
@@ -49,9 +48,8 @@ namespace Bookware.Pages.Education_Pages
             return RedirectToPage("AllTeachers");
         }
 
-        public async Task<IActionResult> OnPostUpdateAsync(ChangeEventArgs e)
+        public async Task<IActionResult> OnPostUpdateAsync()
         {
-            data = (string)e.Value!;
             int Eid = Education!.EduId;
             EduSubs = await EduService.GetEduSubsByIdAsync(Eid);
             return new EmptyResult();

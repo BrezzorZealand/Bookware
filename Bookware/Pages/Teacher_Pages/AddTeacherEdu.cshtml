@@ -23,18 +23,18 @@
                             <label asp-for="Teacher!.Name">@Html.DisplayNameFor(T => T.Teacher!.Name)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <form method="post" asp-page-handler="Update">
-                                <select asp-for="Education!.EduId" class="form-control" onchange="@Model.OnPostUpdateAsync(Model.Education)">
-                                    <option value="">Select Education</option>
-                                    @foreach (var item in Model.Educations!)
-                                    {
-                                        <option value="@item.EduId">@item!.EduName</option>
-                                    }
-                                </select>
-                                <label>Education</label>
-                            </form>
+                            <select asp-for="Education!.EduId" class="form-control">
+                                <option value="">Select Education</option>
+                                @foreach (var item in Model.Educations!)
+                                {
+                                    <option value="@item.EduId">@item!.EduName</option>
+                                }
+                            </select>
+                            <label>Education</label>
                         </div>
-                        <p> data: @Model.data</p>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Update" name="Update" asp-page-handler="Update" class="btn btn-success" />
+                        </div>
                         <div class="form-group form-floating mb-3">
                             <select asp-for="EduSub!.SubjectId" class="form-control">
                                 <option value="">Select Subject</option>
@@ -46,7 +46,7 @@
                             <label>Subject</label>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Create" class="btn btn-success" />
+                            <input type="submit" value="Create" name="Create" asp-page-handler="Create" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
                         </div>
                     </form>

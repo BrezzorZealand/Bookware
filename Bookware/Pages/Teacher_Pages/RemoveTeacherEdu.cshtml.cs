@@ -15,14 +15,13 @@ namespace Bookware.Pages.Education_Pages
 {
     public class RemoveTeacherEduModel : PageModel
     {
-        private readonly IEducationService educationService;
+
         private readonly ITeacherService teacherService;
         
         public SelectList? EduSubs { get; set; }
 
-        public RemoveTeacherEduModel(IEducationService educationService, ITeacherService teacherService)
+        public RemoveTeacherEduModel(ITeacherService teacherService)
         {
-            this.educationService = educationService;
             this.teacherService = teacherService;
         }
 
@@ -38,14 +37,13 @@ namespace Bookware.Pages.Education_Pages
         public async Task<IActionResult> OnGetAsync(int Tid)
         {
             TeacherEdu!.TeacherId = Tid;
-            //List<TeacherEdu> teacherEdus = await teacherService.GetTeacherEdusAsync(Tid);
             Teacher = await teacherService.GetTeacherAsync(Tid);
             List<EduSub> eduSubs = new();
             foreach (var teacherEdu in await teacherService.GetTeacherEdusByIdAsync(Tid))
             {
                 eduSubs.Add(teacherEdu!.EduSub);
             }
-            EduSubs = new SelectList(eduSubs, "EduSubId", "Subject.SubejctName");
+            EduSubs = new SelectList(eduSubs, nameof(EduSub.SubjectId), nameof(EduSub.Subject.SubjectName));
             return Page();
         }
 
