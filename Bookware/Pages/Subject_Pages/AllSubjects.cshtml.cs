@@ -7,9 +7,9 @@ namespace Bookware.Pages.Subject_Pages
 {
     public class AllSubjectsModel : PageModel
     {
-        public IEnumerable<Subject>Subjects { get; set; }
+        public IEnumerable<Subject?>? Subjects { get; set; }
         //public int SubId { get; set; }
-        private ISubjectService context;
+        private readonly ISubjectService context;
 
         public AllSubjectsModel (ISubjectService service)
         {
