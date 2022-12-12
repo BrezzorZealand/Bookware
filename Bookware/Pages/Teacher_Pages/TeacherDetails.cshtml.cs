@@ -9,25 +9,29 @@ namespace Bookware.Pages.Teacher_Pages
     public class TeacherDetailsModel : PageModel
     {
         private readonly ITeacherService teacherService;
-        private readonly IClassService classService;
+        
+        public IEnumerable<TeacherClass?> teacherClasses { get; set; }
 
-        public TeacherDetailsModel(ITeacherService tService, IClassService cService)
+        public TeacherDetailsModel(ITeacherService tService)
         {
             this.teacherService = tService;
-            this.classService = cService;
+            
         }
 
+        [BindProperty]
         public Teacher? Teacher { get; set; }
+        public TeacherClass? TeacherClass { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int Tid)
         {
-            Teacher = await teacherService.GetTeacherDataByIdAsync(id);
+            Teacher = await teacherService.GetTeacherDataByIdAsync(Tid);
+            teacherClasses = await teacherService.GetTeacherClassesByIdAsync(Tid);
 
-            if (Teacher is null)
+            if (Teacher is null && teacherClasses is null)
             {
                 return NotFound();
             }
-            return Page(); 
+            return Page();
         }
     }
 }
