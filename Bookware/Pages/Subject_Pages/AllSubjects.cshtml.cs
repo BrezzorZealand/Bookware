@@ -7,32 +7,31 @@ namespace Bookware.Pages.Subject_Pages
 {
     public class AllSubjectsModel : PageModel
     {
-        public IEnumerable<Subject?>? Subjects { get; set; }
-        //public int SubId { get; set; }
         private readonly ISubjectService context;
 
         public AllSubjectsModel (ISubjectService service)
         {
             this.context = service;
         }
+        public IEnumerable<Subject?>? Subjects { get; set; }
+        
         [BindProperty]
         public Subject? Subject { get; set; }
 
-        public async Task <IActionResult>OnGetAsync(/*int subid*/)
+        public IActionResult OnGetAsync()
         {
-            //SubId = subid;
-            Subjects = await context.GetSubjectsAsync();
+            Subjects = context.GetAll();
             return Page();
         }
         public async Task <IActionResult> OnPostDeleteAsync(int id)
         {
-            Subject = await context.GetSubjectByIdAsync(id);
+            Subject = await context.GetByIdAsync(id);
 
             if (Subject == null)
             {
                 return Page();
             }
-            await context.RemoveSubjectAsync(Subject);
+            await context.Delete(Subject);
             return RedirectToPage("AllSubjects");
         }
     }

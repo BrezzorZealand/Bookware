@@ -8,12 +8,12 @@ namespace Bookware.Pages.Education_Pages
     public class CreateEducationModel : PageModel
     {
         private readonly IEducationService Service;
-        public Education? Education { get; set; }
 
         public CreateEducationModel(IEducationService Service)
         {
             this.Service = Service;
         }
+        public Education? Education { get; set; }
 
         public IActionResult OnGet()
         {
@@ -22,7 +22,7 @@ namespace Bookware.Pages.Education_Pages
 
         public async Task<IActionResult> OnPostAsync(Education education)
         {
-            await Service.CreateEducationAsync(education);
+            await Service.Create(education);
             return RedirectToPage("AllEducations");
         }
     }

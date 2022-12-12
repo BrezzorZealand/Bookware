@@ -1,42 +1,45 @@
 using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Bookware.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
 
 namespace Bookware.Pages.Education_Pages
 {
     public class AddEduSubModel : PageModel
     {
-        private IEducationService EduService;
-        private ISubjectService SubService;
-        public IEnumerable<Subject>? Subjects { get; set; }
-        [BindProperty]
-        public Education? Education { get; set; }
-        [BindProperty]
-        public Subject? Subject { get; set; }
+        private readonly ISubjectService subService;
+        private readonly IEduSubService eduSubService;
 
-        public AddEduSubModel(IEducationService EduService, ISubjectService SubService)
+        public AddEduSubModel(ISubjectService subService, IEduSubService eduSubService)
         {
-            this.EduService = EduService;
-            this.SubService = SubService;
+            this.subService = subService;
+            this.eduSubService = eduSubService;
         }
 
+        public SelectList? Options { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int Eid)
+        [BindProperty]
+        public EduSub? EduSub { get; set; }
+        public IActionResult OnGetAsync(int Eid)
         {
-            Education = await EduService.GetEducationByIdAsync(Eid);
-            Subjects = await SubService.GetSubjectsAsync();
-            // Get the starting subject for the dropdown.
-            Subject = await SubService.GetSubjectByIdAsync(0);
+            EduSub!.EduId = Eid;
+            Options = subService.GetSelection();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            int Sid = Subject!.SubjectId;
-            Subject = await SubService.GetSubjectByIdAsync(Sid);
-            await EduService.AddSubjectAsync(Education, Subject);
+            if (!ModelState.IsValid)
+            {
+                Options = subService.GetSelection();
+                return Page();
+            }
+
+            await eduSubService.Create(EduSub);
             return RedirectToPage("AllEducations");
         }
     }

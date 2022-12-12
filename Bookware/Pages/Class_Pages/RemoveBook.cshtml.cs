@@ -1,4 +1,5 @@
 using Bookware.DbServices.Interfaces;
+using Bookware.DbServices.Services;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,11 +9,11 @@ namespace Bookware.Pages.Class_Pages
 {
     public class RemoveBookModel : PageModel
     {
-        private readonly IClassService classService;
+        private readonly IClassBookService classBookService;
 
-        public RemoveBookModel(IClassService classService)
+        public RemoveBookModel(IClassBookService classService)
         {
-            this.classService = classService;
+            this.classBookService = classService;
         }
 
         public SelectList? Options { get; set; }
@@ -20,10 +21,10 @@ namespace Bookware.Pages.Class_Pages
         [BindProperty]
         public ClassBook? ClassBook { get; set; } = new ClassBook();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGetAsync(int id)
         {
             ClassBook!.ClassId = id;
-            Options = await classService.GetSelectionOfClassBooks(id);
+            Options = classBookService.GetSelection(id);
             return Page();
         }
 
@@ -31,11 +32,17 @@ namespace Bookware.Pages.Class_Pages
         {
             if (!ModelState.IsValid)
             {
-                Options = await classService.GetSelectionOfClassBooks(ClassBook!.ClassId);
+                Options = classBookService.GetSelection(ClassBook!.ClassId);
                 return Page();
             }
 
-            await classService.RemoveBook(ClassBook);
+            await classBookService.Delete
+                (
+                    await classBookService.GetByIdAsync
+                        (
+                            ClassBook!.ClassId, ClassBook!.BookId
+                        )
+                );
             return RedirectToPage("AllClasses");
         }
     }

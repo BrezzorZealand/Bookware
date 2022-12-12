@@ -10,12 +10,12 @@ namespace Bookware.Pages.Class_Pages
 {
     public class AddBookModel : PageModel
     {
-        private readonly IClassService classService;
+        private readonly IClassBookService classBookService;
         private readonly IBookService bookService;
 
-        public AddBookModel(IClassService classService, IBookService bookService)
+        public AddBookModel(IClassBookService classService, IBookService bookService)
         {
-            this.classService = classService;
+            this.classBookService = classService;
             this.bookService = bookService;
         }
 
@@ -24,10 +24,10 @@ namespace Bookware.Pages.Class_Pages
         [BindProperty(SupportsGet = true)]
         public ClassBook? ClassBook { get; set; } = new ClassBook();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGetAsync(int id)
         {
             ClassBook!.ClassId = id;
-            Options = await bookService.GetSelectionOfBooks();
+            Options = bookService.GetSelection();
             return Page();
         }
 
@@ -35,11 +35,11 @@ namespace Bookware.Pages.Class_Pages
         {
             if (!ModelState.IsValid)
             {
-                Options = await bookService.GetSelectionOfBooks();
+                Options = bookService.GetSelection();
                 return Page();
             }
 
-            await classService.AddBook(ClassBook);
+            await classBookService.Create(ClassBook);
             return RedirectToPage("AllClasses");
         }
     }

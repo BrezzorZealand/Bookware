@@ -17,13 +17,13 @@ namespace Bookware.Pages.Education_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Education = await Service.GetEducationByIdAsync(id);
+            Education = await Service.GetByIdAsync(id);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(Education? education)
         {
-            await Service.EditEducationAsync(education);
+            await Service.Update(education);
             return RedirectToPage("AllEducations");
         }
     }

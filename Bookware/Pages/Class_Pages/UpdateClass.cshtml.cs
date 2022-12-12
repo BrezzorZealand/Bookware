@@ -30,7 +30,7 @@ namespace Bookware.Pages.Class_Pages
                 return Page();
             }
 
-            await classService.UpdateClassAsync(_Class);
+            await classService.Update(_Class);
             return RedirectToPage("AllClasses");
         }
     }
