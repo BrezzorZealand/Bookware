@@ -110,15 +110,6 @@ namespace Bookware.DbServices.Services
                 case <= 60:
                     student.Semester = 10;
                     break;
-                case <= 66:
-                    student.Semester = 11;
-                    break;
-                case <= 72:
-                    student.Semester = 12;
-                    break;
-                case <= 78:
-                    student.Semester = 13;
-                    break;
             }
         }
     }
