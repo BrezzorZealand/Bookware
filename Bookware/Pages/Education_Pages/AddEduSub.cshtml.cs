@@ -28,6 +28,7 @@ namespace Bookware.Pages.Education_Pages
         {
             EduSub!.EduId = Eid;
             Options = subService.GetSelection();
+
             return Page();
         }
 
