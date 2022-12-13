@@ -9,8 +9,6 @@ namespace Bookware.Pages.Teacher_Pages
     public class TeacherDetailsModel : PageModel
     {
         private readonly ITeacherService teacherService;
-        
-        public IEnumerable<TeacherClass?> teacherClasses { get; set; }
 
         public TeacherDetailsModel(ITeacherService tService)
         {
@@ -20,14 +18,12 @@ namespace Bookware.Pages.Teacher_Pages
 
         [BindProperty]
         public Teacher? Teacher { get; set; }
-        public TeacherClass? TeacherClass { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int Tid)
         {
-            Teacher = await teacherService.GetTeacherDataByIdAsync(Tid);
-            teacherClasses = await teacherService.GetTeacherClassesByIdAsync(Tid);
+            Teacher = await teacherService.GetDataByIdAsync(Tid);
 
-            if (Teacher is null && teacherClasses is null)
+            if (Teacher is null)
             {
                 return NotFound();
             }

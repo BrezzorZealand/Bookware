@@ -2,22 +2,9 @@
 
 namespace Bookware.DbServices.Interfaces
 {
-    public interface ITeacherService
+    public interface ITeacherService : IGenericService<Teacher>
     {
-        Task AddTeacherAsync(Teacher? teacher);
-        Task<IEnumerable<Teacher?>> GetTeachersAsync();
-
-        Task<Teacher?> GetTeacherAsync(int id);
-        Task<Teacher?> GetTeacherDataByIdAsync(int id);
-
-        Task EditTeacherAsync(Teacher? teacher);
-        Task RemoveTeacherAsync(Teacher? teacher);
-        Task RemoveEduAsync(TeacherEdu teacherEdu);
-        Task<TeacherEdu?> GetTeacherEduByIdAsync(int Tid, int ESid);
-        Task AddEduAsync(EduSub? eduSub, Teacher? teacher);
-        Task<IEnumerable<TeacherEdu?>> GetTeacherEdusByIdAsync(int Tid);
-        Task<IEnumerable<TeacherClass?>> GetTeacherClassesByIdAsync(int TId);
-        Task<TeacherClass?> GetTeacherClassByIdAsync(int id);
-
+        Task<Teacher?> GetByIdAsync(int? id);
+        Task<Teacher?> GetDataByIdAsync(int? id);
     }
 }
