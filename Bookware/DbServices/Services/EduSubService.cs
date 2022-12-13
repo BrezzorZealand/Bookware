@@ -18,9 +18,9 @@ namespace Bookware.DbServices.Services
                 .FirstOrDefaultAsync(es => es.EduId == Eid && es.SubjectId == Sid);
         }
 
-        public SelectList GetSelection(int? id)
+        public SelectList GetSelection(int? Eid)
         {
-            IEnumerable<EduSub> eduSubs = GetAll().Where(es => es.EduId == id).Include(es => es.Subject);
+            IEnumerable<EduSub> eduSubs = GetAll().Where(es => es.EduId == Eid).Include(es => es.Subject);
             List<Subject> subjects = new List<Subject>();
             foreach (var eduSub in eduSubs)
             {
