@@ -14,23 +14,31 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <form method="post">
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
                         <div class="form-group form-floating mb-3">
                             <input asp-for="EduSub!.EduId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(Edu => Edu.EduSub!.EduId)" readonly/>
                             <label asp-for="EduSub!.EduId">@Html.DisplayNameFor(Edu => Edu.EduSub!.EduId)</label>
                         </div>
-                        <div class="form-group form-floating mb-3">
+                        @*<div class="form-group form-floating mb-3">
                             <input asp-for="EduSub!.Edu.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Edu => Edu.EduSub!.Edu.EduName)" readonly />
                             <label asp-for="EduSub!.Edu.EduName">@Html.DisplayNameFor(Edu => Edu.EduSub!.Edu.EduName)</label>
-                        </div>
+                        </div>*@
                         <div class="form-group form-floating mb-3">
                             <select asp-for="EduSub!.SubjectId" asp-items="Model.Options" class="form-control">
-                                <option value="">Select Subject</option>                                
+                                <option value="">Select a Subject</option>                                
                             </select>
-                            <label>Subject</label>
+                            <label asp-for="EduSub!.SubjectId">Subject</label>
+                            <span asp-validation-for="EduSub!.SubjectId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Create" class="btn btn-success" />
-                            <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
+                            <a class="btn btn-danger" asp-page="AllEducations">Cancel</a>
                         </div>
                     </form>
                 </div>

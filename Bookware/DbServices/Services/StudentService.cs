@@ -5,74 +5,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
-    public class StudentService : IStudentService
+    public class StudentService : GenericService<Student> , IStudentService
     {
-        private readonly BookwareDbContext context;
-
-        public StudentService(BookwareDbContext context)
+        public StudentService(BookwareDbContext context) : base(context)
         {
-            this.context = context;
         }
 
-        public async Task CreateStudentAsync(Student? student)
+        public async Task<Student?> GetByIdAsync(int? id)
         {
-            CalculateSemester(student!);
-
-            if (student != null)
-            {
-                context.Students.Add(student);
-            }
-            await context.SaveChangesAsync();
+            return await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.StudentId == id);
         }
 
-        public async Task EditStudentAsync(Student? student)
+        public async Task<Student?> GetDataByIdAsync(int? id)
         {
-            if (student != null)
-            {
-                context.Students.Update(student);
-
-            }
-            await context.SaveChangesAsync();
+            return await GetAll()
+                .Include(s => s.Class)
+                .ThenInclude(c => c.ClassBooks)
+                .ThenInclude(cb => cb.Book)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.StudentId == id);
         }
 
-        public async Task<Student?> GetStudentByIdAsync(int id)
+        public void CalculateSemester(Student? student)
         {
-            Student? student = await context.Students
-                .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
-
-            return student;
-        }
-
-        public async Task<Student?> GetStudentDataByIdAsync(int id)
-        {
-            Student? student = await context.Students
-                .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
-
-            return student;
-        }
-
-        public async Task<IEnumerable<Student?>> GetStudentsAsync()
-        {
-            return await context.Set<Student>().AsNoTracking().ToListAsync();
-        }        
-
-        public IEnumerable<Student?> GetStudents()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteStudentAsync(Student? student)
-        {
-            if (student != null)
-            {
-                context.Students.Remove(student);
-            }            
-            await context.SaveChangesAsync();
-        }
-
-        public void CalculateSemester(Student student)
-        {
-            DateTime Startdate = student.StartDate;
+            DateTime Startdate = student!.StartDate;
             DateTime Enddate = DateTime.UtcNow;
 
             int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;

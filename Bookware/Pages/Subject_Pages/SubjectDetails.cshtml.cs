@@ -17,10 +17,12 @@ namespace Bookware.Pages.Subject_Pages
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Subject = await service.GetDataById(id);
+            
             if (Subject == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }

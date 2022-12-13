@@ -15,11 +15,11 @@ namespace Bookware.Pages.Education_Pages
 {
     public class RemoveEduSubModel : PageModel
     {
-        private readonly IEducationService educationService;
+        private readonly IEduSubService eduSubService;
 
-        public RemoveEduSubModel(IEducationService educationService)
+        public RemoveEduSubModel(IEduSubService eduSubService)
         {
-            this.educationService = educationService;
+            this.eduSubService = eduSubService;
         }
         public SelectList? Options { get; set; }
 
@@ -28,11 +28,20 @@ namespace Bookware.Pages.Education_Pages
 
         public IActionResult OnGetAsync(int Eid)
         {
+            EduSub!.EduId = Eid;
+            Options = eduSubService.GetSelection(Eid);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                Options = eduSubService.GetSelection(EduSub!.EduId);
+                return Page();
+            }
+
+            await eduSubService.Delete(await eduSubService.GetByIdAsync(EduSub!.EduId, EduSub!.SubjectId));
             return RedirectToPage("AllEducations");
         }
     }

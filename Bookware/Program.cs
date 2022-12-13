@@ -17,6 +17,7 @@ builder.Services.AddScoped<IEducationService, EducationService>();
 builder.Services.AddScoped<IStudentService,StudentService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<IClassBookService, ClassBookService>();
+builder.Services.AddScoped<IEduSubService, EduSubService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

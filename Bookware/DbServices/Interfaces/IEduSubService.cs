@@ -6,6 +6,6 @@ namespace Bookware.DbServices.Interfaces
     public interface IEduSubService : IGenericService<EduSub>
     {
         Task<EduSub?> GetByIdAsync(int? Eid, int? Sid);
-        SelectList GetSelection();
+        SelectList GetSelection(int? id);
     }
 }

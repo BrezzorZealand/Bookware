@@ -23,7 +23,7 @@ namespace Bookware.Pages.Education_Pages
         public SelectList? Options { get; set; }
 
         [BindProperty]
-        public EduSub? EduSub { get; set; }
+        public EduSub? EduSub { get; set; } = new EduSub();
         public IActionResult OnGetAsync(int Eid)
         {
             EduSub!.EduId = Eid;

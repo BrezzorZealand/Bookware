@@ -18,7 +18,7 @@ namespace Bookware.Pages.Student_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Student = await service.GetStudentByIdAsync(id);
+            Student = await service.GetByIdAsync(id);
             return Page();
         }
 
@@ -28,7 +28,7 @@ namespace Bookware.Pages.Student_Pages
             {
                 return Page();
             }
-            await service.EditStudentAsync(Student);
+            await service.Update(Student);
             return RedirectToPage("AllStudents");
         }
         

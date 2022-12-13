@@ -25,13 +25,11 @@ namespace Bookware.Pages.Subject_Pages
         }
         public async Task <IActionResult> OnPostDeleteAsync(int id)
         {
-            Subject = await context.GetByIdAsync(id);
-
             if (Subject == null)
             {
                 return Page();
             }
-            await context.Delete(Subject);
+            await context.Delete(await context.GetByIdAsync(id));
             return RedirectToPage("AllSubjects");
         }
     }
