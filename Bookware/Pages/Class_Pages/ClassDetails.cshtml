@@ -33,23 +33,21 @@
             </tbody>
         </table>
 
-        <table class="table table-hover table-bordered text-center">
+        <table class="table table-hover table-bordered" style="width:100%">
             <thead class="table-dark">
                 <tr>
                     <th>Students</th>
+                    <th style="width:5%">Button</th>
                 </tr>
             </thead>
             <tbody class="table-yellow">
-
-
                 @foreach (var stu in Model.Class!.Students)
                 {
-                    <tr>
-                        <td>@stu.StudentName</td>
+                    <tr >
+                        <td colspan="2">@stu.StudentName</td>
                     </tr>
                 }
-
-            </tbody>
+            </tbody>    
         </table>
 
         <table class="table table-hover table-bordered text-center">

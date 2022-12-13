@@ -26,33 +26,33 @@ namespace Bookware.Pages.Education_Pages
             this.TeacherService = TeacherService;
         }
 
-        public async Task<IActionResult> OnGetAsync(int Tid)
-        {
-            // Get the Teacher.
-            Teacher = await TeacherService.GetTeacherAsync(Tid);
-            // Get List of Educations.
-            Educations = await EduService.GetEducationsAsync();
-            // Get the starting Education for the dropdown.
-            Education = Educations.First();
-            // get the Starting list of Edusubs.
-            EduSubs = await EduService.GetEduSubsByIdAsync(Education!.EduId);
-            return Page();
-        }
+        //public async Task<IActionResult> OnGetAsync(int Tid)
+        //{
+        //    // Get the Teacher.
+        //    Teacher = await TeacherService.GetTeacherAsync(Tid);
+        //    // Get List of Educations.
+        //    Educations = await EduService.GetEducationsAsync();
+        //    // Get the starting Education for the dropdown.
+        //    Education = Educations.First();
+        //    // get the Starting list of Edusubs.
+        //    EduSubs = await EduService.GetEduSubsByIdAsync(Education!.EduId);
+        //    return Page();
+        //}
 
-        public async Task<IActionResult> OnPostCreateAsync()
-        {
-            int Eid = Education!.EduId;
-            int Sid = EduSub!.SubjectId;
-            EduSub = await EduService.GetEduSubByIdAsync(Eid, Sid);
-            await TeacherService.AddEduAsync(EduSub, Teacher);
-            return RedirectToPage("AllTeachers");
-        }
+        //public async Task<IActionResult> OnPostCreateAsync()
+        //{
+        //    int Eid = Education!.EduId;
+        //    int Sid = EduSub!.SubjectId;
+        //    EduSub = await EduService.GetEduSubByIdAsync(Eid, Sid);
+        //    await TeacherService.AddEduAsync(EduSub, Teacher);
+        //    return RedirectToPage("AllTeachers");
+        //}
 
-        public async Task<IActionResult> OnPostUpdateAsync()
-        {
-            int Eid = Education!.EduId;
-            EduSubs = await EduService.GetEduSubsByIdAsync(Eid);
-            return new EmptyResult();
-        }
+        //public async Task<IActionResult> OnPostUpdateAsync()
+        //{
+        //    int Eid = Education!.EduId;
+        //    EduSubs = await EduService.GetEduSubsByIdAsync(Eid);
+        //    return new EmptyResult();
+        //}
     }
 }
