@@ -24,6 +24,8 @@ namespace Bookware.DbServices.Services
                 .Include(t => t.TeacherEdus)
                 .ThenInclude(te => te.EduSub.Subject)
                 .Include(t => t.TeacherEdus)
+                .ThenInclude(te => te.EduSub.Edu)
+                .Include(t => t.TeacherEdus)
                 .ThenInclude(te => te.TeacherClasses)
                 .ThenInclude(tc => tc.Class)
                 .AsNoTracking()

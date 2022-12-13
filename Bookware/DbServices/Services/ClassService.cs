@@ -33,6 +33,10 @@ namespace Bookware.DbServices.Services
                 .ThenInclude(es => es.EduSub)
                 .ThenInclude(sub => sub.Subject)
 
+                .Include(tc => tc.TeacherClasses)
+                .ThenInclude(te => te.TeachEdu)
+                .ThenInclude(es => es.Teacher)
+
                 .Include(stu => stu.Students)
 
                 .Include(cb => cb.ClassBooks)
