@@ -1,6 +1,6 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
@@ -30,6 +30,6 @@ namespace Bookware.DbServices.Services
                 .ThenInclude(tc => tc.Class)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.TeacherId == id);
-        }        
+        }
     }
 }

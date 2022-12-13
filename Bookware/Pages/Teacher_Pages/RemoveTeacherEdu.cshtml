@@ -16,14 +16,17 @@
                     <form method="post">
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Teacher!.TeacherId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(t => t.Teacher!.TeacherId)" readonly />
-                            <label asp-for="Teacher!.TeacherId">Teacher Id</label>
+                            <label asp-for="Teacher!.TeacherId" >Teacher Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(t => t.Teacher!.Name)" readonly />
-                            <label asp-for="Teacher!.Name">Name</label>
+                            <label asp-for="Teacher!.Name" >Name</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select class="form-select" asp-for="TeacherEdu!.EduSubId" asp-items="Model.EduSubs"></select>
+                            <select class="form-select" asp-for="TeacherEdu!.EduSubId" asp-items="Model.Options">
+                                <option value="">Select a Subject</option>
+                            </select>
+                            <label> Subjects </label>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Remove" class="btn btn-success" />

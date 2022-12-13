@@ -22,29 +22,26 @@
                             <input asp-for="Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(T => T.Teacher!.Name)" readonly />
                             <label asp-for="Teacher!.Name">@Html.DisplayNameFor(T => T.Teacher!.Name)</label>
                         </div>
+                        
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="Education!.EduId" class="form-control">
+                            <select asp-for="EduSub!.EduId" asp-items="Model.EduOptions" class="form-control">
                                 <option value="">Select Education</option>
-                                @foreach (var item in Model.Educations!)
-                                {
-                                    <option value="@item.EduId">@item!.EduName</option>
-                                }
                             </select>
-                            <label>Education</label>
+                            <label asp-for="EduSub!.EduId">Education</label>
+                            <span asp-validation-for="EduSub!.EduId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Update" name="Update" asp-page-handler="Update" class="btn btn-success" />
                         </div>
+                        
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="EduSub!.SubjectId" class="form-control">
+                            <select asp-for="EduSub!.SubjectId" asp-items="Model.EduSubOptions" class="form-control">
                                 <option value="">Select Subject</option>
-                                @foreach (var item in Model.EduSubs!.Where(x => x!.EduId == Model.Education!.EduId))
-                                {
-                                    <option value="@item.EduSubId">@item!.Subject!.SubjectName</option>
-                                }
                             </select>
-                            <label>Subject</label>
+                            <label asp-for="EduSub!.SubjectId">Subject</label>
+                            <span asp-validation-for="EduSub!.SubjectId" class="text-danger"></span>
                         </div>
+                        
                         <div class="form-group mb-3">
                             <input type="submit" value="Create" name="Create" asp-page-handler="Create" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
