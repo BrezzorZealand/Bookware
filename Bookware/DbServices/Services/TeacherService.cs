@@ -22,8 +22,7 @@ namespace Bookware.DbServices.Services
         {
             return await GetAll()
                 .Include(t => t.TeacherEdus)
-                .ThenInclude(te => te.EduSub)
-                .ThenInclude(s => s.Subject)
+                .ThenInclude(te => te.EduSub.Subject)
                 .Include(t => t.TeacherEdus)
                 .ThenInclude(te => te.TeacherClasses)
                 .ThenInclude(tc => tc.Class)
