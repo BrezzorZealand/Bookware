@@ -12,13 +12,12 @@ namespace Bookware.DbServices.Interfaces
 
         Task EditTeacherAsync(Teacher? teacher);
         Task RemoveTeacherAsync(Teacher? teacher);
-
-
+        Task RemoveEduAsync(TeacherEdu teacherEdu);
+        Task<TeacherEdu?> GetTeacherEduByIdAsync(int Tid, int ESid);
+        Task AddEduAsync(EduSub? eduSub, Teacher? teacher);
+        Task<IEnumerable<TeacherEdu?>> GetTeacherEdusByIdAsync(int Tid);
         Task<IEnumerable<TeacherClass?>> GetTeacherClassesByIdAsync(int TId);
         Task<TeacherClass?> GetTeacherClassByIdAsync(int id);
-
-
-
 
     }
 }
