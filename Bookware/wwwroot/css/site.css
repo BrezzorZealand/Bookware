@@ -1,7 +1,18 @@
+@font-face {
+    font-family: 'Zealand';
+    src: url('../zealanddisplay-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Zichtbaar';
+    src: url('../zichtbaar-regular.woff') format('woff');
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Zichtbaar, 'Times New Roman', Times, serif !important;
 }
 
 html {
@@ -24,6 +35,23 @@ body {
     margin-bottom: 60px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: Zealand, 'Times New Roman', Times, serif !important;
+}
+
+.font-zealand {
+    font-family: Zealand, 'Times New Roman', Times, serif !important;
+}
+
+.font-zichtbaar {
+    font-family: Zichtbaar, 'Times New Roman', Times, serif !important;
+}
+
+.zealand-header {
+    -webkit-text-stroke: .025em black !important;
+    color: #fff !important;
+}
+
 tbody, td, tfoot, th, thead, tr {
     border-width: 2px !important;
 }
@@ -34,7 +62,7 @@ svg {
 }
 
 .baseline {
-    top: .06em;
+    top: .120em;
     position: relative;
 }
 
@@ -73,4 +101,9 @@ svg {
 
 .table > :not(:last-child) > :last-child > * {
     border-bottom-color: inherit;
+}
+
+.nav-link {
+    padding-right: var(--bs-gutter-x,.75rem) !important;
+    padding-left: var(--bs-gutter-x,.75rem) !important;
 }

@@ -16,14 +16,18 @@ namespace BookwareUnitTests
             // Arrange
             BookwareDbContext context = new();
             EducationService sut = new(context);
-            
-            var mockEducation = new Education();
-            mockEducation.EduId = 7;
-            mockEducation.EduName = "TestEdu";
 
-            var mockSubject = new Subject();
-            mockSubject.SubjectId = 4;
-            mockSubject.SubjectName = "TestSub";
+            var mockEducation = new Education
+            {
+                EduId = 7,
+                EduName = "TestEdu"
+            };
+
+            var mockSubject = new Subject
+            {
+                SubjectId = 4,
+                SubjectName = "TestSub"
+            };
 
             // Act
             await sut.AddSubjectAsync(mockEducation, mockSubject);

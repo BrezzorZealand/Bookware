@@ -8,25 +8,39 @@ using System;
 namespace Bookware.Pages.Student_Pages
 {
     public class AllStudentsModel : PageModel
-    {
-        public IEnumerable<Student?> Students { get; set; }
-      
-        private IStudentService context;
+    {      
+        private readonly IStudentService studentService;
 
         public AllStudentsModel(IStudentService service)
         {
-            this.context = service;
+            studentService = service;
         }
 
         [BindProperty]
         public Student? Student { get; set; }
-
+        public IEnumerable<Student?>? Students { get; set; }
         public async Task<IActionResult> OnGetAsync()
-        {
-            
-            Students = await context.GetStudentsAsync();
+        {            
+            Students = await studentService.GetStudentsAsync();
             return Page();
         }
-       
+
+        public int GetSemester(Student student)
+        {
+            studentService.CalculateSemester(student);
+            return student.Semester;
+        }
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            Student = await studentService.GetStudentByIdAsync(id);
+
+            if (Student == null)
+            {
+                return Page();
+            }
+
+            await studentService.DeleteStudentAsync(Student);
+            return RedirectToPage("AllStudents");
+        }
     }
 }

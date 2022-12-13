@@ -28,7 +28,7 @@ namespace Bookware.Pages.Book_Pages
                 return Page();
             }
 
-            await service.CreateBookAsync(Book);
+            await service.Create(Book!);
 
             return RedirectToPage("AllBooks");
         }

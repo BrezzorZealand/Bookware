@@ -1,37 +1,45 @@
 using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Bookware.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace Bookware.Pages.Class_Pages
 {
     public class AddBookModel : PageModel
     {
-        private readonly IClassService classService;
+        private readonly IClassBookService classBookService;
         private readonly IBookService bookService;
 
-        public AddBookModel(IClassService classService, IBookService bookService)
+        public AddBookModel(IClassBookService classService, IBookService bookService)
         {
-            this.classService = classService;
+            this.classBookService = classService;
             this.bookService = bookService;
         }
 
-        public SelectList? Books { get; set; }              
+        public SelectList? Options { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public ClassBook? ClassBook { get; set; }
+        public ClassBook? ClassBook { get; set; } = new ClassBook();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGetAsync(int id)
         {
-            Books = new SelectList (await bookService.GetBooksAsync(), "BookId", "Title");
             ClassBook!.ClassId = id;
+            Options = bookService.GetSelection();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
-        {            
-            await classService.AddBook(ClassBook);
+        {
+            if (!ModelState.IsValid)
+            {
+                Options = bookService.GetSelection();
+                return Page();
+            }
+
+            await classBookService.Create(ClassBook);
             return RedirectToPage("AllClasses");
         }
     }

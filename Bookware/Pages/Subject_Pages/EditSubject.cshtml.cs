@@ -18,7 +18,7 @@ namespace Bookware.Pages.Subject_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Subject = await service.GetSubjectByIdAsync(id);
+            Subject = await service.GetByIdAsync(id);
             return Page();
         }
         public IActionResult OnPost()
@@ -27,7 +27,7 @@ namespace Bookware.Pages.Subject_Pages
             {
                 return Page();
             }
-            service.EditSubjectAsync(Subject);
+            service.Update(Subject);
             return RedirectToPage("AllSubjects");
         }
 

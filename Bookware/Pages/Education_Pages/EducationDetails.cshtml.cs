@@ -17,7 +17,7 @@ namespace Bookware.Pages.Education_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Education = await Service.GetEducationDataByIdAsync(id);
+            Education = await Service.GetDataByIdAsync(id);
             
             if (Education is null)
             {

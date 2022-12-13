@@ -1,4 +1,5 @@
 using Bookware.DbServices.Interfaces;
+using Bookware.DbServices.Services;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,39 +9,40 @@ namespace Bookware.Pages.Class_Pages
 {
     public class RemoveBookModel : PageModel
     {
-        private readonly IClassService classService;
+        private readonly IClassBookService classBookService;
 
-        public RemoveBookModel(IClassService classService)
+        public RemoveBookModel(IClassBookService classService)
         {
-            this.classService = classService;
+            this.classBookService = classService;
         }
 
-        public SelectList? Books { get; set; }
+        public SelectList? Options { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public ClassBook? ClassBook { get; set; }
+        [BindProperty]
+        public ClassBook? ClassBook { get; set; } = new ClassBook();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGetAsync(int id)
         {
             ClassBook!.ClassId = id;
-            List<Book> books = new List<Book>();
-            foreach (var classBook in await classService.GetClassBooksByIdAsync(id))
-            {
-                books.Add(classBook!.Book);
-            }
-            Books = new SelectList(books, "BookId", "Title");
+            Options = classBookService.GetSelection(id);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ClassBook? classBook = await classService.GetClassBookByIdAsync(ClassBook!.ClassId, ClassBook!.BookId);
-            
-            if (classBook != null)
+            if (!ModelState.IsValid)
             {
-                await classService.RemoveBook(classBook);
+                Options = classBookService.GetSelection(ClassBook!.ClassId);
+                return Page();
             }
-            
+
+            await classBookService.Delete
+                (
+                    await classBookService.GetByIdAsync
+                        (
+                            ClassBook!.ClassId, ClassBook!.BookId
+                        )
+                );
             return RedirectToPage("AllClasses");
         }
     }

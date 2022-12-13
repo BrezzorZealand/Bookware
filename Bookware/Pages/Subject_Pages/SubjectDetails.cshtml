@@ -9,28 +9,25 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Subject!.SubjectId)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Subject!.SubjectId)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Subject!.SubjectName)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Subject!.SubjectName)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Subject!.EduSubs)</dt>
-        <dd class="col-sm-10">
-            <div class ="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Education Id</th>
-                            <th>Education Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var es in Model.Subject!.EduSubs)
-                        {
-                            <tr>
-                                <td>@es.EduId</td>
-                                <td>@es.Edu.EduName</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </dd>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Subject!.SubjectName)</dd>        
     </dl>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover caption-top text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Education Id</th>
+                    <th>Education Name</th>
+                </tr>
+            </thead>
+            <tbody class="table-yellow">
+                @foreach (var es in Model.Subject!.EduSubs)
+                {
+                    <tr>
+                        <td>@es.EduId</td>
+                        <td>@es.Edu.EduName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

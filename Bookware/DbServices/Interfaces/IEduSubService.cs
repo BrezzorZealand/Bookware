@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookware.DbServices.Interfaces
 {
-    public interface IBookService: IGenericService<Book>
+    public interface IEduSubService : IGenericService<EduSub>
     {
-        Task<Book?> GetByIdAsync(int? id);
-        Task<Book?> GetDataByIdAsync(int? id);
+        Task<EduSub?> GetByIdAsync(int? Eid, int? Sid);
         SelectList GetSelection();
     }
 }

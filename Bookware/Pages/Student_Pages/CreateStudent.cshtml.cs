@@ -6,6 +6,7 @@ using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 
 namespace Bookware.Pages.Student_Pages
 {
@@ -26,10 +27,6 @@ namespace Bookware.Pages.Student_Pages
         {
             return Page();
         }
-        //private void SemesterCalculator(Object Sender)
-        //{
-
-        //}
 
         public async Task<IActionResult> OnPostAsync()
         {

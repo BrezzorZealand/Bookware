@@ -16,6 +16,8 @@ namespace Bookware.DbServices.Services
 
         public async Task CreateStudentAsync(Student? student)
         {
+            CalculateSemester(student!);
+
             if (student != null)
             {
                 context.Students.Add(student);
@@ -33,7 +35,15 @@ namespace Bookware.DbServices.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<Student?> GetStudentsAsync(int id)
+        public async Task<Student?> GetStudentByIdAsync(int id)
+        {
+            Student? student = await context.Students
+                .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
+
+            return student;
+        }
+
+        public async Task<Student?> GetStudentDataByIdAsync(int id)
         {
             Student? student = await context.Students
                 .AsNoTracking().FirstOrDefaultAsync(s => s.StudentId == id);
@@ -44,40 +54,64 @@ namespace Bookware.DbServices.Services
         public async Task<IEnumerable<Student?>> GetStudentsAsync()
         {
             return await context.Set<Student>().AsNoTracking().ToListAsync();
-        }
-        public Student? GetStudentById(int id)
+        }        
+
+        public IEnumerable<Student?> GetStudents()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Student> GetStudents()
+        public async Task DeleteStudentAsync(Student? student)
         {
-            throw new NotImplementedException();
+            if (student != null)
+            {
+                context.Students.Remove(student);
+            }            
+            await context.SaveChangesAsync();
         }
 
-        public void RemoveStudent(Student student)
+        public void CalculateSemester(Student student)
         {
-            context.Students.Remove(student);
-            context.SaveChanges();
+            DateTime Startdate = student.StartDate;
+            DateTime Enddate = DateTime.UtcNow;
+
+            int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;
+
+            switch (months)
+
+            {
+                case <= 6:
+                    student.Semester = 1;
+                    break;
+                case <= 12:
+                    student.Semester = 2;
+                    break;
+                case <= 18:
+                    student.Semester = 3;
+                    break;
+                case <= 24:
+                    student.Semester = 4;
+                    break;
+                case <= 30: 
+                    student.Semester = 5;
+                    break;
+                case <= 36:
+                    student.Semester = 6;
+                    break;
+                case <= 42:
+                    student.Semester = 7;
+                    break;
+                case <= 48:
+                    student.Semester = 8;
+                    break;
+                case <= 54:
+                    student.Semester = 9;
+                    break;
+                case <= 60:
+                    student.Semester = 10;
+                    break;
+            }
         }
-
-        public void AddStudent(Student student)
-        {
-            context.Students.Add(student);
-            context.SaveChanges();
-        }
-
-        public void EditStudent(Student student)
-        {
-            throw new NotImplementedException();
-        }
-        
-        //public int CalculateSemester(int semesterId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
     }
 }
 
