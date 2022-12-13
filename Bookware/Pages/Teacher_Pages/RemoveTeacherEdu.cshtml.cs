@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Bookware.DbServices.Services;
 using static System.Reflection.Metadata.BlobBuilder;
 using Bookware.DbServices.Interfaces;
+using System.Security.Cryptography;
 
 namespace Bookware.Pages.Education_Pages
 {
@@ -17,45 +17,39 @@ namespace Bookware.Pages.Education_Pages
     {
 
         private readonly ITeacherService teacherService;
-        
-        public SelectList? EduSubs { get; set; }
+        private readonly IEduSubService eduSubService;
+        private readonly ITeacherEduService teacherEduService;
 
-        public RemoveTeacherEduModel(ITeacherService teacherService)
+        public SelectList? Options { get; set; }
+
+        public RemoveTeacherEduModel(ITeacherService teacherService, IEduSubService eduSubService, ITeacherEduService teacherEduService)
         {
             this.teacherService = teacherService;
+            this.eduSubService = eduSubService;
+            this.teacherEduService = teacherEduService;
         }
 
         [BindProperty(SupportsGet = true)]
         public TeacherEdu? TeacherEdu { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public EduSub? EduSub { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public Teacher? Teacher { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int Tid)
+        public IActionResult OnGetAsync(int Tid)
         {
             TeacherEdu!.TeacherId = Tid;
-            Teacher = await teacherService.GetTeacherAsync(Tid);
-            List<EduSub> eduSubs = new();
-            foreach (var teacherEdu in await teacherService.GetTeacherEdusByIdAsync(Tid))
-            {
-                eduSubs.Add(teacherEdu!.EduSub);
-            }
-            EduSubs = new SelectList(eduSubs, nameof(EduSub.SubjectId), nameof(EduSub.Subject.SubjectName));
+            Options = eduSubService.GetSelection(Tid);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            TeacherEdu? teacherEdu = await teacherService.GetTeacherEduByIdAsync(Teacher!.TeacherId, TeacherEdu!.EduSubId);
+            
 
-            if (teacherEdu != null)
+            if (!ModelState.IsValid)
             {
-                await teacherService.RemoveEduAsync(teacherEdu);
+                Options = eduSubService.GetSelection(TeacherEdu!.TeacherId);
+                return Page();
             }
 
+            await teacherEduService.Delete(await teacherEduService.GetByIdAsync(TeacherEdu!.EduSubId, TeacherEdu.TeacherId));
             return RedirectToPage("AllTeachers");
         }
     }
