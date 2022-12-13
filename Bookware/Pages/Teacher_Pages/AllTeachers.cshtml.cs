@@ -23,20 +23,19 @@ namespace Bookware.Pages.Teacher_Pages
 
         public IEnumerable<Teacher>? Teachers { get; set; }
             
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
-            Teachers = await service.GetTeachersAsync();
+            Teachers = service.GetAll();
             return Page();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            Teacher = await service.GetTeacherAsync(id);
             if (Teacher == null)
             {
                 return NotFound();
             }
-            await service.RemoveTeacherAsync(Teacher);
+            await service.Delete(await service.GetByIdAsync(id));
             return RedirectToPage("AllTeachers");
         }
 
