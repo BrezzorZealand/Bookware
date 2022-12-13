@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
-    public class GenericService<T> : IGenericService<T> where T : class
+    public class GenericService
     {
         private readonly BookwareDbContext context;
 

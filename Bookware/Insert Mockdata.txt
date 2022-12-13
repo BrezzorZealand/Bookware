@@ -1,4 +1,4 @@
-﻿SET IDENTITY_INSERT [dbo].[Education] ON
+﻿	SET IDENTITY_INSERT [dbo].[Education] ON
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (1, N'Datamatiker')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (2, N'Multimediedesign')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (3, N'Administrationsøkonom')
