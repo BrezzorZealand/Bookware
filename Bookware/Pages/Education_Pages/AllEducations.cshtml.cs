@@ -9,6 +9,7 @@ namespace Bookware.Pages.Education_Pages
     {
         public readonly IEducationService Service;
         public IEnumerable<Education?>? Educations { get; set; }
+        
         [BindProperty]
         public Education? Education { get; set; }
 
@@ -17,22 +18,22 @@ namespace Bookware.Pages.Education_Pages
             this.Service = Service;
         }
         
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
-            Educations = await Service.GetEducationsAsync();
+            Educations = Service.GetAll();
             return Page();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            Education = await Service.GetEducationByIdAsync(id);
+            Education = await Service.GetByIdAsync(id);
 
             if (Education == null)
             {
                 return Page();
             }
 
-            await Service.DeleteEducationAsync(Education);
+            await Service.Delete(Education);
             return RedirectToPage("AllEducations");
         }
     }

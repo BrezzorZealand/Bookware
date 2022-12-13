@@ -18,7 +18,7 @@
                 <th scope="col" class="col-1"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-yellow">
             @if (Model.Teachers != null)
             {
                 @foreach (var item in Model.Teachers)
@@ -26,14 +26,13 @@
                     <tr>
                         <td>@item.TeacherId</td>
                         <td>@item.Name </td>
-
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="TeacherDetails" asp-route-id="@item.TeacherId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
+                                    <li><a asp-page="TeacherDetails" asp-route-Tid="@item.TeacherId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="EditTeachers" asp-route-id="@item.TeacherId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>

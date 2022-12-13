@@ -15,38 +15,33 @@ namespace Bookware.Pages.Education_Pages
 {
     public class RemoveEduSubModel : PageModel
     {
-        private readonly IEducationService educationService;
-        public SelectList? Subjects { get; set; }
+        private readonly IEduSubService eduSubService;
 
-        public RemoveEduSubModel(IEducationService educationService)
+        public RemoveEduSubModel(IEduSubService eduSubService)
         {
-            this.educationService = educationService;
+            this.eduSubService = eduSubService;
         }
+        public SelectList? Options { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public EduSub? EduSub { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int Eid)
+        public IActionResult OnGetAsync(int Eid)
         {
             EduSub!.EduId = Eid;
-            List<Subject> subjects = new();
-            foreach (var eduSub in await educationService.GetEduSubsByIdAsync(Eid))
-            {
-                subjects.Add(eduSub!.Subject);
-            }
-            Subjects = new SelectList(subjects, "SubjectId", "SubjectName");
+            Options = eduSubService.GetSelection(Eid);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            EduSub? eduSub = await educationService.GetEduSubByIdAsync(EduSub!.EduId, EduSub!.SubjectId);
-
-            if (eduSub != null)
+            if (!ModelState.IsValid)
             {
-                await educationService.RemoveSubjectAsync(eduSub);
+                Options = eduSubService.GetSelection(EduSub!.EduId);
+                return Page();
             }
 
+            await eduSubService.Delete(await eduSubService.GetByIdAsync(EduSub!.EduId, EduSub!.SubjectId));
             return RedirectToPage("AllEducations");
         }
     }

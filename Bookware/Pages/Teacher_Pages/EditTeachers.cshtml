@@ -1,37 +1,47 @@
-﻿@page
+﻿@page "{id:int}"
 @model Bookware.Pages.Teacher_Pages.EditTeachersModel
 @{
-
+    ViewData["Title"] = "Update Teacher";
 }
 
-<h1>Create</h1>
+<div class="card bg-yellow">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Teacher!.TeacherId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(teacher => teacher.Teacher!.TeacherId)" disabled />
+                            <label asp-for="Teacher!.TeacherId">ID</label>
+                        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="  ModelOnly  " class="text-danger">
-            </div>
+                        <div class="form-group">
+                            <input asp-for="Teacher!.TeacherId" class="form-control" type="text" hidden />
+                        </div>
 
-            <div class="form-group form-floating mb-3">
-                <input asp-for="Teacher!.TeacherId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(teacher => teacher.Teacher!.TeacherId)" disabled />
-                <label asp-for="Teacher!.TeacherId">ID</label>
-            </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="@Model.Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(teacher => teacher.Teacher!.Name)" />
+                            <label asp-for="@Model.Teacher!.Name"></label>
+                            <span asp-validation-for="Teacher!.Name" class="text-danger"></span>
+                        </div>
 
-            <div class="form-group">
-                <input asp-for="Teacher!.TeacherId" class="form-control" type="text" hidden/>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Update" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="AllTeachers">Cancel</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group form-floating mb-3">
-                <input asp-for="@Model.Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(teacher => teacher.Teacher!.Name)" />
-                <label asp-for="@Model.Teacher!.Name"></label>
-                <span asp-validation-for="Teacher!.Name" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group mb-3">
-                <input type="submit" value="Update" class="btn btn-success" />
-                <a class="btn btn-danger" asp-page="AllTeachers">Cancel</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-

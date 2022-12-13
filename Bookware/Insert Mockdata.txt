@@ -5,7 +5,7 @@ INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (3, N'Administrations
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (4, N'Autoteknolog')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (5, N'EL-installatør')
 INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (6, N'Laborant')
-INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (7, N'Procesteknolo')
+INSERT INTO [dbo].[Education] ([Edu_Id], [EduName]) VALUES (7, N'Procesteknolog')
 SET IDENTITY_INSERT [dbo].[Education] OFF
 
 SET IDENTITY_INSERT [dbo].[Teacher] ON
@@ -50,18 +50,20 @@ INSERT INTO [dbo].[Class] ([Class_Id], [ClassName]) VALUES (7, N'Re21MuB')
 SET IDENTITY_INSERT [dbo].[Class] OFF
 
 SET IDENTITY_INSERT [dbo].[Student] ON
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (1, N'Kaya', N'københavn', 2, N'2022-02-01 00:00:00', 1)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (2, N'oliver', N'Roskilde', 2, N'2022-02-01 00:00:00', 1)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (3, N'Rasmus', N'Køge', 2, N'2022-02-01 00:00:00', 1)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (4, N'Ruben', N'Roskilde', 2, N'2022-02-01 00:00:00', 1)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (5, N'Simon', N'Slagelse', 2, N'2022-02-01 00:00:00', 1)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (6, N'Peter', N'Slagelse', 1, N'2022-08-02 00:00:00', 2)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (7, N'Jul', N'Slagelse', 3, N'2021-08-02 00:00:00', 7)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (8, N'Oline', N'Næstved', 3, N'2021-08-02 00:00:00', 7)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (9, N'karen', N'Taastrup', 2, N'2022-02-01 00:00:00', 6)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (10, N'Alfred', N'Amager', 4, N'2020-09-01 00:00:00', 5)
-INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [Semester], [StartDate], [Class_Id]) VALUES (11, N'Yamir', N'høje Taastrup', 2, N'2021-01-29 00:00:00', 4)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (1, N'Kaya', N'københavn', N'2022-02-01', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (2, N'oliver', N'Roskilde', N'2022-02-01', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (3, N'Rasmus', N'Køge', N'2022-02-01', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (4, N'Ruben', N'Roskilde', N'2022-02-01', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (5, N'Simon', N'Slagelse', N'2022-02-01', 1)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (6, N'Peter', N'Slagelse', N'2022-08-02', 2)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (7, N'Jul', N'Slagelse', N'2021-08-02', 7)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (8, N'Oline', N'Næstved', N'2021-08-02', 7)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (9, N'karen', N'Taastrup', N'2022-02-01', NULL)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (10, N'Alfred', N'Amager', N'2020-09-01', 5)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (11, N'Yamir', N'høje Taastrup', N'2021-01-29', 4)
+INSERT INTO [dbo].[Student] ([Student_Id], [StudentName], [Address], [StartDate], [Class_Id]) VALUES (1003, N'Jens', N'Køge', N'2022-02-02', NULL)
 SET IDENTITY_INSERT [dbo].[Student] OFF
+
 
 SET IDENTITY_INSERT [dbo].[Class_Book] ON
 INSERT INTO [dbo].[Class_Book] ([CB_Id], [Class_Id], [Book_Id]) VALUES (1, 1, 1)

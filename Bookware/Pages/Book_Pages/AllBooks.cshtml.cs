@@ -2,6 +2,7 @@ using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.Pages.Book_Pages
 {
@@ -18,20 +19,20 @@ namespace Bookware.Pages.Book_Pages
         public IEnumerable<Book?>? Books { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            Books = await service.GetBooksAsync();
+            Books = await service.GetAll().ToListAsync();
             return Page();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            Book = await service.GetBookByIdAsync(id);
+            Book = await service.GetByIdAsync(id);
 
             if (Book == null)
             {
                 return Page();
             }
 
-            await service.DeleteBookAsync(Book);
+            await service.Delete(Book!);
             return RedirectToPage("AllBooks");
         }
     }

@@ -30,7 +30,7 @@ namespace Bookware.Pages.Teacher_Pages
             {
                 return Page();
             }
-            await teacherService.AddTeacherAsync(teacher);
+            await teacherService.Create(teacher);
             return RedirectToPage("AllTeachers");
         }
     }

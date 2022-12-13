@@ -27,7 +27,7 @@ namespace Bookware.Pages.Class_Pages
             {
                 return Page();
             }
-            await classService.AddClassAsync(Class);
+            await classService.Create(Class);
             return RedirectToPage("AllClasses");
         }
     }

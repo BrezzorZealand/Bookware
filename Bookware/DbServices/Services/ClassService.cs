@@ -3,46 +3,26 @@ using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Immutable;
 
 namespace Bookware.DbServices.Services
 {
-    public class ClassService : IClassService
+    public class ClassService : GenericService<Class>, IClassService
     {
-        private readonly BookwareDbContext context;
-
-        public ClassService(BookwareDbContext context)
+        public ClassService(BookwareDbContext context) : base(context)
         {
-            this.context = context;
         }
 
-        #region Create Class
-        public async Task AddClassAsync(Class? _class)
+        public async Task<Class?> GetClassByIdAsync(int? id)
         {
-            if (_class != null)
-            {
-                context.Classes.Add(_class);
-            } 
-            await context.SaveChangesAsync();
-        }
-        #endregion
-
-        #region Read Classes
-        public async Task<IEnumerable<Class?>> GetClassAsync()
-        {
-            return await context.Set<Class>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task<Class?> GetClassByIdAsync(int id)
-        {
-            Class? _class = await context.Classes
+            return await GetAll()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ClassId == id);
-            return _class!;
         }
 
-        public async Task<Class?> GetClassDataByIdAsync(int id)
+        public async Task<Class?> GetClassDataByIdAsync(int? id)
         {
-            Class? klasse = await context.Classes
+            return await GetAll()
                 .Include(tc => tc.TeacherClasses)
                 .ThenInclude(te => te.TeachEdu)
                 .ThenInclude(es => es.EduSub)
@@ -57,100 +37,8 @@ namespace Bookware.DbServices.Services
 
                 .Include(cb => cb.ClassBooks)
                 .ThenInclude(b => b.Book)
-
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.ClassId == id);
-
-            if (klasse  != null)
-            {
-                return klasse;
-            }
-            return null;
         }
-        #endregion
-
-        #region Update Class
-        public async Task UpdateClassAsync(Class? _class)
-        {
-            if (_class != null)
-            {
-                context.Classes.Update(_class);
-            }
-            await context.SaveChangesAsync();
-        }
-        #endregion
-
-        #region Delete Class
-        public async Task DeleteClassAsync(Class? _class)
-        {
-            if (_class != null)
-            {
-                context.Classes.Remove(_class);
-            }
-            await context.SaveChangesAsync();
-        }
-        #endregion
-
-        #region Get ClassBooksById
-        public async Task<IEnumerable<ClassBook?>> GetClassBooksByIdAsync(int id)
-        {
-            return await context.Set<ClassBook>()
-                .Where(cb => cb.ClassId == id)
-                .Include(b => b.Book)
-                .AsNoTracking()
-                .ToListAsync();
-        }
-        #endregion
-
-        #region Get ClassBookById
-        public async Task<ClassBook?> GetClassBookByIdAsync(int Cid, int Bid)
-        {
-            return await context.ClassBooks
-                .AsNoTracking()
-                .FirstOrDefaultAsync(cb => cb.ClassId == Cid && cb.BookId == Bid);                
-        }
-        #endregion
-
-        #region Add Book
-        public async Task AddBook(ClassBook? classBook)
-        {
-            ClassBook? existingClassBook = await GetClassBookByIdAsync(classBook!.ClassId, classBook!.BookId);
-
-            if (!context.ClassBooks.Contains(existingClassBook))
-            {
-                context.ClassBooks.Add(classBook);
-            }
-            await context.SaveChangesAsync();
-        }
-        #endregion
-
-        #region Remove Book
-        public async Task RemoveBook(ClassBook? classBook)
-        {
-            ClassBook? deleteClassBook = await GetClassBookByIdAsync(classBook!.ClassId, classBook!.BookId);
-            if (context.ClassBooks.Contains(deleteClassBook) && deleteClassBook != null)
-            {
-                context.ClassBooks.Remove(deleteClassBook);
-            }
-            await context.SaveChangesAsync();
-        }
-        #endregion
-
-        #region SelectList of classbooks
-        public async Task<SelectList> GetSelectionOfClassBooks(int id)
-        {
-            return new SelectList(await GetBooksAsync(id), nameof(Book.BookId), nameof(Book.Title));
-        }
-
-        private async Task<IEnumerable<Book>> GetBooksAsync(int id)
-        {
-            List<Book> books = new List<Book>();
-            foreach (ClassBook? classBook in await GetClassBooksByIdAsync(id))
-            {
-                books.Add(classBook!.Book);
-            }
-            return books;
-        }
-        #endregion
     }
 }

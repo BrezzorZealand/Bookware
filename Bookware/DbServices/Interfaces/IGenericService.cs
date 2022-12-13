@@ -1,12 +1,12 @@
-﻿namespace Bookware.DbServices.Interfaces
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace Bookware.DbServices.Interfaces
 {
-    public interface IGenericService
+    public interface IGenericService<TEntity> where TEntity : class
     {
-        Task Create<T>(T entity);
-        Task Delete<T>(T entity);
-        Task<IEnumerable<T>> GetAll<T>();
-        Task<IEnumerable<T>> GetAllFilter<T>(string? filter, string? propertyName);
-        Task<T> GetById<T>(int id);
-        Task Update<T>(T entity);
+        IQueryable<TEntity> GetAll();
+        Task Create(TEntity? entity);
+        Task Delete(TEntity? entity);
+        Task Update(TEntity? entity);
     }
 }

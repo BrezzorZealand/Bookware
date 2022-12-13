@@ -35,7 +35,7 @@ namespace Bookware.Pages.Student_Pages
                 return Page();
             }
 
-            await service.CreateStudentAsync(Student);
+            await service.Create(Student);
 
             return RedirectToPage("AllStudents");
         }

@@ -20,7 +20,7 @@ namespace Bookware.Pages.Teacher_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Teacher = await service.GetTeacherAsync(id);
+            Teacher = await service.GetByIdAsync(id);
             return Page();
         }
 
@@ -30,7 +30,7 @@ namespace Bookware.Pages.Teacher_Pages
             {
                 return Page();
             }
-            await service.EditTeacherAsync(teacher);
+            await service.Update(teacher);
             return RedirectToPage("AllTeachers");
         }
     }

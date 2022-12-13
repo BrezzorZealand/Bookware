@@ -10,12 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BookwareDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookwareDb")));
-builder.Services.AddTransient<IBookService, BookService>();
-builder.Services.AddTransient<ITeacherService, TeacherService>();
-builder.Services.AddTransient<ISubjectService, SubjectService>();
-builder.Services.AddTransient<IEducationService, EducationService>();
-builder.Services.AddTransient<IStudentService,StudentService>();
-builder.Services.AddTransient<IClassService, ClassService>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<IEducationService, EducationService>();
+builder.Services.AddScoped<IStudentService,StudentService>();
+builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<IClassBookService, ClassBookService>();
+builder.Services.AddScoped<IEduSubService, EduSubService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

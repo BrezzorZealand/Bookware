@@ -21,9 +21,9 @@ namespace Bookware.Pages.Class_Pages
         public Class? _Class { get; set; }
         public IEnumerable<Class?> ?classes { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
-            classes = await classService.GetClassAsync();
+            classes = classService.GetAll();
             return Page();
         }
 
@@ -36,7 +36,7 @@ namespace Bookware.Pages.Class_Pages
                 return Page();
             }
 
-            await classService.DeleteClassAsync(_Class);
+            await classService.Delete(_Class);
             return RedirectToPage("AllClasses");
         }
     }

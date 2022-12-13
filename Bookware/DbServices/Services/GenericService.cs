@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
-    public class GenericService
+    public class GenericService<TEntity> : IGenericService<TEntity> where TEntity : class
     {
         private readonly BookwareDbContext context;
 
@@ -13,61 +13,55 @@ namespace Bookware.DbServices.Services
             this.context = context;
         }
 
-        public async Task<List<T>> GetAll<T>() where T : class
+        public IQueryable<TEntity> GetAll()
         {
-            return await context.Set<T>()
-                .ToListAsync();
+            return context.Set<TEntity>().AsNoTracking();
         }
 
-        /// <summary>
-        /// Gets all entities of type T from the database that match the filter.
-        /// </summary>
-        /// <param name="filter">The string to filter (can be NULL)</param>
-        /// <param name="propertyName">Name of the Property the filter will filter </param>
-        /// <returns>A list of objects that match the filter</returns>
-        public async Task<List<T>> GetAllFilter<T>(string? filter, string? propertyName) where T : class
-        {
-            return await context.Set<T>()
-                .Where(t => t
-                            .GetType()
-                            .GetProperty(propertyName!)
-                            .ToString()
-                            .StartsWith(filter!))
-                .ToListAsync();
+        ///// <summary>
+        ///// Gets all entities of type T from the database that match the filter.
+        ///// </summary>
+        ///// <param name="filter">The string to filter (can be NULL)</param>
+        ///// <param name="propertyName">Name of the Property the filter will filter </param>
+        ///// <returns>A list of objects that match the filter</returns>
+        //public IQueryable<TEntity> GetAllFilter(string? filter)
+        //{
+        //    return context.Set<TEntity>()
+        //        .Where(t => t.GetType()
+        //                     .GetProperty(propertyName!)
+        //                     .ToString()
+        //                     .StartsWith(filter!));
 
-        }
+        //}
 
-        public async Task<T> GetById<T>(int id) where T : class
-        {
-            T? entity = await context!.Set<T>()
-                                 .FindAsync(id);
+        //public TEntity GetById(int id)
+        //{
+        //    return context.Set<TEntity>().Find(x => x.Id == id);
+        //}
 
-            return entity!;
-        }
-
-        public async Task Create<T>(T entity) where T : class
+        public async Task Create(TEntity? entity)
         {
             if (entity is not null)
             {
-                await context.Set<T>().AddAsync(entity);
+                await context.Set<TEntity>().AddAsync(entity);
             }
             await context.SaveChangesAsync();
         }
 
-        public async Task Update<T>(T entity) where T : class
+        public async Task Update(TEntity? entity)
         {
             if (entity is not null)
             {
-                context.Set<T>().Update(entity);
+                context.Set<TEntity>().Update(entity);
             }
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete<T>(T entity) where T : class
+        public async Task Delete(TEntity? entity)
         {
             if (entity is not null)
             {
-                context.Set<T>().Remove(entity);
+                context.Set<TEntity>().Remove(entity);
             }
             await context.SaveChangesAsync();
         }

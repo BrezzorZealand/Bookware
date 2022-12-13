@@ -19,9 +19,9 @@ namespace Bookware.Pages.Student_Pages
         [BindProperty]
         public Student? Student { get; set; }
         public IEnumerable<Student?>? Students { get; set; }
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {            
-            Students = await studentService.GetStudentsAsync();
+            Students = studentService.GetAll();
             return Page();
         }
 
@@ -32,14 +32,12 @@ namespace Bookware.Pages.Student_Pages
         }
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            Student = await studentService.GetStudentByIdAsync(id);
-
             if (Student == null)
             {
                 return Page();
             }
 
-            await studentService.DeleteStudentAsync(Student);
+            await studentService.Delete(await studentService.GetByIdAsync(id));
             return RedirectToPage("AllStudents");
         }
     }

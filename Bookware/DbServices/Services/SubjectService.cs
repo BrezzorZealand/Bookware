@@ -1,75 +1,35 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
-    public class SubjectService : ISubjectService
+    public class SubjectService : GenericService<Subject> , ISubjectService
     {
-        readonly BookwareDbContext context;
-        public SubjectService(BookwareDbContext context)
+        public SubjectService(BookwareDbContext context) : base(context)
         {
-            this.context = context;
         }
 
-        public async Task AddSubjectAsync (Subject? subject)
+        public async Task<Subject?> GetByIdAsync(int? id)
         {
-            if (subject != null)
-            {
-                context.Subjects.Add(subject);
-            }
-            await context.SaveChangesAsync();
-        }
-        public async Task RemoveSubjectAsync(Subject subject)
-        {
-            if(subject != null)
-            {
-            context.Subjects.Remove(subject);
-            }
-            await context.SaveChangesAsync();
-        }
-        public async Task EditSubjectAsync(Subject subject)
-        {
-            if(subject != null)
-            {
-                context.Subjects.Update(subject);
-            }
-            await context.SaveChangesAsync();
-        }
-        public async Task<Subject?> GetSubjectByIdAsync(int id)
-        {
-            Subject? subject = await context.Subjects
+            return await GetAll()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s => s.SubjectId == id);
-            if(subject != null)
-            {
-                return subject;
-            }
-            return null;
         }
-        //public async Task <IEnumerable<Subject>> GetSubjectsAsync(string filter)
-        //{
-        //    return await context.Set<Subject>()
-        //        .Where(s => s.SubjectName.StartsWith(filter))
-        //        .AsNoTracking()
-        //        .ToListAsync();
-        //}
-        public async Task <IEnumerable<Subject>> GetSubjectsAsync()
+
+        public async Task<Subject?> GetDataById(int? id)
         {
-            return await context.Set <Subject>().AsNoTracking().ToListAsync();
-        }
-        public async Task<Subject?> GetSubjectDataById(int id)
-        {
-            Subject? subject = await context.Subjects
+            return await GetAll()
                 .Include(s => s.EduSubs)
                 .ThenInclude(e => e.Edu)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s=>s.SubjectId == id);
-            if (subject != null)
-            {
-                return subject;
-            }
-            return null;
+        }
+
+        public SelectList GetSelection()
+        {
+            return new SelectList(GetAll(), nameof(Subject.SubjectId), nameof(Subject.SubjectName));
         }
         public int GetMaxSubjectNo()
         {
