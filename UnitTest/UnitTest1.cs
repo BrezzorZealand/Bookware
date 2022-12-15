@@ -2,6 +2,10 @@ using Bookware.DbServices.Services;
 using Bookware.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using Bookware.Pages.Subject_Pages;
+using Bookware.DbServices.Interfaces;
 
 namespace UnitTest
 {
@@ -17,25 +21,23 @@ namespace UnitTest
 
             var mockEducation = new Education
             {
-                EduId = 7,
                 EduName = "TestEdu"
             };
 
             var mockSubject = new Subject
             {
-                SubjectId = 4,
                 SubjectName = "TestSub"
             };
 
             // Act
-            await sut.AddSubjectAsync(mockEducation, mockSubject);
+            //await sut.Create(mockEducation, mockSubject);
 
             // Assert
             Assert.IsNotNull(mockEducation.EduSubs, "EduSubs is null");
         }
 
         [TestMethod]
-        public async Task TestGetSubjectsAsync()
+        public void TestGetSubjects()
         {
             //Arrange
             BookwareDbContext context = new BookwareDbContext();
@@ -43,11 +45,10 @@ namespace UnitTest
 
             var mockSubject2 = new Subject
             {
-                SubjectId = 5,
                 SubjectName = "TestSubject2"
             };
             //Act
-            await sut2.GetSubjectsAsync();
+            sut2.GetAll();
             //Assert
 
             Assert.IsNotNull(mockSubject2);
@@ -58,22 +59,30 @@ namespace UnitTest
         {
             BookwareDbContext context = new BookwareDbContext();
             SubjectService sut3 = new(context);
+            Subject Last_subject;
+            Subject Last_subject2;
 
-            int NextSubjectNo = sut3.GetMaxSubjectNo() + 1;
 
             var mockSubject3 = new Subject
             {
                 SubjectName = "TestSubject3"
             };
-            await sut3.AddSubjectAsync(mockSubject3);
+            var mockSubject4 = new Subject
+            {
+                SubjectName = "TestSubject"
+            };
 
-            Subject TestSubject = await sut3.GetSubjectByIdAsync(NextSubjectNo);
+            await sut3.Create(mockSubject3);
 
-            await sut3.RemoveSubjectAsync(TestSubject);
-            Subject removeSubject = await sut3.GetSubjectByIdAsync(NextSubjectNo);
+            Last_subject = sut3.GetAll().Last();
+            int last1 = Last_subject.SubjectId;
 
-            Assert.AreEqual(mockSubject3, TestSubject);
-            Assert.IsNull(removeSubject);   
+            await sut3.Delete(mockSubject3);
+
+            Last_subject2 = sut3.GetAll().Last();
+            int last2 = Last_subject2.SubjectId;
+
+            Assert.AreEqual(last1, last2); 
             //if (mockSubject3 != null)
             //{
             //  await sut3.RemoveSubjectAsync(mockSubject3);
