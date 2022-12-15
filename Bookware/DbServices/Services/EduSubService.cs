@@ -2,6 +2,8 @@
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 
 namespace Bookware.DbServices.Services
 {
@@ -27,6 +29,26 @@ namespace Bookware.DbServices.Services
                 subjects.Add(eduSub.Subject);
             }
             return new SelectList(subjects, nameof(Subject.SubjectId), nameof(Subject.SubjectName));
+        }
+
+        public IEnumerable<SelectListItem> GetAllSelection()
+        {
+            IEnumerable<EduSub> eduSubs = GetAll().Include(es => es.Subject).Include(es => es.Edu);
+            // i want a selectlistgroup of educations with a selectlist of subjects
+            List<SelectListGroup> selectListGroups = new List<SelectListGroup>();
+            foreach (var eduSub in eduSubs)
+            {
+                SelectListGroup selectListGroup = new SelectListGroup() { Name = eduSub.Edu.EduName };
+                selectListGroups.Add(selectListGroup);
+            }
+            IEnumerable<SelectListItem> SelectListItems = from es in eduSubs
+                                               select new SelectListItem
+                                               {
+                                                   Text = es.Subject.SubjectName,
+                                                   Value = es.EduSubId.ToString(),
+                                                   Group = selectListGroups.FirstOrDefault(slg => slg.Name == es.Edu.EduName)
+                                               };
+            return SelectListItems;
         }
     }
 }
