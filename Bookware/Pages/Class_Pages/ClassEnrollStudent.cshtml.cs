@@ -21,12 +21,15 @@ namespace Bookware.Pages.Class_Pages
 
         public SelectList? Options { get; set; }
 
-        [BindProperty]
-        public Student? Student { get; set; }
+        public Class? Class { get; set; }
 
-        public IActionResult OnGetAsync(int id)
+        [BindProperty]
+        public Student? Student { get; set; } = new Student();
+
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Student!.ClassId = id;           
+            Student!.ClassId = id;
+            Class = await classService.GetClassByIdAsync(id);
             Options = studentService.GetSelection();
             return Page();
         }

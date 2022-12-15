@@ -71,9 +71,6 @@ namespace Bookware.DbServices.Services
                 case <= 60:
                     semester = 10;                  
                     break;
-                    default:
-                    student.Semester = 0;
-                    break;
             }
 
             return semester;
