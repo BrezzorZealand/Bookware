@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Project;
+using System.Diagnostics;
 
 namespace Bookware.DbServices.Services
 {
@@ -72,6 +74,26 @@ namespace Bookware.DbServices.Services
                     semester = 10;                  
                     break;
             }
+
+            return semester;
+        }
+
+        public int CalculateSemester2(Student? student)
+        {
+            int semester = 0;
+            DateTime Startdate = student!.StartDate.Date;
+            DateTime Enddate = DateTime.UtcNow;
+            int months = (Enddate.Year - Startdate.Year) * 12 + Enddate.Month - Startdate.Month;
+
+            if (months / 6 <= 0)
+            {
+                semester = 1;
+            }
+            else
+            {
+                semester = months / 6;
+            }
+
 
             return semester;
         }
