@@ -21,6 +21,7 @@ namespace Bookware.Pages.Class_Pages
 
         public SelectList? Options { get; set; }
 
+        [BindProperty]
         public Class? Class { get; set; }
 
         [BindProperty]
@@ -28,7 +29,6 @@ namespace Bookware.Pages.Class_Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Student!.ClassId = id;
             Class = await classService.GetClassByIdAsync(id);
             Options = studentService.GetSelection();
             return Page();
@@ -42,11 +42,8 @@ namespace Bookware.Pages.Class_Pages
                 return Page();
             }
             Student? student = await studentService.GetByIdAsync(Student!.StudentId);
-            Student!.StudentId = student!.StudentId;
-            Student!.StudentName = student!.StudentName;
-            Student!.Address = student!.Address;
-            Student!.StartDate = student!.StartDate;
-            await studentService.Update(Student);
+            student!.ClassId = Class!.ClassId;
+            await studentService.Update(student);
             return RedirectToPage("AllClasses");
         }
     }
