@@ -7,5 +7,6 @@ namespace Bookware.DbServices.Interfaces
     {
         Task <Class?> GetClassByIdAsync(int? id);
         Task <Class?> GetClassDataByIdAsync(int? id);
+        SelectList GetSelection();
     }
 }

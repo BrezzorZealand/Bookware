@@ -8,8 +8,8 @@ namespace Bookware.DbServices.Interfaces
     {
         Task<Student?> GetByIdAsync(int? id);        
         Task<Student?> GetDataByIdAsync(int? id);
-        void CalculateSemester(Student? student);
         SelectList GetSelection();
+        int CalculateSemester(Student? student);
     }
 }
 

@@ -33,12 +33,21 @@ namespace Bookware.DbServices.Services
                 .ThenInclude(es => es.EduSub)
                 .ThenInclude(sub => sub.Subject)
 
+                .Include(tc => tc.TeacherClasses)
+                .ThenInclude(te => te.TeachEdu)
+                .ThenInclude(es => es.Teacher)
+
                 .Include(stu => stu.Students)
 
                 .Include(cb => cb.ClassBooks)
                 .ThenInclude(b => b.Book)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.ClassId == id);
+        }
+
+        public SelectList GetSelection()
+        {
+            return new SelectList(GetAll(), nameof(Class.ClassId), nameof(Class.ClassName));
         }
     }
 }

@@ -31,14 +31,5 @@ namespace Bookware.DbServices.Services
         {
             return new SelectList(GetAll(), nameof(Subject.SubjectId), nameof(Subject.SubjectName));
         }
-        //public int GetMaxSubjectNo()
-        //{
-        //    int result = 0;
-        //    if( context.Subjects.Count<Subject>()> 0 )
-        //    {
-        //        result = context.Subjects.ToList<Subject>().Max<Subject>(g => g.SubjectId);
-        //    }
-        //    return result;
-        //}
     }
 }

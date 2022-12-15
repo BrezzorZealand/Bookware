@@ -1,58 +1,60 @@
 using Bookware.DbServices.Interfaces;
+using Bookware.DbServices.Services;
 using Bookware.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Cryptography;
 
 namespace Bookware.Pages.Education_Pages
 {
     public class AddTeacherEduModel : PageModel
     {
-        private IEducationService EduService;
-        private ITeacherService TeacherService;
-        public IEnumerable<EduSub?>? EduSubs { get; set; }
-        public IEnumerable<Education?> Educations { get; set; }
-        [BindProperty]
-        public EduSub? EduSub { get; set; }
+
+        private readonly ITeacherService TeacherService;
+        private readonly IEduSubService EduSubService;
+        private readonly ITeacherEduService TeacherEduService;
+        
+        public IEnumerable<SelectListItem>? EduSubOptions { get; set; }
         [BindProperty]
         public Teacher? Teacher { get; set; }
         [BindProperty]
-        public Education? Education { get; set; }
+        public EduSub? EduSub { get; set; } = new EduSub();
+        public TeacherEdu? TeacherEdu { get; set; } = new TeacherEdu();
 
-        public AddTeacherEduModel(IEducationService EduService, ITeacherService TeacherService)
+        public AddTeacherEduModel(ITeacherService teacherService, IEduSubService eduSubService, ITeacherEduService teacherEduService)
         {
-            this.EduService = EduService;
-            this.TeacherService = TeacherService;
+            TeacherService = teacherService;
+            EduSubService = eduSubService;
+            TeacherEduService = teacherEduService;
         }
 
-        //public async Task<IActionResult> OnGetAsync(int Tid)
-        //{
-        //    // Get the Teacher.
-        //    Teacher = await TeacherService.GetTeacherAsync(Tid);
-        //    // Get List of Educations.
-        //    Educations = await EduService.GetEducationsAsync();
-        //    // Get the starting Education for the dropdown.
-        //    Education = Educations.First();
-        //    // get the Starting list of Edusubs.
-        //    EduSubs = await EduService.GetEduSubsByIdAsync(Education!.EduId);
-        //    return Page();
-        //}
+        
+        public async  Task<IActionResult> OnGetAsync(int Tid)
+        {
+            if(Tid <= 0)
+            {
+                return RedirectToPage("AllTeachers");
+            }
+            // Get list of Educations and Subjects
+            EduSubOptions = EduSubService.GetAllSelection();
+            // Get the Teacher.
+            Teacher = await TeacherService.GetByIdAsync(Tid);
+            return Page();
+        }
 
-        //public async Task<IActionResult> OnPostCreateAsync()
-        //{
-        //    int Eid = Education!.EduId;
-        //    int Sid = EduSub!.SubjectId;
-        //    EduSub = await EduService.GetEduSubByIdAsync(Eid, Sid);
-        //    await TeacherService.AddEduAsync(EduSub, Teacher);
-        //    return RedirectToPage("AllTeachers");
-        //}
-
-        //public async Task<IActionResult> OnPostUpdateAsync()
-        //{
-        //    int Eid = Education!.EduId;
-        //    EduSubs = await EduService.GetEduSubsByIdAsync(Eid);
-        //    return new EmptyResult();
-        //}
+        public async Task<IActionResult> OnPostCreateAsync()
+        {
+            TeacherEdu!.TeacherId = Teacher!.TeacherId;
+            TeacherEdu!.EduSubId = EduSub!.EduSubId;
+            if (!ModelState.IsValid)
+            {
+                EduSubOptions = EduSubService.GetAllSelection();
+                return Page();
+            }
+            await TeacherEduService.Create(TeacherEdu);
+            return RedirectToPage("AllTeachers");
+        }
     }
 }

@@ -31,11 +31,13 @@ namespace Bookware.Pages.Education_Pages
 
         [BindProperty(SupportsGet = true)]
         public TeacherEdu? TeacherEdu { get; set; }
-
-        public IActionResult OnGetAsync(int Tid)
+        public Teacher? Teacher { get; set; }
+        
+        public async Task<IActionResult> OnGetAsync(int Tid)
         {
+            Teacher = await teacherService.GetByIdAsync(Tid!);
             TeacherEdu!.TeacherId = Tid;
-            Options = eduSubService.GetSelection(Tid);
+            Options = teacherEduService.GetSelection(Tid);
             return Page();
         }
 
