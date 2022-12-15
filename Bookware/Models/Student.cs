@@ -19,14 +19,13 @@ namespace Bookware.Models
         [Unicode(false)]
         public string StudentName { get; set; }
         [Required]
-        [StringLength(100)]
+        [StringLength(70)]
         [Unicode(false)]
         public string Address { get; set; }
-        public int Semester { get; set; }
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "date")]
         public DateTime StartDate { get; set; }
         [Column("Class_Id")]
-        public int ClassId { get; set; }
+        public int? ClassId { get; set; }
 
         [ForeignKey("ClassId")]
         [InverseProperty("Students")]

@@ -28,47 +28,49 @@ namespace Bookware.DbServices.Services
                 .FirstOrDefaultAsync(s => s.StudentId == id);
         }
 
-        public void CalculateSemester(Student? student)
+        public int CalculateSemester(Student? student)
         {
+            int semester = 0;
             DateTime Startdate = student!.StartDate;
             DateTime Enddate = DateTime.UtcNow;
 
             int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;
 
             switch (months)
-
             {
                 case <= 6:
-                    student.Semester = 1;
+                    semester = 1;
                     break;
                 case <= 12:
-                    student.Semester = 2;
+                    semester = 2;                  
                     break;
                 case <= 18:
-                    student.Semester = 3;
+                    semester = 3;                  
                     break;
                 case <= 24:
-                    student.Semester = 4;
+                    semester = 4;                  
                     break;
-                case <= 30: 
-                    student.Semester = 5;
+                case <= 30:
+                    semester = 5;                  
                     break;
                 case <= 36:
-                    student.Semester = 6;
+                    semester = 6;                  
                     break;
                 case <= 42:
-                    student.Semester = 7;
+                    semester = 7;                  
                     break;
                 case <= 48:
-                    student.Semester = 8;
+                    semester = 8;                  
                     break;
                 case <= 54:
-                    student.Semester = 9;
+                    semester = 9;                  
                     break;
                 case <= 60:
-                    student.Semester = 10;
+                    semester = 10;                  
                     break;
             }
+
+            return semester;
         }
     }
 }

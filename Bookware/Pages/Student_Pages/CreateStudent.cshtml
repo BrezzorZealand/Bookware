@@ -23,18 +23,15 @@
                             <label asp-for="Student!.Address">Address</label>
                             <span asp-validation-for="Student!.Address" class="text-danger"></span>
                         </div>
-                        @*<div class="form-group form-floating mb-3">
-                            <input asp-for="Student!.Semester" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.Semester)" />
-                            <label asp-for="Student!.Semester">Semester</label>
-                            <span asp-validation-for="Student!.Semester" class="text-danger"></span>
-                        </div>*@
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Student!.StartDate" class="form-control" type="datetime-local" placeholder="@Html.DisplayNameFor(student => student.Student!.StartDate)" />
+                            <input asp-for="Student!.StartDate" class="form-control" type="date" placeholder="@Html.DisplayNameFor(student => student.Student!.StartDate)" />
                             <label asp-for="Student!.StartDate">StartDate</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Student!.ClassId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(student => student.Student!.ClassId)" />
-                            <label asp-for="Student!.ClassId">ClassId</label>
+                            <select class="form-select" asp-for="Student!.ClassId" asp-items="Model.Options">
+                                <option value="">Select a class</option>
+                            </select>
+                            <label asp-for="Student!.ClassId">Class</label>
                         </div>
                         <div class="form-group mb-3">
                             <input asp-page-handler="Submit" type ="submit" value="Create" class="btn btn-success"/>
