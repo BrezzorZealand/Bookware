@@ -31,6 +31,7 @@ namespace Bookware.DbServices.Services
         {
             return new SelectList(GetAll(), nameof(Subject.SubjectId), nameof(Subject.SubjectName));
         }
+<<<<<<< HEAD
         //public int GetMaxSubjectNo()
         //{
         //    int result = 0;
@@ -40,5 +41,7 @@ namespace Bookware.DbServices.Services
         //    }
         //    return result;
         //}
+=======
+>>>>>>> f5f491a6a649a2267a6bae5121d5d348a731e255
     }
 }

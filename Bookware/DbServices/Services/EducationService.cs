@@ -1,5 +1,6 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Cryptography;
@@ -27,5 +28,11 @@ namespace Bookware.DbServices.Services
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.EduId == id);            
         }
+
+        public SelectList? GetSelection()
+        {
+            return new SelectList(GetAll().ToList(), nameof(Education.EduId), nameof(Education.EduName));
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Bookware.DbServices.Services;
 using Bookware.Models;
 using Microsoft.EntityFrameworkCore;
@@ -7,14 +8,17 @@ using System.Collections.Generic;
 using Bookware.Pages.Subject_Pages;
 using Bookware.DbServices.Interfaces;
 
+=======
+>>>>>>> f5f491a6a649a2267a6bae5121d5d348a731e255
 namespace UnitTest
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public async Task TestMethod1Async()
+        public void TestMethod1()
         {
+<<<<<<< HEAD
             // Arrange
             BookwareDbContext context = new();
             EducationService sut = new(context);
@@ -103,6 +107,8 @@ namespace UnitTest
             BookwareDbContext context = new BookwareDbContext();
             SubjectService sut4 = new(context);
 
+=======
+>>>>>>> f5f491a6a649a2267a6bae5121d5d348a731e255
         }
     }
 }

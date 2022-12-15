@@ -12,14 +12,14 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Teacher!.Name)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Teacher!.Name)</dd>
     </dl>
-    @if (Model.Teacher!.TeacherEdus != null && Model.Teacher.TeacherEdus!.Count > 0)
+    @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher.TeacherEdus.Count > 0)
     {
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-center caption-top">
-                <caption>List of Teacher Educations</caption>
+                <caption>List of Teacher Classes</caption>
                 <thead class="table-dark">
                     <tr>
-                        <th>Classes</th>
+                        <th scope="col">Classes</th>
                     </tr>
                 </thead>
                 <tbody class="table-yellow">
@@ -27,8 +27,26 @@
                     {
                         foreach (var teacherClass in teacherEdu.TeacherClasses)
                         {
-                            <tr><td>@teacherClass.Class!.ClassName</td></tr>
+                            <tr>
+                                <td>@teacherClass.Class!.ClassName</td>
+                            </tr>
                         }
+                    }
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover text-center caption-top">
+                <caption>List of Teacher Educations</caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Educations</th>
+                    </tr>
+                </thead>
+                <tbody class="table-yellow">
+                    @foreach (var teacherEdu in Model.Teacher!.TeacherEdus)
+                    {
+                        <tr>
+                            <td>@teacherEdu.EduSub.Edu.EduName</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -36,13 +54,15 @@
                 <caption>List of Teacher Subjects</caption>
                 <thead class="table-dark">
                     <tr>
-                        <th>Subjects</th>
+                        <th scope="col">Subjects</th>
                     </tr>
                 </thead>
                 <tbody class="table-yellow">
                     @foreach (var teacherEdu in Model.Teacher!.TeacherEdus)
                     {
-                        <tr><td> @teacherEdu.EduSub.Subject.SubjectName</td></tr>
+                        <tr>
+                            <td>@teacherEdu.EduSub.Subject.SubjectName</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -53,7 +73,7 @@
         <div class="alert alert-dark m-3">
             <h5 class="alert-heading"><i class="bi bi-exclamation-circle-fill"></i> Information</h5>
             <hr>
-            <p> No Teacher Educations and Subjects found!</p>
+            <p> No Classes, Educations and Subjects found!</p>
         </div>
     }
 </div>
