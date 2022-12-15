@@ -2,6 +2,9 @@
 using Bookware.Models;
 using Bookware.DbServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookware.DbServices.Services
 {
@@ -71,6 +74,12 @@ namespace Bookware.DbServices.Services
             }
 
             return semester;
+        }
+
+        /* Get Selection of Students */
+        public SelectList GetSelection()
+        {
+            return new SelectList(GetAll().ToList(), nameof(Student.StudentId), nameof(Student.StudentName));
         }
     }
 }
