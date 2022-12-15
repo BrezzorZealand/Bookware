@@ -1,5 +1,7 @@
 ﻿using System;
 using Bookware.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace Bookware.DbServices.Interfaces
 {
     public interface IStudentService : IGenericService<Student>
@@ -7,6 +9,7 @@ namespace Bookware.DbServices.Interfaces
         Task<Student?> GetByIdAsync(int? id);        
         Task<Student?> GetDataByIdAsync(int? id);
         void CalculateSemester(Student? student);
+        SelectList GetSelection();
     }
 }
 

@@ -1,4 +1,53 @@
 ﻿@page
 @model Bookware.Pages.Class_Pages.ClassEnrollStudentModel
 @{
+    ViewData["Title"] = "Enroll Student";
 }
+
+<div class="card bg-yellow">
+    <div class="card-header"> 
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        @*@if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }*@
+                        <div class="form-group form-floating mb-3">
+                            <input class="form-control" type="text" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassId)" readonly/>
+                            <label>Class Id</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input class="form-control" type="text" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassName)" readonly />
+                            <label>Class Name</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <select class="form-select" asp-for="Student!.StudentId" asp-items="Model.Options">
+                                <option value="">Select a Student</option>
+                            </select>
+                            <label asp-for="Student!.StudentId">Student</label>
+                            @*<span asp-validation-for="Student!.StudentId" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Enroll" class="btn btn-success"/>
+                            <a class="btn btn-danger" asp-page="AllClasses">Cansel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<input class="form-control" 
+type="number" placeholder="EduId" 
+readonly="" data-val="true" 
+data-val-required="The EduId field is required." 
+id="EduSub_EduId" name="EduSub.EduId" value="1">*@
