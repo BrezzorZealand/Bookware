@@ -25,10 +25,6 @@
                             <input asp-for="EduSub!.EduId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(Edu => Edu.EduSub!.EduId)" readonly/>
                             <label asp-for="EduSub!.EduId">@Html.DisplayNameFor(Edu => Edu.EduSub!.EduId)</label>
                         </div>
-                        @*<div class="form-group form-floating mb-3">
-                            <input asp-for="EduSub!.Edu.EduName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(Edu => Edu.EduSub!.Edu.EduName)" readonly />
-                            <label asp-for="EduSub!.Edu.EduName">@Html.DisplayNameFor(Edu => Edu.EduSub!.Edu.EduName)</label>
-                        </div>*@
                         <div class="form-group form-floating mb-3">
                             <select asp-for="EduSub!.SubjectId" asp-items="Model.Options" class="form-control">
                                 <option value="">Select a Subject</option>                                

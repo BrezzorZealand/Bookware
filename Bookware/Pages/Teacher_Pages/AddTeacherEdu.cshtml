@@ -22,26 +22,13 @@
                             <input asp-for="Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(T => T.Teacher!.Name)" readonly />
                             <label asp-for="Teacher!.Name">@Html.DisplayNameFor(T => T.Teacher!.Name)</label>
                         </div>
-                        
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="EduSub!.EduId" asp-items="Model.EduOptions" class="form-control">
-                                <option value="">Select Education</option>
+                            <select asp-for="EduSub!.EduSubId" asp-items="Model.EduSubOptions" class="form-control">
+                                <option value="">Select Education with Subject</option>
                             </select>
-                            <label asp-for="EduSub!.EduId">Education</label>
-                            <span asp-validation-for="EduSub!.EduId" class="text-danger"></span>
+                            <label asp-for="EduSub!.EduSubId">Education</label>
+                            <span asp-validation-for="EduSub!.EduSubId" class="text-danger"></span>
                         </div>
-                        <div class="form-group mb-3">
-                            <input type="submit" value="Update" name="Update" asp-page-handler="Update" class="btn btn-success" />
-                        </div>
-                        
-                        <div class="form-group form-floating mb-3">
-                            <select asp-for="EduSub!.SubjectId" asp-items="Model.EduSubOptions" class="form-control">
-                                <option value="">Select Subject</option>
-                            </select>
-                            <label asp-for="EduSub!.SubjectId">Subject</label>
-                            <span asp-validation-for="EduSub!.SubjectId" class="text-danger"></span>
-                        </div>
-                        
                         <div class="form-group mb-3">
                             <input type="submit" value="Create" name="Create" asp-page-handler="Create" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
