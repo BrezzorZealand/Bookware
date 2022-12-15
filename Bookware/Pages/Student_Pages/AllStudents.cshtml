@@ -32,7 +32,7 @@
                         <td>@item!.StudentName</td>
                         <td>@item!.Address</td>
                         <td>@Model.GetSemester(item)</td>
-                        <td>@item!.StartDate</td>
+                        <td>@item!.StartDate.ToLongDateString()</td>
                         <td>@item!.ClassId</td>
                         <td>
                             <div class="btn-group">
