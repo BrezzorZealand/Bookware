@@ -34,7 +34,7 @@ namespace Bookware.DbServices.Services
         public int CalculateSemester(Student? student)
         {
             int semester = 0;
-            DateTime Startdate = student!.StartDate;
+            DateTime Startdate = student!.StartDate.Date;
             DateTime Enddate = DateTime.UtcNow;
 
             int months = (Enddate.Year - Startdate.Year)*12 + Enddate.Month-Startdate.Month;

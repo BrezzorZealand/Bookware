@@ -2,7 +2,7 @@
 
 namespace Bookware.Models
 {
-    public partial class BookwareDbContext : DbContext
+    public partial class BookwareDbContextTest : DbContext
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
