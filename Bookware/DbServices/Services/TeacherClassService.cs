@@ -30,12 +30,18 @@ namespace Bookware.DbServices.Services
             IEnumerable<SelectListItem> SelectListItems = from tc in teacherClasses
                                                           select new SelectListItem
                                                           {
-                                                              Text = tc.TeachEdu.EduSub.EduSubDisplayName,
+                                                              Text = tc.TeachEdu.EduSub.Edu.EduName,
                                                               Value = tc.TeachEduId.ToString(),
                                                               Group = selectListGroups.FirstOrDefault(slg => slg.Name == tc.TeachEdu.Teacher.Name)
                                                           };
             return SelectListItems;
         }
 
+        public async Task<bool> Exists(TeacherClass? teacherClass)
+        {
+            return GetAll().Contains(await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(tc => tc.TeachEduId == teacherClass!.TeachEduId && tc.ClassId == teacherClass!.ClassId));
+        }
     }
 }

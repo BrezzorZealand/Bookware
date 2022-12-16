@@ -1,0 +1,48 @@
+﻿@page
+@model Bookware.Pages.Student_Pages.StudentClassEnrollModel
+@{
+    ViewData["Title"] = "Enroll Class";
+}
+
+<div>
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.StudentId" class="form-control" type="number" readonly/>
+                            <label asp-for="Student!.StudentId">Student Id</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.StudentName" class="form-control" type="text" readonly/>
+                            <label asp-for="Student!.StudentName">Student Name</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.Address" class="form-control" type="text" hidden />
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Student!.StartDate" class="form-control" type="date" hidden />
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <select class="form-select" asp-for="Student!.ClassId" asp-items="Model.Options">
+                                <option value="">Select a class</option>
+                                <option value="">No Class</option>
+                            </select>
+                            <label asp-for="Student!.ClassId">Class</label>
+                            <span asp-validation-for="Student!.StudentId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Enroll" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="AllStudents">Cansel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

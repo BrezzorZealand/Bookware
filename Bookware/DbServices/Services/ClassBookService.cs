@@ -33,7 +33,7 @@ namespace Bookware.DbServices.Services
         {
             return GetAll().Contains(await GetAll()
                 .AsNoTracking()
-                .FirstOrDefaultAsync(cb => cb.ClassId == classBook!.ClassId && cb.ClassId == classBook!.BookId));
+                .FirstOrDefaultAsync(cb => cb.ClassId == classBook!.ClassId && cb.BookId == classBook!.BookId));
         }
     }
 }
