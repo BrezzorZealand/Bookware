@@ -1,11 +1,12 @@
 ﻿@page
-@model Bookware.Pages.Class_Pages.ClassAssignTeacherModel
+@model Bookware.Pages.Class_Pages.ClassUnassignTeacherModel
 
 @{
-    ViewData["Title"] = "ClassAssignTeacher";
 }
 
-<div class="card">
+<h1>Unassign Teacher</h1>
+
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -15,22 +16,21 @@
                 <div class="col-md-4">
                     <form method="post">
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Class!.ClassId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassId)" readonly />
-                            <label asp-for="Class!.ClassId">@Html.DisplayNameFor(c => c.Class!.ClassId)</label>
+                            <input asp-for="TeacherClass!.ClassId" class="form-control" type="number" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassId)" readonly />
+                            <label asp-for="Class!.ClassId">Class Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Class!.ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassName)" readonly />
-                            <label asp-for="Class!.ClassName">@Html.DisplayNameFor(c => c.Class!.ClassName)</label>
+                            <label asp-for="Class!.ClassName">Name</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="TeacherClass.TeachEduId" asp-items="Model.TeacherEduOptions" class="form-control">
-                                <option value="">Select Teacher with Education and Subject</option>
+                            <select class="form-select" asp-for="TeacherClass.TeachEduId" asp-items="Model.Options">
+                                <option value="">Select</option>
                             </select>
-                            <label asp-for="TeacherClass.TeachEduId">Education</label>
-                            <span asp-validation-for="TeacherClass.TeachEduId" class="text-danger"></span>
+                            <label> Teacher with EduSub </label>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Create" name="Create" asp-page-handler="Create" class="btn btn-success" />
+                            <input type="submit" value="Remove" class="btn btn-success" />
                             <a class="btn btn-danger" asp-page="/Class_Pages/AllClasses">Cancel</a>
                         </div>
                     </form>

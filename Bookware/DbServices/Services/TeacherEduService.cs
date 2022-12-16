@@ -33,11 +33,23 @@ namespace Bookware.DbServices.Services
             return new SelectList(subjects, nameof(Subject.SubjectId), nameof(Subject.SubjectName));
         }
 
-        //public async Task<bool> Exists(EduSub? eduSub)
-        //{
-        //    return GetAll().Contains(await GetAll()
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(es => es.EduId == eduSub!.EduId && es.SubjectId == eduSub!.SubjectId));
-        //}
+        public IEnumerable<SelectListItem> GetAllSelection()
+        {
+            IEnumerable<TeacherEdu> teacherEdus = GetAll().Include(t => t.Teacher).Include(es => es.EduSub).ThenInclude(s => s.Subject).Include(es => es.EduSub).ThenInclude(e => e.Edu);
+            List<SelectListGroup> selectListGroups = new List<SelectListGroup>();
+            foreach (var teacherEdu in teacherEdus)
+            {
+                SelectListGroup selectListGroup = new SelectListGroup() { Name = teacherEdu.Teacher.Name };
+                selectListGroups.Add(selectListGroup);
+            }
+            IEnumerable<SelectListItem> SelectListItems = from te in teacherEdus
+                                                          select new SelectListItem
+                                                          {
+                                                              Text = te.EduSub.EduSubDisplayName,
+                                                              Value = te.TeachEduId.ToString(),
+                                                              Group = selectListGroups.FirstOrDefault(slg => slg.Name == te.Teacher.Name)
+                                                          };
+            return SelectListItems;
+        }
     }
 }
