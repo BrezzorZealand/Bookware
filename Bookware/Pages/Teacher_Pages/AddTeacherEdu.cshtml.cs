@@ -41,13 +41,11 @@ namespace Bookware.Pages.Education_Pages
             EduSubOptions = EduSubService.GetAllSelection();
             // Get the Teacher.
             Teacher = await TeacherService.GetByIdAsync(Tid);
-<<<<<<< HEAD
             // Get List of Educations.
             //EduOptions = EduService.GetSelection();
             // get the Starting list of Edusubs.
             EduSubOptions = EduSubService.GetSelection(0);
-=======
->>>>>>> ff92aa1ceab1184030912351d770b0ae7771e05e
+
             return Page();
         }
 
@@ -63,15 +61,5 @@ namespace Bookware.Pages.Education_Pages
             await TeacherEduService.Create(TeacherEdu);
             return RedirectToPage("AllTeachers");
         }
-<<<<<<< HEAD
-        
-        public async void OnPostUpdatePageAsync()
-        {
-            Teacher = await TeacherService.GetByIdAsync(teacherId);
-            //EduOptions = EduService.GetSelection();
-            EduSubOptions = EduSubService.GetSelection(EduSub!.EduId);
-        }
-=======
->>>>>>> ff92aa1ceab1184030912351d770b0ae7771e05e
     }
 }
