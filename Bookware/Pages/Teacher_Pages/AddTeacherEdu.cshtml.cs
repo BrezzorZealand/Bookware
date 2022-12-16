@@ -58,7 +58,7 @@ namespace Bookware.Pages.Education_Pages
         public async void OnPostUpdatePageAsync()
         {
             Teacher = await TeacherService.GetByIdAsync(teacherId);
-            EduOptions = EduService.GetSelection();
+            //EduOptions = EduService.GetSelection();
             EduSubOptions = EduSubService.GetSelection(EduSub!.EduId);
         }
     }
