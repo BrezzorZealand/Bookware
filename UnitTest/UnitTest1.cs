@@ -40,7 +40,7 @@ namespace UnitTest
             };
 
             // Act
-            sut.Create(mockEducation, mockSubject);
+            //sut.Create(mockEducation, mockSubject);
 
             // Assert
             Assert.IsNotNull(mockEducation.EduSubs, "EduSubs is null");
@@ -108,12 +108,9 @@ namespace UnitTest
             //}
         }
         [TestMethod]
-        public async Task TestEditSubjectAsync()
+        public void TestEditSubjectAsync()
         {
-            BookwareDbContext context;
-            DbContextOptionsBuilder<BookwareDbContext> Builder = new DbContextOptionsBuilder<BookwareDbContext>()
-                .UseInMemoryDatabase(databaseName: "BookwareDb");
-            context = new BookwareDbContext(Builder.Options);
+            BookwareDbContext context = GetDBcontext();
             SubjectService sut4 = new(context);
 
         }
