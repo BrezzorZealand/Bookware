@@ -1,5 +1,6 @@
 ﻿using Bookware.DbServices.Interfaces;
 using Bookware.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookware.DbServices.Services
 {
@@ -9,7 +10,11 @@ namespace Bookware.DbServices.Services
         {
         }
 
-
-        
+        public async Task<bool> Exists(TeacherClass? teacherClass)
+        {
+            return GetAll().Contains(await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(tc => tc.TeachEduId == teacherClass!.TeachEduId && tc.ClassId == teacherClass!.ClassId));
+        }
     }
 }

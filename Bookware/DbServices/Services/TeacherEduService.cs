@@ -32,5 +32,12 @@ namespace Bookware.DbServices.Services
 
             return new SelectList(subjects, nameof(Subject.SubjectId), nameof(Subject.SubjectName));
         }
+
+        //public async Task<bool> Exists(EduSub? eduSub)
+        //{
+        //    return GetAll().Contains(await GetAll()
+        //        .AsNoTracking()
+        //        .FirstOrDefaultAsync(es => es.EduId == eduSub!.EduId && es.SubjectId == eduSub!.SubjectId));
+        //}
     }
 }
