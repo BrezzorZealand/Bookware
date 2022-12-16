@@ -12,25 +12,21 @@
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.StudentName)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.Address)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.Address)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.Semester)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.Semester)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.StartDate)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.StartDate)</dd>
+        <dd class="col-sm-10">@Model.Student!.StartDate.ToLongDateString()</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.ClassId)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.ClassId)</dd>
-        
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Books?</th>
-                            <th>Classes</th>
-                        </tr>
-                    </thead>
-                   
-                </table>
-            </div>
-        </dd>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.ClassId)</dd>               
     </dl>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Books?</th>
+                    <th>Classes</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
 </div>
 

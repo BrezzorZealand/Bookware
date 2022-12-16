@@ -28,5 +28,12 @@ namespace Bookware.DbServices.Services
             }
             return new SelectList(books, nameof(Book.BookId), nameof(Book.Title));
         }
+
+        public async Task<bool> Exists(ClassBook? classBook)
+        {
+            return GetAll().Contains(await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(cb => cb.ClassId == classBook!.ClassId && cb.ClassId == classBook!.BookId));
+        }
     }
 }

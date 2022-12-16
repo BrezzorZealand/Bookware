@@ -11,49 +11,59 @@ namespace Bookware.Pages.Education_Pages
 {
     public class AddTeacherEduModel : PageModel
     {
-        private readonly IEducationService EduService;
+
         private readonly ITeacherService TeacherService;
         private readonly IEduSubService EduSubService;
         private readonly ITeacherEduService TeacherEduService;
-        public SelectList? EduOptions { get; set; }
-        public SelectList? EduSubOptions { get; set; }
+        
+        public IEnumerable<SelectListItem>? EduSubOptions { get; set; }
         [BindProperty]
         public Teacher? Teacher { get; set; }
         [BindProperty]
-        public EduSub? EduSub { get; set; }
-        public TeacherEdu? TeacherEdu { get; set; }
-        private int teacherId { get; set; }
+        public EduSub? EduSub { get; set; } = new EduSub();
+        public TeacherEdu? TeacherEdu { get; set; } = new TeacherEdu();
 
-        public AddTeacherEduModel(IEducationService eduService, ITeacherService teacherService, IEduSubService eduSubService, ITeacherEduService teacherEduService)
+        public AddTeacherEduModel(ITeacherService teacherService, IEduSubService eduSubService, ITeacherEduService teacherEduService)
         {
-            EduService = eduService;
             TeacherService = teacherService;
             EduSubService = eduSubService;
             TeacherEduService = teacherEduService;
         }
 
         
-        public async Task<IActionResult> OnGetAsync(int Tid)
+        public async  Task<IActionResult> OnGetAsync(int Tid)
         {
+            if(Tid <= 0)
+            {
+                return RedirectToPage("AllTeachers");
+            }
+            // Get list of Educations and Subjects
+            EduSubOptions = EduSubService.GetAllSelection();
             // Get the Teacher.
-            teacherId = Tid;
             Teacher = await TeacherService.GetByIdAsync(Tid);
+<<<<<<< HEAD
             // Get List of Educations.
             //EduOptions = EduService.GetSelection();
             // get the Starting list of Edusubs.
             EduSubOptions = EduSubService.GetSelection(0);
+=======
+>>>>>>> ff92aa1ceab1184030912351d770b0ae7771e05e
             return Page();
         }
 
         public async Task<IActionResult> OnPostCreateAsync()
         {
-            int Eid = EduSub!.EduId;
-            int Sid = EduSub!.SubjectId;
-            EduSub = await EduSubService.GetByIdAsync(Eid, Sid);
+            TeacherEdu!.TeacherId = Teacher!.TeacherId;
             TeacherEdu!.EduSubId = EduSub!.EduSubId;
+            if (!ModelState.IsValid)
+            {
+                EduSubOptions = EduSubService.GetAllSelection();
+                return Page();
+            }
             await TeacherEduService.Create(TeacherEdu);
             return RedirectToPage("AllTeachers");
         }
+<<<<<<< HEAD
         
         public async void OnPostUpdatePageAsync()
         {
@@ -61,5 +71,7 @@ namespace Bookware.Pages.Education_Pages
             //EduOptions = EduService.GetSelection();
             EduSubOptions = EduSubService.GetSelection(EduSub!.EduId);
         }
+=======
+>>>>>>> ff92aa1ceab1184030912351d770b0ae7771e05e
     }
 }

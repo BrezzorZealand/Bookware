@@ -44,5 +44,10 @@ namespace Bookware.DbServices.Services
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.ClassId == id);
         }
+
+        public SelectList GetSelection()
+        {
+            return new SelectList(GetAll(), nameof(Class.ClassId), nameof(Class.ClassName));
+        }
     }
 }

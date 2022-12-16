@@ -39,6 +39,11 @@ namespace Bookware.Pages.Class_Pages
                 return Page();
             }
 
+            if (!await classBookService.Exists(ClassBook))
+            {
+                return RedirectToPage("AllClasses");
+            }
+
             await classBookService.Create(ClassBook);
             return RedirectToPage("AllClasses");
         }

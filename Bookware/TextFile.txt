@@ -1,0 +1,21 @@
+﻿            BookwareDbContext context = new();
+            StudentService sut = new(context);
+
+            // Arrange
+            // i want a test student
+            Student student = new()
+            {
+                StudentName = "Test Student",
+                Address = "Test Address",
+                StudentId = 1,
+                StartDate = DateTime.UtcNow.AddMonths(2)
+            };
+
+            // Act
+            // i want to see the semester of the test student
+            int semester = sut.CalculateSemester2(student);
+
+            // Assert
+            // i want to see if the semester is 1
+            Assert.AreEqual(1, semester, $"The semester is not 1, it is {semester}");
+            Assert.AreNotEqual(2, semester, $"The semester is not 2, it is {semester}");

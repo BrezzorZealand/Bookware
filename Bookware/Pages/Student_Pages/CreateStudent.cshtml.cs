@@ -6,6 +6,7 @@ using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 
 namespace Bookware.Pages.Student_Pages
@@ -13,18 +14,23 @@ namespace Bookware.Pages.Student_Pages
     public class CreateStudentModel : PageModel
     {
 
-        private readonly IStudentService service;
+        private readonly IStudentService studentService;
+        private readonly IClassService classService;
 
-        public CreateStudentModel(IStudentService service)
+        public CreateStudentModel(IStudentService studentService, IClassService classService)
         {
-            this.service = service;
+            this.studentService = studentService;
+            this.classService = classService;
         }
+
+        public SelectList? Options { get; set; }
 
         [BindProperty]
         public Student? Student { get; set; }
 
         public IActionResult OnGetAsync()
         {
+            Options = classService.GetSelection();
             return Page();
         }
 
@@ -32,10 +38,11 @@ namespace Bookware.Pages.Student_Pages
         {
             if (!ModelState.IsValid)
             {
+                Options = classService.GetSelection();
                 return Page();
             }
 
-            await service.Create(Student);
+            await studentService.Create(Student);
 
             return RedirectToPage("AllStudents");
         }
