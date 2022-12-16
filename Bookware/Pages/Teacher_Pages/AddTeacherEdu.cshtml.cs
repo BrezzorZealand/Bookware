@@ -40,6 +40,11 @@ namespace Bookware.Pages.Education_Pages
             EduSubOptions = EduSubService.GetAllSelection();
             // Get the Teacher.
             Teacher = await TeacherService.GetByIdAsync(Tid);
+            // Get List of Educations.
+            //EduOptions = EduService.GetSelection();
+            // get the Starting list of Edusubs.
+            EduSubOptions = EduSubService.GetSelection(0);
+
             return Page();
         }
 
