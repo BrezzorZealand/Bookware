@@ -34,7 +34,6 @@ namespace Bookware.DbServices.Services
         public IEnumerable<SelectListItem> GetAllSelection()
         {
             IEnumerable<EduSub> eduSubs = GetAll().Include(es => es.Subject).Include(es => es.Edu);
-            // i want a selectlistgroup of educations with a selectlist of subjects
             List<SelectListGroup> selectListGroups = new List<SelectListGroup>();
             foreach (var eduSub in eduSubs)
             {
@@ -49,6 +48,13 @@ namespace Bookware.DbServices.Services
                                                    Group = selectListGroups.FirstOrDefault(slg => slg.Name == es.Edu.EduName)
                                                };
             return SelectListItems;
+        }
+
+        public async Task<bool> Exists(EduSub? eduSub)
+        {
+            return GetAll().Contains(await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(es => es.EduId == eduSub!.EduId && es.SubjectId == eduSub!.SubjectId));
         }
     }
 }

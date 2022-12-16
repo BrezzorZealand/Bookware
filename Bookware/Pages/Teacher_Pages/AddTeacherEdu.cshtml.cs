@@ -30,8 +30,7 @@ namespace Bookware.Pages.Education_Pages
             TeacherEduService = teacherEduService;
         }
 
-        
-        public async  Task<IActionResult> OnGetAsync(int Tid)
+        public async Task<IActionResult> OnGetAsync(int Tid)
         {
             if(Tid <= 0)
             {
@@ -41,18 +40,24 @@ namespace Bookware.Pages.Education_Pages
             EduSubOptions = EduSubService.GetAllSelection();
             // Get the Teacher.
             Teacher = await TeacherService.GetByIdAsync(Tid);
+            // Get List of Educations.
+            //EduOptions = EduService.GetSelection();
+            // get the Starting list of Edusubs.
+            EduSubOptions = EduSubService.GetSelection(0);
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostCreateAsync()
         {
-            TeacherEdu!.TeacherId = Teacher!.TeacherId;
-            TeacherEdu!.EduSubId = EduSub!.EduSubId;
             if (!ModelState.IsValid)
             {
                 EduSubOptions = EduSubService.GetAllSelection();
                 return Page();
             }
+            TeacherEdu!.TeacherId = Teacher!.TeacherId;
+            TeacherEdu!.EduSubId = EduSub!.EduSubId;
+            
             await TeacherEduService.Create(TeacherEdu);
             return RedirectToPage("AllTeachers");
         }
