@@ -23,6 +23,9 @@ namespace Bookware.DbServices.Services
             return await GetAll()
                 .Include(s => s.EduSubs)
                 .ThenInclude(e => e.Edu)
+                .Include(s => s.EduSubs)
+                .ThenInclude(es => es.TeacherEdus)
+                .ThenInclude(te => te.Teacher)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s=>s.SubjectId == id);
         }

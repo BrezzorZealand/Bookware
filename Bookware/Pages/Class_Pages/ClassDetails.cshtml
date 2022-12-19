@@ -18,38 +18,44 @@
                 <tr>
                     <th scope="col">Educations/Subjects</th>
                     <th scope="col" class="col-1">
-                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Class!.ClassId-education" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                        @if (Model.Class!.TeacherClasses is not null && Model.Class.TeacherClasses.Count > 0)
+                        {
+                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Class!.ClassId-education" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                        }
                     </th>
                 </tr>
             </thead>
             <tbody class="table-yellow">
-                <tr class="collapse tr-@Model.Class.ClassId-education">
-                    <td colspan="3">
-                        <div class="collapse tr-@Model.Class.ClassId-education">
-                            <table class="table table-hover">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" class="col-1">Id</th>
-                                        <th scope="col">Education</th>
-                                        <th scope="col">Subject</th>
-                                        <th scope="col">Teacher</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-yellow">
-                                    @foreach (var teacherClass in Model.Class.TeacherClasses!)
-                                    {
+                @if (Model.Class!.TeacherClasses is not null && Model.Class.TeacherClasses.Count > 0)
+                {
+                    <tr class="collapse tr-@Model.Class.ClassId-education">
+                        <td colspan="3">
+                            <div class="collapse tr-@Model.Class.ClassId-education">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
                                         <tr>
-                                            <td>@teacherClass.TeachEdu.EduSub.Edu.EduId</td>
-                                            <td>@teacherClass.TeachEdu.EduSub.Edu.EduName</td>
-                                            <td>@teacherClass.TeachEdu.EduSub.Subject.SubjectName</td>
-                                            <td>@teacherClass.TeachEdu.Teacher.Name</td>
+                                            <th scope="col" class="col-1">Id</th>
+                                            <th scope="col">Education</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col">Teacher</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
+                                    </thead>
+                                    <tbody class="table-yellow">
+                                        @foreach (var teacherClass in Model.Class.TeacherClasses!)
+                                        {
+                                            <tr>
+                                                <td>@teacherClass.TeachEdu.EduSub.Edu.EduId</td>
+                                                <td>@teacherClass.TeachEdu.EduSub.Edu.EduName</td>
+                                                <td>@teacherClass.TeachEdu.EduSub.Subject.SubjectName</td>
+                                                <td>@teacherClass.TeachEdu.Teacher.Name</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>                    
+                }
             </tbody>
         </table>
         <table class="table table-hover table-bordered text-center">
@@ -106,29 +112,32 @@
                 </tr>
             </thead>
             <tbody class="table-yellow">
-                <tr class="collapse tr-@Model.Class.ClassId-books">
-                    <td colspan="2">
-                        <div class="collapse tr-@Model.Class.ClassId-books">
-                            <table class="table table-hover">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" class="col-1">Id</th>
-                                        <th scope="col">Title</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-yellow">
-                                    @foreach (var cb in Model.Class.ClassBooks!)
-                                    {
+                @if (Model.Class.ClassBooks! != null && Model.Class.ClassBooks.Count > 0)
+                {
+                    <tr class="collapse tr-@Model.Class.ClassId-books">
+                        <td colspan="2">
+                            <div class="collapse tr-@Model.Class.ClassId-books">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
                                         <tr>
-                                            <td>@cb.Book.BookId</td>
-                                            <td>@cb.Book.Title</td>
+                                            <th scope="col" class="col-1">Id</th>
+                                            <th scope="col">Title</th>
                                         </tr>
-                                    }                                        
-                                </tbody>
-                            </table>
-                        </div>
-                    </td>
-                </tr>                    
+                                    </thead>
+                                    <tbody class="table-yellow">
+                                        @foreach (var cb in Model.Class.ClassBooks!)
+                                        {
+                                            <tr>
+                                                <td>@cb.Book.BookId</td>
+                                                <td>@cb.Book.Title</td>
+                                            </tr>
+                                        }                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>                                        
+                }
             </tbody>
         </table>              
     </div>
