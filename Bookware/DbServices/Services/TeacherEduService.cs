@@ -45,7 +45,7 @@ namespace Bookware.DbServices.Services
             IEnumerable<SelectListItem> SelectListItems = from te in teacherEdus
                                                           select new SelectListItem
                                                           {
-                                                              Text = te.EduSub.EduSubDisplayName,
+                                                              Text = te.EduSub.Edu.EduName + " - " + te.EduSub.Subject.SubjectName,
                                                               Value = te.TeachEduId.ToString(),
                                                               Group = selectListGroups.FirstOrDefault(slg => slg.Name == te.Teacher.Name)
                                                           };

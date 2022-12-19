@@ -29,25 +29,24 @@ namespace Bookware.Pages.Education_Pages
             this.teacherEduService = teacherEduService;
         }
 
-        [BindProperty(SupportsGet = true)]
-        public TeacherEdu? TeacherEdu { get; set; }
+        [BindProperty]
+        public TeacherEdu? TeacherEdu { get; set; } = new TeacherEdu();
+        [BindProperty]
         public Teacher? Teacher { get; set; }
         
         public async Task<IActionResult> OnGetAsync(int Tid)
         {
             Teacher = await teacherService.GetByIdAsync(Tid!);
-            TeacherEdu!.TeacherId = Tid;
             Options = teacherEduService.GetSelection(Tid);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
-
+            TeacherEdu!.TeacherId = Teacher!.TeacherId;
             if (!ModelState.IsValid)
             {
-                Options = eduSubService.GetSelection(TeacherEdu!.TeacherId);
+                Options = teacherEduService.GetSelection(TeacherEdu!.TeacherId);
                 return Page();
             }
 

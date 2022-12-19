@@ -15,7 +15,7 @@ namespace Bookware.Pages.Education_Pages
         private readonly ITeacherService TeacherService;
         private readonly IEduSubService EduSubService;
         private readonly ITeacherEduService TeacherEduService;
-        
+
         public IEnumerable<SelectListItem>? EduSubOptions { get; set; }
         [BindProperty]
         public Teacher? Teacher { get; set; }
@@ -32,7 +32,7 @@ namespace Bookware.Pages.Education_Pages
 
         public async Task<IActionResult> OnGetAsync(int Tid)
         {
-            if(Tid <= 0)
+            if (Tid <= 0)
             {
                 return RedirectToPage("AllTeachers");
             }
@@ -40,11 +40,6 @@ namespace Bookware.Pages.Education_Pages
             EduSubOptions = EduSubService.GetAllSelection();
             // Get the Teacher.
             Teacher = await TeacherService.GetByIdAsync(Tid);
-            // Get List of Educations.
-            //EduOptions = EduService.GetSelection();
-            // get the Starting list of Edusubs.
-            EduSubOptions = EduSubService.GetSelection(0);
-
             return Page();
         }
 
@@ -57,7 +52,7 @@ namespace Bookware.Pages.Education_Pages
             }
             TeacherEdu!.TeacherId = Teacher!.TeacherId;
             TeacherEdu!.EduSubId = EduSub!.EduSubId;
-            
+
             await TeacherEduService.Create(TeacherEdu);
             return RedirectToPage("AllTeachers");
         }

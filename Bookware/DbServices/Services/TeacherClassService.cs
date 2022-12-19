@@ -30,7 +30,7 @@ namespace Bookware.DbServices.Services
             IEnumerable<SelectListItem> SelectListItems = from tc in teacherClasses
                                                           select new SelectListItem
                                                           {
-                                                              Text = tc.TeachEdu.EduSub.EduSubDisplayName,
+                                                              Text = tc.TeachEdu.EduSub.Edu.EduName + " - " + tc.TeachEdu.EduSub.Subject.SubjectName,
                                                               Value = tc.TeachEduId.ToString(),
                                                               Group = selectListGroups.FirstOrDefault(slg => slg.Name == tc.TeachEdu.Teacher.Name)
                                                           };

@@ -33,12 +33,5 @@ namespace Bookware.Models
         [InverseProperty("EduSub")]
         public virtual ICollection<TeacherEdu> TeacherEdus { get; set; }
 
-        public string EduSubDisplayName
-        {
-            get
-            {
-                return Edu.EduName + " - " + Subject.SubjectName;
-            }
-        }
     }
 }
