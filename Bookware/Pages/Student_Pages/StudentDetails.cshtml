@@ -18,45 +18,52 @@
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.ClassId)</dd>               
     </dl>
     <div class="table-responsive">
-        <table class="table table-hover table-bordered text-center">
+        <table class="table table-hover table-bordered text-center caption-top">
+            <caption>List of Books</caption>
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Books</th>
                     <th scope="col" class="col-1">
-                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Student!.ClassId" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                        @if (Model.Student.Class.ClassBooks is not null && Model.Student.Class.ClassBooks.Count > 0)
+                        {
+                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Student!.ClassId" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>                            
+                        }
                     </th>
                 </tr>
             </thead>
             <tbody class="table-yellow">
-                <tr class="collapse tr-@Model.Student!.ClassId">
-                    <td colspan="2">
-                        <div class="collapse tr-@Model.Student!.ClassId">
-                            <table class="table table-hover">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" class="col-1">Id</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Author</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">Isbn</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-yellow">
-                                    @foreach (var classBook in Model.Student.Class.ClassBooks)
-                                    {
+                @if (Model.Student.Class.ClassBooks is not null && Model.Student.Class.ClassBooks.Count > 0)
+                {
+                    <tr class="collapse tr-@Model.Student!.ClassId">
+                        <td colspan="2">
+                            <div class="collapse tr-@Model.Student!.ClassId">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
                                         <tr>
-                                            <td>@classBook.Book!.BookId</td>
-                                            <td>@classBook.Book!.Title</td>
-                                            <td>@classBook.Book!.Author</td>
-                                            <td>@classBook.Book!.Year</td>
-                                            <td>@classBook.Book!.Isbn</td>
+                                            <th scope="col" class="col-1">Id</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Author</th>
+                                            <th scope="col">Year</th>
+                                            <th scope="col">Isbn</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
+                                    </thead>
+                                    <tbody class="table-yellow">
+                                        @foreach (var classBook in Model.Student.Class.ClassBooks!)
+                                        {
+                                            <tr>
+                                                <td>@classBook.Book!.BookId</td>
+                                                <td>@classBook.Book!.Title</td>
+                                                <td>@classBook.Book!.Author</td>
+                                                <td>@classBook.Book!.Year</td>
+                                                <td>@classBook.Book!.Isbn</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>                    
+                }
             </tbody>
         </table>
     </div>

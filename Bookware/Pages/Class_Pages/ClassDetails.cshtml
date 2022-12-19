@@ -16,31 +16,33 @@
         <table class="table table-hover table-bordered text-center">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">Subjects</th>
+                    <th scope="col">Educations/Subjects</th>
                     <th scope="col" class="col-1">
-                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Class!.ClassId-subjects" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Class!.ClassId-education" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
                     </th>
                 </tr>
             </thead>
             <tbody class="table-yellow">
-                <tr class="collapse tr-@Model.Class.ClassId-subjects">
+                <tr class="collapse tr-@Model.Class.ClassId-education">
                     <td colspan="3">
-                        <div class="collapse tr-@Model.Class.ClassId-subjects">
+                        <div class="collapse tr-@Model.Class.ClassId-education">
                             <table class="table table-hover">
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col" class="col-1">Id</th>
-                                        <th scope="col">Subject Name</th>
+                                        <th scope="col">Education</th>
+                                        <th scope="col">Subject</th>
                                         <th scope="col">Teacher</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-yellow">
-                                    @foreach (var sub in Model.Class.TeacherClasses!)
+                                    @foreach (var teacherClass in Model.Class.TeacherClasses!)
                                     {
                                         <tr>
-                                            <td>@sub.TeachEdu.EduSub.Subject.SubjectId</td>
-                                            <td>@sub.TeachEdu.EduSub.Subject.SubjectName</td>
-                                            <td>@sub.TeachEdu.Teacher.Name</td>
+                                            <td>@teacherClass.TeachEdu.EduSub.Edu.EduId</td>
+                                            <td>@teacherClass.TeachEdu.EduSub.Edu.EduName</td>
+                                            <td>@teacherClass.TeachEdu.EduSub.Subject.SubjectName</td>
+                                            <td>@teacherClass.TeachEdu.Teacher.Name</td>
                                         </tr>
                                     }
                                 </tbody>

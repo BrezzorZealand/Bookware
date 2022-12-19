@@ -20,7 +20,7 @@ namespace Bookware.Pages.Class_Pages
         [BindProperty]
         public Class? Class { get; set; }        
         [BindProperty]
-        public TeacherClass TeacherClass { get; set; }
+        public TeacherClass? TeacherClass { get; set; }
 
         public ClassAssignTeacherModel(ITeacherClassService teacherClassService, ITeacherEduService teacherEduService, IClassService classService)
         {
@@ -48,7 +48,7 @@ namespace Bookware.Pages.Class_Pages
             {
                 return Page();
             }
-            TeacherClass.ClassId = Class!.ClassId;
+            TeacherClass!.ClassId = Class!.ClassId;
 
             await TeacherClassService.Create(TeacherClass);
 

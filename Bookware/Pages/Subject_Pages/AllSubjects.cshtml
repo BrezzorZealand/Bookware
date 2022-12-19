@@ -23,8 +23,8 @@
                 @foreach(var item in Model.Subjects)
                 {
                     <tr>
-                        <td>@item.SubjectId</td>
-                        <td>@item.SubjectName</td>
+                        <td>@item!.SubjectId</td>
+                        <td>@item!.SubjectName</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
