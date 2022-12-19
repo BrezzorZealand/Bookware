@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Bookware.Pages.Student_Pages
 {
     public class StudentDetailsModel : PageModel
-    {
-         
-            private readonly IStudentService service;
-            public StudentDetailsModel(IStudentService service)
-            {
-                this.service = service;
-            }
-            public Student? Student { get; set; }
-    
+    {         
+        private readonly IStudentService service;
 
+        public StudentDetailsModel(IStudentService service)
+        {
+            this.service = service;
+        }
+
+        public Student? Student { get; set; }
+    
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Student = await service.GetDataByIdAsync(id);

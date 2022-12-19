@@ -37,7 +37,7 @@ namespace Bookware.Models
         {
             get
             {
-                return Edu.EduName + " " + Subject.SubjectName;
+                return Edu.EduName + " - " + Subject.SubjectName;
             }
         }
     }
