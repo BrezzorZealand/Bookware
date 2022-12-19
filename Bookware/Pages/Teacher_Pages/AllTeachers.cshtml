@@ -1,7 +1,7 @@
 ﻿@page
 @model Bookware.Pages.Teacher_Pages.AllTeachersModel
 @{
-    ViewData ["Title"] = "Teachers";
+    ViewData ["Title"] = "All Teachers";
 }
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
@@ -45,39 +45,11 @@
                                 </ul>
                             </div>
                         </td>
-
-                        @*<td class="justify-content-between">
-                            <a asp-page="/Teacher_Pages/EditTeachers" asp-route-id="@item.TeacherId" class="btn btn-primary">Edit</a>
-                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.TeacherId" onclick="return confirm('Are you sure you want to delete?')">
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>*@
                     </tr>
                 }
             }
         </tbody>
     </table>
-
-    @*<div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Title Example</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Testing 1 </p>
-                    <p>Testing 2 </p>
-                    <p>Testing 3 </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
 </div>
 
 

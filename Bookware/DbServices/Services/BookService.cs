@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Bookware.Services
 {
     public class BookService : GenericService<Book>, IBookService
-    {       
+    {     
         public BookService(BookwareDbContext context) : base(context)
         {
         }        
