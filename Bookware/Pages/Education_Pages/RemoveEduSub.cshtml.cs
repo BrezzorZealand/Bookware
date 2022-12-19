@@ -24,7 +24,7 @@ namespace Bookware.Pages.Education_Pages
         public SelectList? Options { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public EduSub? EduSub { get; set; }
+        public EduSub? EduSub { get; set; } = new EduSub();
 
         public IActionResult OnGetAsync(int Eid)
         {

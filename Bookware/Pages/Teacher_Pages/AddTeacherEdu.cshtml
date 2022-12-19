@@ -2,10 +2,11 @@
 @model Bookware.Pages.Education_Pages.AddTeacherEduModel
 @using Bookware.Models
 @{
+    ViewData["Title"] = "Add Subject";
 }
 
             
-<div class="card">
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -30,8 +31,8 @@
                             <span asp-validation-for="EduSub!.EduSubId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Create" name="Create" asp-page-handler="Create" class="btn btn-success" />
-                            <a class="btn btn-danger" asp-page="/Education_Pages/AllEducations">Cancel</a>
+                            <input type="submit" value="Create" name="Add" asp-page-handler="Create" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="AllTeachers">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -1,9 +1,8 @@
 ﻿@page
 @model Bookware.Pages.Education_Pages.RemoveTeacherEduModel
 @{
+    ViewData["Title"] = "Remove Subject";
 }
-
-<h1>RemoveEduSub</h1>
 
 <div class="card bg-yellow">
     <div class="card-header">
@@ -30,7 +29,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Remove" class="btn btn-success" />
-                            <a class="btn btn-danger" asp-page="/Teacher_Pages/AllTeachers">Cancel</a>
+                            <a class="btn btn-danger" asp-page="AllTeachers">Cancel</a>
                         </div>
                     </form>
                 </div>

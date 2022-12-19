@@ -32,9 +32,9 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-page="TeacherDetails" asp-route-Tid="@item.TeacherId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="AddTeacherEdu" asp-route-Tid="@item.TeacherId" class="dropdown-item"><i class="bi bi-plus"></i> Add Subject</a></li>
                                     <li><a asp-page="RemoveTeacherEdu" asp-route-Tid="@item.TeacherId" class="dropdown-item"><i class="bi bi-dash"></i> Remove Subject</a></li>
+                                    <li><a asp-page="TeacherDetails" asp-route-Tid="@item.TeacherId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
                                     <li><a asp-page="EditTeachers" asp-route-id="@item.TeacherId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
