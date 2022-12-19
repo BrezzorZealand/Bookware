@@ -28,13 +28,13 @@ namespace Bookware.Pages.Class_Pages
         [BindProperty]
         public Class? Class { get; set; }
         [BindProperty(SupportsGet = true)]
-        public TeacherClass TeacherClass { get; set; }
+        public TeacherClass? TeacherClass { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync(int Cid)
         {
             Class = await ClassService.GetClassByIdAsync(Cid);
-            TeacherClass.ClassId = Cid;
+            TeacherClass!.ClassId = Cid;
             Options = TeacherClassService.GetSelection(Cid);
 
             return Page();
@@ -44,10 +44,10 @@ namespace Bookware.Pages.Class_Pages
         {
             if (!ModelState.IsValid)
             {
-                Options = TeacherClassService.GetSelection(TeacherClass.ClassId);
+                Options = TeacherClassService.GetSelection(TeacherClass!.ClassId);
             }
 
-            await TeacherClassService.Delete(await TeacherClassService.GetByIdAsync(TeacherClass.TeachEduId, TeacherClass.ClassId));
+            await TeacherClassService.Delete(await TeacherClassService.GetByIdAsync(TeacherClass!.TeachEduId, TeacherClass.ClassId));
             return RedirectToPage("AllClasses");
         }
     }

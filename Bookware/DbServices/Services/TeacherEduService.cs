@@ -51,5 +51,12 @@ namespace Bookware.DbServices.Services
                                                           };
             return SelectListItems;
         }
+
+        public async Task<bool> Exists(TeacherEdu? teacherEdu)
+        {
+            return GetAll().Contains(await GetAll()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(te => te.TeacherId == teacherEdu!.TeacherId && te.EduSubId == teacherEdu.EduSubId));
+        }
     }
 }

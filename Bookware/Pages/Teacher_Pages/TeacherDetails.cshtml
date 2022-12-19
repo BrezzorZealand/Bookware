@@ -12,68 +12,95 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Teacher!.Name)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(Model => Model.Teacher!.Name)</dd>
     </dl>
-    @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher.TeacherEdus.Count > 0)
-    {
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center caption-top">
-                <caption>List of Teacher Classes</caption>
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Classes</th>
-                    </tr>
-                </thead>
-                <tbody class="table-yellow">
-                    @foreach (var teacherEdu in Model.Teacher!.TeacherEdus)
-                    {
-                        foreach (var teacherClass in teacherEdu.TeacherClasses)
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered text-center caption-top">
+            <caption>List of Education/Subjects</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Education/Subjects</th>
+                    <th scope="col" class="col-1">
+                        @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher!.TeacherEdus.Count > 0)
                         {
-                            <tr>
-                                <td>@teacherClass.Class!.ClassName</td>
-                            </tr>
+                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Teacher.TeacherId-education" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
                         }
-                    }
-                </tbody>
-            </table>
-            <table class="table table-bordered table-hover text-center caption-top">
-                <caption>List of Teacher Educations</caption>
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Educations</th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-yellow">
+                @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher!.TeacherEdus.Count > 0)
+                {
+                    <tr class="collapse tr-@Model.Teacher.TeacherId-education">
+                        <td colspan="2">
+                            <div class="collapse tr-@Model.Teacher.TeacherId-education">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">EduSub Id</th>
+                                            <th scope="col">Education</th>
+                                            <th scope="col">Subject</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-yellow">
+                                        @foreach (var teacherEdu in Model.Teacher.TeacherEdus)
+                                        {
+                                            <tr>
+                                                <td>@teacherEdu.EduSub.EduSubId</td>
+                                                <td>@teacherEdu.EduSub.Edu.EduName</td>
+                                                <td>@teacherEdu.EduSub.Subject.SubjectName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
                     </tr>
-                </thead>
-                <tbody class="table-yellow">
-                    @foreach (var teacherEdu in Model.Teacher!.TeacherEdus)
-                    {
-                        <tr>
-                            <td>@teacherEdu.EduSub.Edu.EduName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <table class="table table-bordered table-hover text-center caption-top">
-                <caption>List of Teacher Subjects</caption>
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Subjects</th>
+                }
+            </tbody>
+        </table>
+        <table class="table table-hover table-bordered text-center caption-top">
+            <caption>List of Classes</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Classes</th>
+                    <th scope="col" class="col-1">
+                        @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher!.TeacherEdus.Count > 0)
+                        {
+                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".tr-@Model.Teacher.TeacherId-classes" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-list"></i></button>
+                        }
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-yellow">
+                @if (Model.Teacher!.TeacherEdus is not null && Model.Teacher!.TeacherEdus.Count > 0)
+                {
+                    <tr class="collapse tr-@Model.Teacher.TeacherId-classes">
+                        <td colspan="2">
+                            <div class="collapse tr-@Model.Teacher.TeacherId-classes">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-yellow">
+                                        @foreach (var teacherEdu in Model.Teacher.TeacherEdus)
+                                        {
+                                            @foreach (var teacherClass in teacherEdu.TeacherClasses)
+                                            {
+                                                <tr>
+                                                    <td>@teacherClass.Class.ClassId</td>
+                                                    <td>@teacherClass.Class.ClassName</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
                     </tr>
-                </thead>
-                <tbody class="table-yellow">
-                    @foreach (var teacherEdu in Model.Teacher!.TeacherEdus)
-                    {
-                        <tr>
-                            <td>@teacherEdu.EduSub.Subject.SubjectName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-dark m-3">
-            <h5 class="alert-heading"><i class="bi bi-exclamation-circle-fill"></i> Information</h5>
-            <hr>
-            <p> No Classes, Educations and Subjects found!</p>
-        </div>
-    }
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

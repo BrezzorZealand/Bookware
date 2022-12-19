@@ -1,25 +1,38 @@
 ﻿@page
 @model Bookware.Pages.Teacher_Pages.AddTeachersModel
 @{
-    ViewData["Title"] = "Add Teachers";
+    ViewData["Title"] = "Add Teacher";
 }
 
-<h1>Create</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="  ModelOnly  " class="text-danger">
+<div class="card bg-yellow">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Teacher!.Name" class="form-control" type="text" placeholder="@Html.DisplayNameFor(book => book.Teacher!.Name)" />
+                            <label asp-for="Teacher!.Name">Name</label>
+                            <span asp-validation-for="Teacher!.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Add" class="btn btn-success"/>
+                            <a class="btn btn-danger" asp-page="AllTeachers">Cancel</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.Teacher!.Name" class="control-label"></label>
-                <input asp-for="@Model.Teacher!.Name" class="form-control" />
-                <span asp-validation-for="@Model.Teacher!.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
     

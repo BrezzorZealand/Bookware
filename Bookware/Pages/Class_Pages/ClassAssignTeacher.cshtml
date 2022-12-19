@@ -23,11 +23,11 @@
                             <label asp-for="Class!.ClassName">@Html.DisplayNameFor(c => c.Class!.ClassName)</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select asp-for="TeacherClass.TeachEduId" asp-items="Model.TeacherEduOptions" class="form-control">
+                            <select asp-for="TeacherClass!.TeachEduId" asp-items="Model.TeacherEduOptions" class="form-control">
                                 <option value="">Select Teacher with Education and Subject</option>
                             </select>
-                            <label asp-for="TeacherClass.TeachEduId">Education</label>
-                            <span asp-validation-for="TeacherClass.TeachEduId" class="text-danger"></span>
+                            <label asp-for="TeacherClass!.TeachEduId">Education</label>
+                            <span asp-validation-for="TeacherClass!.TeachEduId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <input type="submit" value="Create" name="Assign" asp-page-handler="Create" class="btn btn-success" />

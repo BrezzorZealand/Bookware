@@ -1,11 +1,11 @@
 ﻿@page
 @model Bookware.Pages.Subject_Pages.AllSubjectsModel
 @{
-    ViewData["Title"] = "Subjects";
+    ViewData["Title"] = "All Subjects";
 }
 <h1 class=" display-4 text-center">@ViewData["Title"]</h1>
 
-<p><a asp-page="AddSubject" class="btn btn-dark"><i class="bi bi-plus"></i> Create new</a></p>
+<p><a asp-page="AddSubject" class="btn btn-dark"><i class="bi bi-plus"></i> Add Subject</a></p>
 
 <div class="table-responsive">
     <table class="table table-bordered table-hover caption-top text-center">
@@ -30,7 +30,8 @@
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
                                 <ul class="dropdown-menu">
                                     <li><a asp-page="SubjectDetails" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details </a></li>
-                                    <li><a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-pen"></i> Edit </a></li>
+                                    <li><a asp-page="EditSubject" asp-route-id="@item.SubjectId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.SubjectId" onclick="return confirm('Are you sure you wan to delete?')">
                                             <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>

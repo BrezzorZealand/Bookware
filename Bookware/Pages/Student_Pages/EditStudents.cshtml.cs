@@ -2,6 +2,7 @@ using Bookware.DbServices.Interfaces;
 using Bookware.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookware.Pages.Student_Pages
 {
@@ -19,6 +20,7 @@ namespace Bookware.Pages.Student_Pages
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Student = await service.GetByIdAsync(id);
+
             return Page();
         }
 

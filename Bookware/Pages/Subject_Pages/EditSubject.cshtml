@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Edit Subject";
 }
-<div class="card">
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -21,7 +21,7 @@
                             <input asp-for="Subject!.SubjectId" class="form-control" type="text" hidden/>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="Subject!.SubjectName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(subject => subject.Subject.SubjectName)"/>
+                            <input asp-for="Subject!.SubjectName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(subject => subject.Subject!.SubjectName)"/>
                             <label asp-for="Subject!.SubjectName">Name</label>
                             <span asp-validation-for="Subject!.SubjectName" class="text-danger"></span>
                         </div>

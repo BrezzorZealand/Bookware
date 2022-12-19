@@ -6,7 +6,7 @@
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
-<a class="btn btn-dark" asp-page="/Education_Pages/CreateEducation">Create Education</a>
+<a class="btn btn-dark" asp-page="/Education_Pages/CreateEducation"><i class="bi bi-plus"></i> Add Education</a>
 
 <div class="table-responsive">
     <table class="table table-hover table-bordered text-center caption-top">
@@ -35,11 +35,11 @@
                                     <li><a asp-page="/Education_Pages/AddEduSub" asp-route-Eid="@item.EduId" class="dropdown-item"><i class="bi bi-plus"></i> Add Subject</a></li>
                                     <li><a asp-page="/Education_Pages/RemoveEduSub" asp-route-Eid="@item.EduId" class="dropdown-item"><i class="bi bi-dash"></i> Remove Subject</a></li>
                                     <li><a asp-page="/Education_Pages/EducationDetails" asp-route-id="@item.EduId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
-                                    <li><a asp-page="/Education_Pages/UpdateEducation" asp-route-id="@item.EduId" class="dropdown-item"><i class="bi bi-pen"></i> Update</a></li>
+                                    <li><a asp-page="/Education_Pages/UpdateEducation" asp-route-id="@item.EduId" class="dropdown-item"><i class="bi bi-pen"></i> Edit</a></li>
                                     <li><hr class="dropdown-divider"/></li>
                                     <li>
                                         <form asp-page-handler="Delete" method="post" asp-route-id="@item.EduId" onclick="return confirm('Are you sure you want to delete?')">
-                                            <button class="dropdown-item text-center"><i class="bi bi-trash"></i> Delete</button>
+                                            <button class="dropdown-item text-danger"><i class="bi bi-trash"></i> Delete</button>
                                         </form>
                                     </li>
                                 </ul>

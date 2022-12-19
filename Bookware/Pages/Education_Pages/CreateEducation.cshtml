@@ -1,9 +1,10 @@
 ﻿@page
 @model Bookware.Pages.Education_Pages.CreateEducationModel
 @{
+    ViewData["Title"] = "Add Education";
 }
 
-<div class="card">
+<div class="card bg-yellow">
     <div class="card-header">
         <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     </div>
@@ -19,8 +20,8 @@
                             <span asp-validation-for="Education!.EduName" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Create" class="btn btn-success" />
-                            <a class="btn btn-danger" asp-page="/Education_Pages/AllEducation">Cancel</a>
+                            <input type="submit" value="Add" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="AllEducations">Cancel</a>
                         </div>
                     </form>
                 </div>
