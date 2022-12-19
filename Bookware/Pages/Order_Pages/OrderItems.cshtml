@@ -1,4 +1,42 @@
 ﻿@page
 @model Bookware.Pages.Order_Pages.OrderItemsModel
 @{
+    ViewData["Title"] = "Order Items";
 }
+
+<div class="card bg-yellow">
+    <div class="card-header">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <div class="align-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post">
+                        @if (!ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <p><i class="bi bi-exclamation-triangle-fill"></i> Error!</p>
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="ClassBook!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassBook!.ClassId)" readonly />
+                            <label asp-for="ClassBook!.ClassId">Class</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <select class="form-select" asp-for="OrderItems" asp-items="Model.Options">
+                                <option value="">Select a book</option>
+                            </select>
+                            <span asp-validation-for="ClassBook!.BookId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="submit" value="Add To Order" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="Order">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

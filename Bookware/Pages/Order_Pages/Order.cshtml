@@ -1,9 +1,35 @@
 ﻿@page
 @model Bookware.Pages.OrderModel
 @{
-    ViewData["Title"] = "Order Information";
+    ViewData["Title"] = "Order for Classes";
 }
 
 <h1 class="display-4 text-center">@ViewData["Title"]</h1>
 
-<a class="btn btn-dark" asp-page="/Order_Pages/OrderItems"><i class="bi bi-plus"></i> Order Items</a>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered caption-top text-center">
+        <caption>List of Classes</caption>
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Class name</th>
+                <th scope="col" class="col-2"></th>
+            </tr>
+        </thead>
+        <tbody class="table-yellow">
+            @if (Model.classes != null)
+            {
+                @foreach (var item in Model.classes)
+                {
+                    <tr>
+                        <td>@item!.ClassId</td>
+                        <td>@item!.ClassName</td>
+                        <td>
+                           <a class="btn btn-dark" asp-page="/Order_Pages/OrderItems" asp-route-id="@item.ClassId"><i class="bi bi-cart-plus"></i> Order Items</a>                                                                       
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
