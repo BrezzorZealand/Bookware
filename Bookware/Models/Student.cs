@@ -22,8 +22,7 @@ namespace Bookware.Models
         [StringLength(70)]
         [Unicode(false)]
         public string Address { get; set; }
-        [Column(TypeName = "datetime")]
-        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
         public DateTime StartDate { get; set; }
         [Column("Class_Id")]
         public int? ClassId { get; set; }

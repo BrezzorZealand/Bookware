@@ -10,26 +10,25 @@ namespace Bookware.Pages.Order_Pages
 {
     public class OrderItemsModel : PageModel
     {
+        private readonly IOrderService orderService;
         private readonly IClassBookService classBookService;
-        private readonly IBookService bookService;
 
-        public OrderItemsModel(IClassBookService classService, IBookService bookService)
+        public OrderItemsModel(IOrderService orderService, IClassBookService classService)
         {
+            this.orderService = orderService;
             this.classBookService = classService;
-            this.bookService = bookService;
         }
 
-        public SelectList? Options { get; set; }
+        public int? ClassId { get; set; }
 
-        public List<int>? OrderItems { get; set; }
+        public IEnumerable<SelectListItem>? Options { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public ClassBook? ClassBook { get; set; } = new ClassBook();
+        public Order? Order { get; set; }
 
         public IActionResult OnGetAsync(int id)
         {
-            ClassBook!.ClassId = id;
-            Options = classBookService.GetSelection(id);
+            Options = classBookService.GetClassBookSelection(id);
             return Page();
         }
 
@@ -37,17 +36,11 @@ namespace Bookware.Pages.Order_Pages
         {
             if (!ModelState.IsValid)
             {
-                Options = classBookService.GetSelection(ClassBook!.ClassId);
                 return Page();
             }
 
-            if (await classBookService.Exists(ClassBook))
-            {
-                return RedirectToPage("Order");
-            }
-
-            //await classBookService.Create(ClassBook);
-            return RedirectToPage("Order");
+            await orderService.Create(Order);
+            return RedirectToPage("OrderClasses");
         }
     }
 }

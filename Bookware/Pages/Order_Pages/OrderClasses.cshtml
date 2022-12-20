@@ -11,9 +11,9 @@
         <caption>List of Classes</caption>
         <thead class="table-dark">
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col" class="col-1">Id</th>
                 <th scope="col">Class name</th>
-                <th scope="col" class="col-2"></th>
+                <th scope="col" class="col-1"></th>
             </tr>
         </thead>
         <tbody class="table-yellow">
@@ -25,7 +25,13 @@
                         <td>@item!.ClassId</td>
                         <td>@item!.ClassName</td>
                         <td>
-                           <a class="btn btn-dark" asp-page="/Order_Pages/OrderItems" asp-route-id="@item.ClassId"><i class="bi bi-cart-plus"></i> Order Items</a>                                                                       
+                            <div class="btn-group">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">Actions</button>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="Orders_Detail" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-journal-text"></i> Details</a></li>
+                                    <li><a asp-page="OrderItems" asp-route-id="@item.ClassId" class="dropdown-item"><i class="bi bi-cart-plus"></i> Order Items</a></li>
+                                </ul>
+                            </div>                                                                       
                         </td>
                     </tr>
                 }

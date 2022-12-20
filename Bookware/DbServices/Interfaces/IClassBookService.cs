@@ -7,6 +7,7 @@ namespace Bookware.DbServices.Interfaces
     {
         Task<bool> Exists(ClassBook? classBook);
         Task<ClassBook?> GetByIdAsync(int? Cid, int? Bid);
+        IEnumerable<SelectListItem> GetClassBookSelection(int? id);
         SelectList GetSelection(int? id);
     }
 }

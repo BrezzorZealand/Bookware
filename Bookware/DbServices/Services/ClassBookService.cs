@@ -28,6 +28,17 @@ namespace Bookware.DbServices.Services
             }
             return new SelectList(books, nameof(Book.BookId), nameof(Book.Title));
         }
+        public IEnumerable<SelectListItem> GetClassBookSelection(int? id)
+        {
+            IEnumerable<ClassBook> classBooks = GetAll().Where(cb => cb.ClassId == id).Include(cb => cb.Book);
+            IEnumerable<SelectListItem> selectListItems = from classBook in classBooks
+                                                          select new SelectListItem
+                                                          {
+                                                              Text = classBook.Book.Title,
+                                                              Value = classBook.CbId.ToString()
+                                                          };
+            return selectListItems;
+        }
 
         public async Task<bool> Exists(ClassBook? classBook)
         {

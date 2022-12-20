@@ -9,10 +9,6 @@ namespace Bookware.Models
 {
     public partial class BookwareDbContext : DbContext
     {
-        public BookwareDbContext()
-        {
-        }
-
         public BookwareDbContext(DbContextOptions<BookwareDbContext> options)
             : base(options)
         {
@@ -23,6 +19,7 @@ namespace Bookware.Models
         public virtual DbSet<ClassBook> ClassBooks { get; set; }
         public virtual DbSet<EduSub> EduSubs { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
@@ -34,17 +31,17 @@ namespace Bookware.Models
             modelBuilder.Entity<ClassBook>(entity =>
             {
                 entity.HasKey(e => e.CbId)
-                    .HasName("PK__Class_Bo__4A5EFCFD240C2567");
+                    .HasName("PK__Class_Bo__4A5EFCFD7070A0A2");
 
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.ClassBooks)
                     .HasForeignKey(d => d.BookId)
-                    .HasConstraintName("FK__Class_Boo__Book___473C8FC7");
+                    .HasConstraintName("FK__Class_Boo__Book___4F47C5E3");
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.ClassBooks)
                     .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK__Class_Boo__Class__46486B8E");
+                    .HasConstraintName("FK__Class_Boo__Class__07C12930");
             });
 
             modelBuilder.Entity<EduSub>(entity =>
@@ -52,18 +49,26 @@ namespace Bookware.Models
                 entity.HasOne(d => d.Edu)
                     .WithMany(p => p.EduSubs)
                     .HasForeignKey(d => d.EduId)
-                    .HasConstraintName("FK__Edu_Sub__Edu_Id__3AD6B8E2");
+                    .HasConstraintName("FK__Edu_Sub__Edu_Id__7C4F7684");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.EduSubs)
                     .HasForeignKey(d => d.SubjectId)
-                    .HasConstraintName("FK__Edu_Sub__Subject__3BCADD1B");
+                    .HasConstraintName("FK__Edu_Sub__Subject__7D439ABD");
             });
 
             modelBuilder.Entity<Education>(entity =>
             {
                 entity.HasKey(e => e.EduId)
-                    .HasName("PK__Educatio__E5726EA254F58629");
+                    .HasName("PK__Educatio__E5726EA2FE5EBECE");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasOne(d => d.Cb)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CbId)
+                    .HasConstraintName("FK__Order__CB_Id__625A9A57");
             });
 
             modelBuilder.Entity<Student>(entity =>
@@ -71,40 +76,39 @@ namespace Bookware.Models
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.ClassId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Student__Class_I__361203C5");
+                    .HasConstraintName("FK__Student__Class_I__3C34F16F");
             });
 
             modelBuilder.Entity<TeacherClass>(entity =>
             {
                 entity.HasKey(e => e.TeachClassId)
-                    .HasName("PK__Teacher___425FAFF33CDA2100");
+                    .HasName("PK__Teacher___425FAFF35ED5C3B9");
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.TeacherClasses)
                     .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK__Teacher_C__Class__4277DAAA");
+                    .HasConstraintName("FK__Teacher_C__Class__03F0984C");
 
                 entity.HasOne(d => d.TeachEdu)
                     .WithMany(p => p.TeacherClasses)
                     .HasForeignKey(d => d.TeachEduId)
-                    .HasConstraintName("FK__Teacher_C__Teach__436BFEE3");
+                    .HasConstraintName("FK__Teacher_C__Teach__04E4BC85");
             });
 
             modelBuilder.Entity<TeacherEdu>(entity =>
             {
                 entity.HasKey(e => e.TeachEduId)
-                    .HasName("PK__Teacher___1B9FC65144AF7BA2");
+                    .HasName("PK__Teacher___1B9FC651D1D58DA2");
 
                 entity.HasOne(d => d.EduSub)
                     .WithMany(p => p.TeacherEdus)
                     .HasForeignKey(d => d.EduSubId)
-                    .HasConstraintName("FK__Teacher_E__EduSu__3F9B6DFF");
+                    .HasConstraintName("FK__Teacher_E__EduSu__01142BA1");
 
                 entity.HasOne(d => d.Teacher)
                     .WithMany(p => p.TeacherEdus)
                     .HasForeignKey(d => d.TeacherId)
-                    .HasConstraintName("FK__Teacher_E__Teach__3EA749C6");
+                    .HasConstraintName("FK__Teacher_E__Teach__00200768");
             });
 
             OnModelCreatingPartial(modelBuilder);

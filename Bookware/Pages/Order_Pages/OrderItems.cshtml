@@ -21,18 +21,23 @@
                             </div>
                         }
                         <div class="form-group form-floating mb-3">
-                            <input asp-for="ClassBook!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassBook!.ClassId)" readonly />
-                            <label asp-for="ClassBook!.ClassId">Class</label>
+                            <input asp-for="ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassId)" disabled/>
+                            <label asp-for="ClassId">Class Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select class="form-select" asp-for="OrderItems" asp-items="Model.Options">
+                            <select class="form-select" asp-for="Order!.CbId" asp-items="Model.Options">
                                 <option value="">Select a book</option>
                             </select>
-                            <span asp-validation-for="ClassBook!.BookId" class="text-danger"></span>
+                            <label asp-for="Order!.CbId">Book</label>
+                            <span asp-validation-for="Order!.CbId"></span>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input asp-for="Order!.Amount" class="form-control" type="number" placeholder="@Html.DisplayNameFor(k => k.Order!.Amount)"/>
+                            <label asp-for="Order!.Amount">Number of books</label>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="submit" value="Add To Order" class="btn btn-success" />
-                            <a class="btn btn-danger" asp-page="Order">Cancel</a>
+                            <input type="submit" value="Order" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-page="OrderClasses">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -11,6 +11,11 @@ namespace Bookware.Models
     [Table("Class_Book")]
     public partial class ClassBook
     {
+        public ClassBook()
+        {
+            Orders = new HashSet<Order>();
+        }
+
         [Key]
         [Column("CB_Id")]
         public int CbId { get; set; }
@@ -25,5 +30,7 @@ namespace Bookware.Models
         [ForeignKey("ClassId")]
         [InverseProperty("ClassBooks")]
         public virtual Class Class { get; set; }
+        [InverseProperty("Cb")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
