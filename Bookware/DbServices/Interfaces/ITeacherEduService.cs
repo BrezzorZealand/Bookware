@@ -8,6 +8,6 @@ namespace Bookware.DbServices.Interfaces
         Task<bool> Exists(TeacherEdu? teacherEdu);
         IEnumerable<SelectListItem> GetAllSelection();
         Task<TeacherEdu?> GetByIdAsync(int? ESid, int? Tid);
-        SelectList GetSelection(int Tid);
+        IEnumerable<SelectListItem> GetSelection(int Tid);
     }
 }
