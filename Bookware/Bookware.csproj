@@ -17,8 +17,4 @@
     <PackageReference Include="System.Text.Encodings.Web" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Orders\" />
-  </ItemGroup>
-
 </Project>
