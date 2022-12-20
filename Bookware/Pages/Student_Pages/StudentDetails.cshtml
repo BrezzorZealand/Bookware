@@ -14,8 +14,8 @@
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.Address)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.StartDate)</dt>
         <dd class="col-sm-10">@Model.Student!.StartDate.ToLongDateString()</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.ClassId)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.ClassId)</dd>               
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Student!.Class.ClassName)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Student!.ClassId). @Html.DisplayFor(model => model.Student!.Class.ClassName)</dd>
     </dl>
     <div class="table-responsive">
         <table class="table table-hover table-bordered text-center caption-top">

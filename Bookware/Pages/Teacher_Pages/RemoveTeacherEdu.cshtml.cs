@@ -20,7 +20,7 @@ namespace Bookware.Pages.Education_Pages
         private readonly IEduSubService eduSubService;
         private readonly ITeacherEduService teacherEduService;
 
-        public SelectList? Options { get; set; }
+        public IEnumerable<SelectListItem>? Options { get; set; }
 
         public RemoveTeacherEduModel(ITeacherService teacherService, IEduSubService eduSubService, ITeacherEduService teacherEduService)
         {
