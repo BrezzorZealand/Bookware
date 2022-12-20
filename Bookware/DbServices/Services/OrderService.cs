@@ -13,7 +13,7 @@ namespace Bookware.DbServices.Services
         public IEnumerable<Order>? GetOrdersByIdAsync(int? id)
         {
             return GetAll()
-                .Where(order => order.CbId == id)
+                .Where(order => order.Cb.ClassId == id)
                 .Include(order => order.Cb)
                 .ThenInclude(classBook => classBook.Class)
                 .Include(order => order.Cb)

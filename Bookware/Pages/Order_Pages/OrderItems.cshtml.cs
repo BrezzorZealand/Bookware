@@ -28,6 +28,7 @@ namespace Bookware.Pages.Order_Pages
 
         public IActionResult OnGetAsync(int id)
         {
+            ClassId= id;
             Options = classBookService.GetClassBookSelection(id);
             return Page();
         }
