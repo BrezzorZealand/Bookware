@@ -19,6 +19,7 @@ namespace Bookware.Pages.Student_Pages
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Student = await service.GetDataByIdAsync(id);
+            
 
             if (Student == null)
             {
