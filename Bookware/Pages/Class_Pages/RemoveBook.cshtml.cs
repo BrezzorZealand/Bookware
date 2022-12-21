@@ -10,20 +10,26 @@ namespace Bookware.Pages.Class_Pages
     public class RemoveBookModel : PageModel
     {
         private readonly IClassBookService classBookService;
+        private readonly IClassService classService;
 
-        public RemoveBookModel(IClassBookService classService)
+        public RemoveBookModel(IClassBookService classBookService, IClassService classService)
         {
-            this.classBookService = classService;
+            this.classBookService = classBookService;
+            this.classService = classService;
         }
 
         public SelectList? Options { get; set; }
 
-        [BindProperty]
-        public ClassBook? ClassBook { get; set; } = new ClassBook();
+        [BindProperty(SupportsGet = true)]
+        public ClassBook? ClassBook { get; set; }
 
-        public IActionResult OnGetAsync(int id)
+        public string? ClassName { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             ClassBook!.ClassId = id;
+            Class? _class = await classService.GetClassByIdAsync(id);
+            ClassName = _class!.ClassName;
             Options = classBookService.GetSelection(id);
             return Page();
         }
