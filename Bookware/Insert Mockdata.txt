@@ -122,3 +122,9 @@ INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) V
 INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (14, 6, 8)
 INSERT INTO [dbo].[Teacher_Class] ([TeachClass_Id], [Class_Id], [TeachEdu_Id]) VALUES (15, 7, 6)
 SET IDENTITY_INSERT [dbo].[Teacher_Class] OFF
+
+SET IDENTITY_INSERT [dbo].[Order] ON
+INSERT INTO [dbo].[Order] ([Order_Id], [CB_Id], [Amount]) VALUES (1, 1, 17)
+INSERT INTO [dbo].[Order] ([Order_Id], [CB_Id], [Amount]) VALUES (2, 5, 26)
+INSERT INTO [dbo].[Order] ([Order_Id], [CB_Id], [Amount]) VALUES (3, 12, 32)
+SET IDENTITY_INSERT [dbo].[Order] OFF
