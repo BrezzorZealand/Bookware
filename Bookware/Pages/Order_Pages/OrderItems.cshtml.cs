@@ -12,23 +12,29 @@ namespace Bookware.Pages.Order_Pages
     {
         private readonly IOrderService orderService;
         private readonly IClassBookService classBookService;
+        private readonly IClassService classService;
 
-        public OrderItemsModel(IOrderService orderService, IClassBookService classService)
+        public OrderItemsModel(IOrderService orderService, IClassBookService classBookService, IClassService classService)
         {
             this.orderService = orderService;
-            this.classBookService = classService;
+            this.classBookService = classBookService;
+            this.classService = classService;
         }
 
         public int? ClassId { get; set; }
+
+        public string? ClassName { get; set; }
 
         public IEnumerable<SelectListItem>? Options { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public Order? Order { get; set; }
 
-        public IActionResult OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             ClassId= id;
+            Class? _class = await classService.GetClassByIdAsync(id);
+            ClassName = _class!.ClassName;
             Options = classBookService.GetClassBookSelection(id);
             return Page();
         }

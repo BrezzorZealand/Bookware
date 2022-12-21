@@ -25,6 +25,10 @@
                             <label asp-for="ClassId">Class Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
+                            <input asp-for="ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassName)" disabled/>
+                            <label asp-for="ClassName">Class Id</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
                             <select class="form-select" asp-for="Order!.CbId" asp-items="Model.Options">
                                 <option value="">Select a book</option>
                             </select>
