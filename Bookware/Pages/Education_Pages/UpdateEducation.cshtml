@@ -18,7 +18,7 @@
                         @* This formgroup id is just to be able to display the BookId for the Book you are about to update *@
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Education!.EduId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(education => education.Education!.EduId)" disabled>
-                            <label asp-for="Education!.EduId">Id</label>
+                            <label asp-for="Education!.EduId">@Html.DisplayNameFor(education => education.Education!.EduId)</label>
                         </div>
                         @* This formgroup is just to be able to get and set the BookId for the Updated Book *@
                         <div class="form-group">

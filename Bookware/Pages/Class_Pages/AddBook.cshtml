@@ -22,11 +22,11 @@
                         }
                         <div class="form-group form-floating mb-3">
                             <input asp-for="ClassBook!.ClassId" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassBook!.ClassId)" readonly/>
-                            <label asp-for="ClassBook!.ClassId">Class</label>
+                            <label asp-for="ClassBook!.ClassId">Class Id</label>
                         </div>
                         <div class="form-group form-floating mb-3">
                             <input asp-for="ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(k => k.ClassName)" disabled />
-                            <label asp-for="ClassName">Class</label>
+                            <label asp-for="ClassName">Class name</label>
                         </div>
                         <div class="form-group form-floating mb-3">
                             <select class="form-select" asp-for="ClassBook!.BookId" asp-items="Model.Options">

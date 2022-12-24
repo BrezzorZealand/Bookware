@@ -21,11 +21,11 @@
                         </div>
                         <div class="form-group form-floating mb-3">
                             <input asp-for="Class!.ClassName" class="form-control" type="text" placeholder="@Html.DisplayNameFor(c => c.Class!.ClassName)" readonly />
-                            <label asp-for="Class!.ClassName">Name</label>
+                            <label asp-for="Class!.ClassName">Class name</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <select class="form-select" asp-for="TeacherClass.TeachEduId" asp-items="Model.Options">
-                                <option value="">Select</option>
+                            <select class="form-select" asp-for="TeacherClass!.TeachEduId" asp-items="Model.Options">
+                                <option value="">Select a Teacher</option>
                             </select>
                             <label> Teacher with EduSub </label>
                         </div>
